@@ -1,0 +1,121 @@
+package com.test.test.path;
+
+import com.alibaba.fastjson.JSON;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.stereotype.Component;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * The type Path test.
+ *
+ * @author Snowson
+ * @since 2019 /1/15 17:59 <p> TODO URLResource, ServletContextResource, InputStreamResource
+ */
+//@Component
+@Slf4j
+public class PathTest implements ApplicationRunner {
+
+    @Value("${temp.path}")
+    private String tempPath;
+
+    /**
+     * Of path test.
+     *
+     * @return the path test
+     */
+    public static PathTest of() {
+        return new PathTest();
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+//        PathTest.of().classPathResource();
+//        PathTest.of().fileSystemResource(tempPath);
+        PathTest.of().byteArrayResource();
+    }
+
+    /**
+     * ClassPathResource = getClass().getClassLoader().getResource
+     *
+     * @throws IOException the io exception
+     */
+    public void classPathResource() throws IOException {
+        String classLoaderPath = getClass().getClassLoader().getResource("application.yml").getPath();
+        log.info("classPathResource info,  classLoaderPath: {}", classLoaderPath);
+
+        ClassPathResource resource = new ClassPathResource("txt.txt");
+        InputStream is = resource.getInputStream();
+        BufferedInputStream bis = new BufferedInputStream(is);
+        byte[] b = new byte[is.available()];
+        bis.read(b);
+        String content = new String(b, Charsets.UTF_8);
+        log.info("classPathResource info, content: {}", content);
+        String path = resource.getPath();
+        log.info("classPathResource, path: {}", path);
+        String filename = resource.getFilename();
+        log.info("classPathResource info, filename: {}", filename);
+    }
+
+    /**
+     * File system resource. == File, 操作系统文件
+     *
+     * @param destDir the dest dir
+     * @throws IOException the io exception
+     */
+    public void fileSystemResource(String destDir) throws IOException {
+        String filePath = destDir + "/" + "systemResource.json";
+        FileSystemResource resource = new FileSystemResource(filePath);
+        OutputStream os = resource.getOutputStream();
+        Map<String, String> map = new HashMap<>();
+        map.put("userName", "admin");
+        map.put("password", "123456");
+        map.put("role", "dbOwner");
+        String result = JSON.toJSONString(map);
+        os.write(result.getBytes(Charsets.UTF_8));
+        os.flush();
+        os.close();
+    }
+
+    /**
+     * Byte array resource. byteArray转stream
+     *
+     * @throws IOException the io exception
+     */
+    public void byteArrayResource() throws IOException {
+        Map<String, String> map = new HashMap<>();
+        map.put("userName", "admin");
+        map.put("password", "123456");
+        map.put("role", "dbOwner");
+        String origin = JSON.toJSONString(map);
+        ByteArrayResource bar = new ByteArrayResource(origin.getBytes(Charsets.UTF_8));
+        InputStream is = bar.getInputStream();
+        byte[] buffer = new byte[is.available()];
+        is.read(buffer);
+        String result = new String(buffer, Charsets.UTF_8);
+        log.info("result: {}", result);
+    }
+
+    /**
+     * Guava resource. == ClassPathResource
+     */
+    public void guavaResource() {
+        Resources.getResource("example").getFile();
+    }
+
+}

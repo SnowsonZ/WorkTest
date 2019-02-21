@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+logging:
+  path: /developer/test_env/log/test
+  file: test
+temp:
+  path: /developer/test_env/tmpfile/test
+server:
+  port: 8989
+
+
+---
+spring:
+  profiles: prod
+logging:
+  path: /mnt/data/logback/test
+  file: test
+temp:
+  path: /mnt/var/www/website/test
+server:
+  port: 8989

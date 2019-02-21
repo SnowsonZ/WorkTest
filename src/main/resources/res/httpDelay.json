@@ -1,0 +1,312 @@
+[
+  {
+    "appId": "0be786cc-f6b0-11e8-a1c1-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 1.0
+  },
+  {
+    "appId": "0be786cc-f6b0-11e8-a1c1-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 33.25000000000001
+  },
+  {
+    "appId": "0be786cc-f6b0-11e8-a1c1-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 34.333333333333336
+  },
+  {
+    "appId": "0be786cc-f6b0-11e8-a1c1-0242ac12000c",
+    "areaId": "d2bae8ac-f6a6-11e8-b507-0242ac12000c",
+    "delayAvg": 36.55555555555556
+  },
+  {
+    "appId": "1895d61a-07f6-11e9-8a87-02420a0a0a06",
+    "areaId": "ALL",
+    "delayAvg": 103.0
+  },
+  {
+    "appId": "1895d61a-07f6-11e9-8a87-02420a0a0a06",
+    "areaId": "UNKNOWN",
+    "delayAvg": 103.0
+  },
+  {
+    "appId": "1afce7ca-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 2.6
+  },
+  {
+    "appId": "1afce7ca-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "ALL",
+    "delayAvg": 260.13673469387754
+  },
+  {
+    "appId": "1afce7ca-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "UNKNOWN",
+    "delayAvg": 205.07353475858054
+  },
+  {
+    "appId": "332ef3ce-09a1-11e9-b0e2-02420a0a0a0b",
+    "areaId": "ALL",
+    "delayAvg": 110.0
+  },
+  {
+    "appId": "332ef3ce-09a1-11e9-b0e2-02420a0a0a0b",
+    "areaId": "UNKNOWN",
+    "delayAvg": 110.0
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 0.0
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 18.36
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "8a9c3f7c-f6a5-11e8-a1c1-0242ac12000c",
+    "delayAvg": 17.166666666666668
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "9d3a154a-f6a6-11e8-a1c1-0242ac12000c",
+    "delayAvg": 17.5
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "ALL",
+    "delayAvg": 30.32666666666667
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "UNKNOWN",
+    "delayAvg": 34.907407407407405
+  },
+  {
+    "appId": "3593a45c-ee3a-11e8-bd3f-0242ac120008",
+    "areaId": "a977387c-f6a8-11e8-a5ec-0242ac12000c",
+    "delayAvg": 39.666666666666664
+  },
+  {
+    "appId": "3ba12948-f6c6-11e8-a1c1-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 52.63461538461539
+  },
+  {
+    "appId": "3ba12948-f6c6-11e8-a1c1-0242ac12000c",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 308.7
+  },
+  {
+    "appId": "3ba12948-f6c6-11e8-a1c1-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 53.139072847682094
+  },
+  {
+    "appId": "3ba12948-f6c6-11e8-a1c1-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 31.950276243093914
+  },
+  {
+    "appId": "3ba12948-f6c6-11e8-a1c1-0242ac12000c",
+    "areaId": "d2bae8ac-f6a6-11e8-b507-0242ac12000c",
+    "delayAvg": 170.9
+  },
+  {
+    "appId": "475d3490-ee3b-11e8-bd3f-0242ac120008",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 13.485714285714286
+  },
+  {
+    "appId": "475d3490-ee3b-11e8-bd3f-0242ac120008",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 4.75
+  },
+  {
+    "appId": "475d3490-ee3b-11e8-bd3f-0242ac120008",
+    "areaId": "UNKNOWN",
+    "delayAvg": 21.741935483870968
+  },
+  {
+    "appId": "475d3490-ee3b-11e8-bd3f-0242ac120008",
+    "areaId": "d2bae8ac-f6a6-11e8-b507-0242ac12000c",
+    "delayAvg": 22.0
+  },
+  {
+    "appId": "5c22f004-f6b0-11e8-a5ec-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 1.0
+  },
+  {
+    "appId": "5c22f004-f6b0-11e8-a5ec-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 27.434782608695652
+  },
+  {
+    "appId": "5c22f004-f6b0-11e8-a5ec-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 28.636363636363637
+  },
+  {
+    "appId": "73377bbc-ee3a-11e8-b409-0242ac120008",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 5.25
+  },
+  {
+    "appId": "73377bbc-ee3a-11e8-b409-0242ac120008",
+    "areaId": "ALL",
+    "delayAvg": 354.5454545454546
+  },
+  {
+    "appId": "73377bbc-ee3a-11e8-b409-0242ac120008",
+    "areaId": "UNKNOWN",
+    "delayAvg": 363.34210526315786
+  },
+  {
+    "appId": "73377bbc-ee3a-11e8-b409-0242ac120008",
+    "areaId": "d2bae8ac-f6a6-11e8-b507-0242ac12000c",
+    "delayAvg": 858.25
+  },
+  {
+    "appId": "7a4a208e-09c5-11e9-a9b7-02420a0a0a0b",
+    "areaId": "ALL",
+    "delayAvg": 104.8
+  },
+  {
+    "appId": "7a4a208e-09c5-11e9-a9b7-02420a0a0a0b",
+    "areaId": "UNKNOWN",
+    "delayAvg": 104.8
+  },
+  {
+    "appId": "88a65c60-f6ec-11e8-970b-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 3.6
+  },
+  {
+    "appId": "88a65c60-f6ec-11e8-970b-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 1.6486486486486482
+  },
+  {
+    "appId": "88a65c60-f6ec-11e8-970b-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 1.6284153005464481
+  },
+  {
+    "appId": "8f533cdc-ee0d-11e8-94fd-0242ac120006",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 0.9285714285714286
+  },
+  {
+    "appId": "8f533cdc-ee0d-11e8-94fd-0242ac120006",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 166.7412280701753
+  },
+  {
+    "appId": "8f533cdc-ee0d-11e8-94fd-0242ac120006",
+    "areaId": "ALL",
+    "delayAvg": 60.91304347826081
+  },
+  {
+    "appId": "8f533cdc-ee0d-11e8-94fd-0242ac120006",
+    "areaId": "UNKNOWN",
+    "delayAvg": 27.44352617079889
+  },
+  {
+    "appId": "8f533cdc-ee0d-11e8-94fd-0242ac120006",
+    "areaId": "d2bae8ac-f6a6-11e8-b507-0242ac12000c",
+    "delayAvg": 72.8
+  },
+  {
+    "appId": "9f30f068-0b45-11e9-8000-02420a0a0a0b",
+    "areaId": "79449df8-f2b5-11e8-99b2-0242ac120008",
+    "delayAvg": 148.0
+  },
+  {
+    "appId": "9f30f068-0b45-11e9-8000-02420a0a0a0b",
+    "areaId": "ALL",
+    "delayAvg": 39.42857142857143
+  },
+  {
+    "appId": "9f30f068-0b45-11e9-8000-02420a0a0a0b",
+    "areaId": "UNKNOWN",
+    "delayAvg": 21.333333333333332
+  },
+  {
+    "appId": "a18a5ade-f6af-11e8-a5ec-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 1.5
+  },
+  {
+    "appId": "a18a5ade-f6af-11e8-a5ec-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 1.5
+  },
+  {
+    "appId": "a219f182-f6b2-11e8-a63c-0242ac12000c",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 2.6
+  },
+  {
+    "appId": "a219f182-f6b2-11e8-a63c-0242ac12000c",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 66.66666666666667
+  },
+  {
+    "appId": "a219f182-f6b2-11e8-a63c-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 18.55
+  },
+  {
+    "appId": "a219f182-f6b2-11e8-a63c-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 16.214285714285715
+  },
+  {
+    "appId": "e5947558-0810-11e9-b48d-02420a0a0a06",
+    "areaId": "ALL",
+    "delayAvg": 99.41666666666669
+  },
+  {
+    "appId": "e5947558-0810-11e9-b48d-02420a0a0a06",
+    "areaId": "UNKNOWN",
+    "delayAvg": 99.41666666666669
+  },
+  {
+    "appId": "ec465884-0988-11e9-bd20-02420a0a0a0b",
+    "areaId": "24b1b820-eed2-11e8-b322-0242ac120008",
+    "delayAvg": 2.6
+  },
+  {
+    "appId": "ec465884-0988-11e9-bd20-02420a0a0a0b",
+    "areaId": "596bd6ba-f6a5-11e8-b507-0242ac12000c",
+    "delayAvg": 66.66666666666667
+  },
+  {
+    "appId": "ec465884-0988-11e9-bd20-02420a0a0a0b",
+    "areaId": "ALL",
+    "delayAvg": 18.55
+  },
+  {
+    "appId": "ec465884-0988-11e9-bd20-02420a0a0a0b",
+    "areaId": "UNKNOWN",
+    "delayAvg": 16.214285714285715
+  },
+  {
+    "appId": "f94aa73e-f6ae-11e8-a1c1-0242ac12000c",
+    "areaId": "ALL",
+    "delayAvg": 89.33333333333333
+  },
+  {
+    "appId": "f94aa73e-f6ae-11e8-a1c1-0242ac12000c",
+    "areaId": "UNKNOWN",
+    "delayAvg": 89.33333333333333
+  },
+  {
+    "appId": "475d3490-ee3b-11e8-bd3f-0242ac120008",
+    "areaId": "ALL",
+    "delayAvg": 17.450000000000003
+  }
+]

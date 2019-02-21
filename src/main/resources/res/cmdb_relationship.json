@@ -1,0 +1,452 @@
+[
+  {
+    "id": "5ed3e682-64d4-11e8-b9df-0242ac110004",
+    "name": "belongto",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "属于",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Agent",
+    "_createtime": 1545372711227,
+    "_lastmodified": 1545372711227,
+    "destinationType": "Location"
+  },
+  {
+    "id": "8d253366-64d8-11e8-be9e-0242ac110305",
+    "name": "belongto",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "属于",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "IpGroup",
+    "_createtime": 1545372711231,
+    "_lastmodified": 1545372711231,
+    "destinationType": "Location"
+  },
+  {
+    "id": "4e7deb94-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationUsesT_Cluster",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711233,
+    "_lastmodified": 1545372711233,
+    "destinationType": "Cluster"
+  },
+  {
+    "id": "4e7e313a-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711235,
+    "_lastmodified": 1545372711235,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e7e7636-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationUsesT_Database",
+    "type": "N_N",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711237,
+    "_lastmodified": 1545372711237,
+    "destinationType": "Database"
+  },
+  {
+    "id": "4e7ebf56-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationUsesT_MessageServer",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711239,
+    "_lastmodified": 1545372711239,
+    "destinationType": "MessageServer"
+  },
+  {
+    "id": "4e7f1974-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationUsesT_WebServer",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711241,
+    "_lastmodified": 1545372711241,
+    "destinationType": "WebServer"
+  },
+  {
+    "id": "4e7f68de-04e7-11e9-a98f-0242ac170002",
+    "name": "ApplicationHasMemberService",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Application",
+    "_createtime": 1545372711243,
+    "_lastmodified": 1545372711243,
+    "destinationType": "Service"
+  },
+  {
+    "id": "4e7fbfd2-04e7-11e9-a98f-0242ac170002",
+    "name": "BusinessHasMemberApplication",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Business",
+    "_createtime": 1545372711245,
+    "_lastmodified": 1545372711245,
+    "destinationType": "Application"
+  },
+  {
+    "id": "4e800f82-04e7-11e9-a98f-0242ac170002",
+    "name": "BusinessRunsOnT_ComputeNode",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Business",
+    "_createtime": 1545372711247,
+    "_lastmodified": 1545372711247,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e8055c8-04e7-11e9-a98f-0242ac170002",
+    "name": "BusinessManagesContainer",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "管理",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Business",
+    "_createtime": 1545372711249,
+    "_lastmodified": 1545372711249,
+    "destinationType": "Container"
+  },
+  {
+    "id": "4e809af6-04e7-11e9-a98f-0242ac170002",
+    "name": "BusinessManagesHypervisor",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "管理",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Business",
+    "_createtime": 1545372711251,
+    "_lastmodified": 1545372711251,
+    "destinationType": "Hypervisor"
+  },
+  {
+    "id": "4e80da3e-04e7-11e9-a98f-0242ac170002",
+    "name": "DBClusterDependsOnBusiness",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "依赖",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "DBCluster",
+    "_createtime": 1545372711253,
+    "_lastmodified": 1545372711253,
+    "destinationType": "Business"
+  },
+  {
+    "id": "4e811e40-04e7-11e9-a98f-0242ac170002",
+    "name": "HypervisorRunsOnT_ComputeNode",
+    "type": "1_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Hypervisor",
+    "_createtime": 1545372711254,
+    "_lastmodified": 1545372711254,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e815f4a-04e7-11e9-a98f-0242ac170002",
+    "name": "HypervisorVirtualizesVM",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "虚拟化",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Hypervisor",
+    "_createtime": 1545372711256,
+    "_lastmodified": 1545372711256,
+    "destinationType": "VM"
+  },
+  {
+    "id": "4e81a144-04e7-11e9-a98f-0242ac170002",
+    "name": "HypervisorManagesVirtualTemplate",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "管理",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Hypervisor",
+    "_createtime": 1545372711258,
+    "_lastmodified": 1545372711258,
+    "destinationType": "VirtualTemplate"
+  },
+  {
+    "id": "4e81f126-04e7-11e9-a98f-0242ac170002",
+    "name": "MessageClusterHasMemberT_MessageServer",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "MessageCluster",
+    "_createtime": 1545372711260,
+    "_lastmodified": 1545372711260,
+    "destinationType": "MessageServer"
+  },
+  {
+    "id": "4e823e60-04e7-11e9-a98f-0242ac170002",
+    "name": "ContainerRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Container",
+    "_createtime": 1545372711262,
+    "_lastmodified": 1545372711262,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e828c6c-04e7-11e9-a98f-0242ac170002",
+    "name": "T_DatabaseRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "Database",
+    "_createtime": 1545372711264,
+    "_lastmodified": 1545372711264,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e82d6c2-04e7-11e9-a98f-0242ac170002",
+    "name": "T_MessageServerRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "MessageServer",
+    "_createtime": 1545372711265,
+    "_lastmodified": 1545372711265,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e8332a2-04e7-11e9-a98f-0242ac170002",
+    "name": "T_VMRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VM",
+    "_createtime": 1545372711267,
+    "_lastmodified": 1545372711267,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e8382f2-04e7-11e9-a98f-0242ac170002",
+    "name": "T_WebServerUsesT_Database",
+    "type": "N_N",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "WebServer",
+    "_createtime": 1545372711270,
+    "_lastmodified": 1545372711270,
+    "destinationType": "Database"
+  },
+  {
+    "id": "4e83d248-04e7-11e9-a98f-0242ac170002",
+    "name": "T_WebServerRunsOnT_ComputeNode",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "运行在",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "WebServer",
+    "_createtime": 1545372711272,
+    "_lastmodified": 1545372711272,
+    "destinationType": "ComputeNode"
+  },
+  {
+    "id": "4e842176-04e7-11e9-a98f-0242ac170002",
+    "name": "VMUsesVirtualTemplate",
+    "type": "N_1",
+    "_type": "TypeRelationship",
+    "label": "使用",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VM",
+    "_createtime": 1545372711274,
+    "_lastmodified": 1545372711274,
+    "destinationType": "VirtualTemplate"
+  },
+  {
+    "id": "4e846ece-04e7-11e9-a98f-0242ac170002",
+    "name": "VirtualClusterHasMemberHypervisor",
+    "type": "N_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VirtualCluster",
+    "_createtime": 1545372711276,
+    "_lastmodified": 1545372711276,
+    "destinationType": "Hypervisor"
+  },
+  {
+    "id": "4e84b5f0-04e7-11e9-a98f-0242ac170002",
+    "name": "VirtualClusterHasMemberVM",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VirtualCluster",
+    "_createtime": 1545372711278,
+    "_lastmodified": 1545372711278,
+    "destinationType": "VM"
+  },
+  {
+    "id": "4e8507c6-04e7-11e9-a98f-0242ac170002",
+    "name": "VirtualClusterHasMemberVirtualTemplate",
+    "type": "N_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VirtualCluster",
+    "_createtime": 1545372711280,
+    "_lastmodified": 1545372711280,
+    "destinationType": "VirtualTemplate"
+  },
+  {
+    "id": "4e8554a6-04e7-11e9-a98f-0242ac170002",
+    "name": "VirtualDCManagesVirtualCluster",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "管理",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "VirtualDC",
+    "_createtime": 1545372711282,
+    "_lastmodified": 1545372711282,
+    "destinationType": "VirtualCluster"
+  },
+  {
+    "id": "4e8599fc-04e7-11e9-a98f-0242ac170002",
+    "name": "WebClusterHasMemberT_WebServer",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "WebCluster",
+    "_createtime": 1545372711284,
+    "_lastmodified": 1545372711284,
+    "destinationType": "WebServer"
+  },
+  {
+    "id": "4e85de6c-04e7-11e9-a98f-0242ac170002",
+    "name": "DBClusterHasMemberT_Database",
+    "type": "1_N",
+    "_type": "TypeRelationship",
+    "label": "包含",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "sourceType": "DBCluster",
+    "_createtime": 1545372711285,
+    "_lastmodified": 1545372711285,
+    "destinationType": "Database"
+  }
+]

@@ -1,0 +1,6115 @@
+[
+  {
+    "_id": "44927802-04e7-11e9-9340-0242ac170002",
+    "name": "CiType",
+    "fields": {
+      "id": {
+        "name": "id",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "唯一ID"
+      }
+    },
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "Ci类型"
+  },
+  {
+    "_id": "4492b24a-04e7-11e9-9340-0242ac170002",
+    "name": "Base",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "名称"
+      },
+      "label": {
+        "name": "label",
+        "label": "显示名称",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "显示名称"
+      },
+      "description": {
+        "name": "description",
+        "label": "描述",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "描述信息"
+      }
+    },
+    "parent": "CiType",
+    "ancestors": [
+      {}
+    ],
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "基础类"
+  },
+  {
+    "_id": "4492d4aa-04e7-11e9-9340-0242ac170002",
+    "name": "RelationshipType",
+    "fields": {
+      "source": {
+        "name": "source",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "源",
+        "refDataType": "CiType",
+        "relationType": "Reference"
+      },
+      "destination": {
+        "name": "destination",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "目标",
+        "refDataType": "CiType",
+        "relationType": "Reference"
+      },
+      "typeRelationship": {
+        "name": "typeRelationship",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "TypeRelationship",
+        "relationType": "Reference"
+      }
+    },
+    "parent": "CiType",
+    "ancestors": [
+      {}
+    ],
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "关联关系类型"
+  },
+  {
+    "_id": "44957692-04e7-11e9-9340-0242ac170002",
+    "name": "TypeRelationship",
+    "fields": {
+      "type": {
+        "name": "type",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "关系类型"
+      },
+      "sourceType": {
+        "name": "sourceType",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "源类型"
+      },
+      "destinationType": {
+        "name": "destinationType",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "目标类型"
+      }
+    },
+    "parent": "Base",
+    "ancestors": [
+      {}
+    ],
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "类型关联关系"
+  },
+  {
+    "name": "ResourceType",
+    "embed": true,
+    "label": "资源类型",
+    "fields": {
+      "name": {
+        "name": "name",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "名称"
+      },
+      "label": {
+        "name": "label",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "显示名称"
+      }
+    },
+    "parent": "Base",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "资源类型",
+    "_id": "4902e7f0-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Category",
+    "label": "类型分组",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "index": {
+        "name": "index",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "序号"
+      },
+      "types": {
+        "name": "types",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "Many",
+        "description": "资源类型列表",
+        "refDataType": "ResourceType",
+        "relationType": "embedded"
+      }
+    },
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "类型分组",
+    "_id": "49072752-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysDepartment",
+    "label": "部门",
+    "fields": {
+      "code": {
+        "name": "code",
+        "label": "编码",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      },
+      "parent": {
+        "name": "parent",
+        "label": "父部门",
+        "uiType": "treeSelect",
+        "dataType": "relationship",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请选择",
+        "refDataType": "SysDepartment",
+        "relationType": "Reference"
+      },
+      "preset": {
+        "name": "preset",
+        "label": "是否预置",
+        "dataType": "boolean",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择是否预置"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "parent",
+          "description",
+          "preset"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "部门",
+    "_id": "4909e3a2-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysMenu",
+    "label": "菜单",
+    "fields": {
+      "url": {
+        "name": "url",
+        "label": "地址",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      },
+      "code": {
+        "name": "code",
+        "label": "菜单码",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      },
+      "icon": {
+        "name": "icon",
+        "label": "图标",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      },
+      "index": {
+        "name": "index",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "序号"
+      },
+      "parent": {
+        "name": "parent",
+        "label": "父菜单",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      },
+      "permits": {
+        "name": "permits",
+        "label": "权限集合",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      },
+      "permitRoleTypes": {
+        "name": "permitRoleTypes",
+        "label": "授权角色类型",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      },
+      "defaultRoleTypes": {
+        "name": "defaultRoleTypes",
+        "label": "默认角色类型",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "code",
+          "url",
+          "icon",
+          "parent",
+          "index",
+          "permits"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "菜单",
+    "_id": "490cb316-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysResource",
+    "label": "资源",
+    "fields": {
+      "code": {
+        "name": "code",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "编码"
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "domain": {
+        "name": "domain",
+        "label": "所属域",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择",
+        "refDataType": "SysDomain",
+        "relationType": "Reference"
+      },
+      "enabled": {
+        "name": "enabled",
+        "default": true,
+        "dataType": "boolean",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "是否启用"
+      },
+      "resourceFrom": {
+        "name": "resourceFrom",
+        "label": "来源",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "SysDatasource",
+        "relationType": "Reference"
+      },
+      "resourceOwner": {
+        "name": "resourceOwner",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "SysUser",
+        "relationType": "Reference"
+      },
+      "resourceCreator": {
+        "name": "resourceCreator",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "SysUser",
+        "relationType": "Reference"
+      }
+    },
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "资源",
+    "_id": "490f9036-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysDomain",
+    "label": "域",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "preset": {
+        "name": "preset",
+        "label": "是否预置",
+        "dataType": "boolean",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择是否预置"
+      },
+      "description": {
+        "name": "description",
+        "label": "描述",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请输入描述"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "description",
+          "preset"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "域",
+    "_id": "490fe4c8-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysDatasource",
+    "label": "数据源",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "IP地址"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "数据源",
+    "_id": "4912ab54-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysUser",
+    "label": "系统用户",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "email": {
+        "name": "email",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "电子邮箱"
+      },
+      "phone": {
+        "name": "phone",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "手机号码"
+      },
+      "gender": {
+        "name": "gender",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "性别"
+      },
+      "workId": {
+        "name": "workId",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "工号"
+      },
+      "address": {
+        "name": "address",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "地址"
+      },
+      "domains": {
+        "name": "domains",
+        "label": "管理域",
+        "uiType": "treeSelect",
+        "dataType": "relationship",
+        "mandatory": false,
+        "cardinality": "Many",
+        "placeholder": "请选择",
+        "refDataType": "SysDomain",
+        "relationType": "Reference"
+      },
+      "enabled": {
+        "name": "enabled",
+        "default": true,
+        "dataType": "boolean",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "是否启用"
+      },
+      "password": {
+        "name": "password",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "密码"
+      },
+      "userName": {
+        "name": "userName",
+        "label": "登录名",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入登录名",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "telePhone": {
+        "name": "telePhone",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "电话"
+      },
+      "department": {
+        "name": "department",
+        "label": "部门",
+        "uiType": "treeSelect",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择",
+        "refDataType": "SysDepartment",
+        "relationType": "Reference"
+      },
+      "boardStickyApps": {
+        "name": "boardStickyApps",
+        "label": "看板置顶应用",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "Many"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "userName",
+          "password",
+          "gender",
+          "workId",
+          "telePhone",
+          "phone",
+          "email",
+          "department",
+          "domains",
+          "description",
+          "enabled"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "系统用户",
+    "_id": "4912f6ea-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysTopo",
+    "label": "默认拓扑",
+    "fields": {
+      "level": {
+        "name": "level",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "层级"
+      },
+      "rootCi": {
+        "name": "rootCi",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "Base",
+        "relationType": "Reference"
+      }
+    },
+    "parent": "Base",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "默认拓扑",
+    "_id": "4915bdb2-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysTopoLayout",
+    "label": "自定义拓扑布局",
+    "fields": {
+      "data": {
+        "name": "data",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "内容"
+      },
+      "level": {
+        "name": "level",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "层级"
+      },
+      "rootCi": {
+        "name": "rootCi",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "refDataType": "Base",
+        "relationType": "Reference"
+      },
+      "isDefault": {
+        "name": "isDefault",
+        "dataType": "boolean",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "是否是默认拓扑"
+      }
+    },
+    "parent": "Base",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "自定义拓扑布局",
+    "_id": "4918fee6-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Icon",
+    "label": "图标",
+    "fields": {
+      "type": {
+        "name": "type",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "图标类型"
+      },
+      "base64": {
+        "name": "base64",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "图标"
+      },
+      "system": {
+        "name": "system",
+        "dataType": "boolean",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "是否系统图标"
+      }
+    },
+    "parent": "Base",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "图标",
+    "_id": "491bce28-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "AgentAppStrategy",
+    "label": "代理仿真策略",
+    "fields": {
+      "enable": {
+        "name": "enable",
+        "label": "是否已经注册",
+        "uiType": "select",
+        "dataType": "boolean",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "是否已经注册",
+        "placeholder": "请输入是否已经注册"
+      },
+      "source": {
+        "name": "source",
+        "label": "代理",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "代理",
+        "placeholder": "请输入代理",
+        "refDataType": "Agent",
+        "relationType": "Reference"
+      },
+      "dnsDelay": {
+        "name": "dnsDelay",
+        "label": "DNS延时",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "DNS延时",
+        "placeholder": "请输入DNS延时"
+      },
+      "tcpDelay": {
+        "name": "tcpDelay",
+        "label": "tcp延时",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "tcp延时",
+        "placeholder": "请输入tcp延时"
+      },
+      "pingDelay": {
+        "name": "pingDelay",
+        "label": "ping延时",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "ping延时",
+        "placeholder": "请输入ping延时"
+      },
+      "retryCount": {
+        "name": "retryCount",
+        "label": "重试次数",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "重试次数",
+        "placeholder": "请输入重试次数"
+      },
+      "destination": {
+        "name": "destination",
+        "label": "业务应用",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "业务应用",
+        "placeholder": "请输入业务应用",
+        "refDataType": "Application",
+        "relationType": "Reference"
+      },
+      "httpTimeout": {
+        "name": "httpTimeout",
+        "label": "http超时时间",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "http超时时间",
+        "placeholder": "请输入http超时时间"
+      },
+      "dnsRetryCount": {
+        "name": "dnsRetryCount",
+        "label": "dns重试次数",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "dns重试次数",
+        "placeholder": "请输入dns重试次数"
+      },
+      "pingRetryCount": {
+        "name": "pingRetryCount",
+        "label": "ping重试次数",
+        "uiType": "number",
+        "default": 4,
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "ping重试次数",
+        "placeholder": "请输入ping重试次数"
+      },
+      "tracerouteDelay": {
+        "name": "tracerouteDelay",
+        "label": "traceroute延时",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入tracerouteDelay"
+      },
+      "policyIntervalTime": {
+        "name": "policyIntervalTime",
+        "label": "间隔时间",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "间隔时间",
+        "placeholder": "请输入间隔时间"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "httpTimeout",
+          "dnsDelay",
+          "dnsRetryCount",
+          "retryCount",
+          "destination",
+          "tracerouteDelay",
+          "policyIntervalTime",
+          "source",
+          "pingDelay",
+          "pingRetryCount",
+          "tcpDelay"
+        ]
+      }
+    ],
+    "parent": "RelationshipType",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "代理仿真策略",
+    "_id": "491ea2c4-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Database",
+    "label": "数据库",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "port": {
+        "ds": {
+          "riil": "MonitorPort"
+        },
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": false,
+        "placeholder": "请输入端口"
+      },
+      "version": {
+        "ds": {
+          "riil": "Version"
+        },
+        "name": "version",
+        "label": "版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入版本"
+      },
+      "installPath": {
+        "ds": {
+          "riil": "InstallDirectory"
+        },
+        "name": "installPath",
+        "label": "安装路径",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入安装路径"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4921bf22-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Cluster",
+    "label": "集群",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "description": {
+        "name": "description",
+        "label": "描述",
+        "uiType": "textarea",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "validations": [
+          {
+            "data": {
+              "max": 500
+            },
+            "type": "length"
+          }
+        ]
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4921f91a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WebServer",
+    "label": "Web应用中间件",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "port": {
+        "ds": {
+          "riil": "MonitorPort"
+        },
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": false,
+        "placeholder": "请输入端口"
+      },
+      "version": {
+        "ds": {
+          "riil": "Version"
+        },
+        "name": "version",
+        "label": "版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入版本"
+      },
+      "installPath": {
+        "ds": {
+          "riil": "InstallDirectory"
+        },
+        "name": "installPath",
+        "label": "安装路径",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入安装路径"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49223b8c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "MessageServer",
+    "label": "消息中间件",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "port": {
+        "ds": {
+          "riil": "MonitorPort"
+        },
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "placeholder": "请输入端口"
+      },
+      "version": {
+        "ds": {
+          "riil": "Version"
+        },
+        "name": "version",
+        "label": "版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入版本"
+      },
+      "installPath": {
+        "ds": {
+          "riil": "InstallDirectory"
+        },
+        "name": "installPath",
+        "label": "安装路径",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入安装路径"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4926b5b8-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "NetworkNode",
+    "label": "网络节点",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      },
+      "portNum": {
+        "name": "portNum",
+        "label": "网口数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入网口数"
+      },
+      "sysDesc": {
+        "name": "sysDesc",
+        "label": "系统信息",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入系统信息"
+      },
+      "SystemOID": {
+        "name": "SystemOID",
+        "label": "系统OID",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入系统OID"
+      },
+      "minMacAddr": {
+        "name": "minMacAddr",
+        "label": "最小有效MAC地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请输入最小有效MAC地址",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "sysVersion": {
+        "name": "sysVersion",
+        "label": "系统版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入系统版本"
+      },
+      "serialNumber": {
+        "name": "serialNumber",
+        "label": "序列号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入序列号"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49271a58-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "ComputeNode",
+    "label": "计算节点",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "gateway": {
+        "name": "gateway",
+        "label": "网关",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入网关"
+      },
+      "cpuCores": {
+        "name": "cpuCores",
+        "label": "CPU总核数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入CPU总核数"
+      },
+      "cpuNumber": {
+        "name": "cpuNumber",
+        "label": "CPU总个数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入CPU总个数"
+      },
+      "minMacAddr": {
+        "name": "minMacAddr",
+        "label": "最小有效MAC地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请输入最小有效MAC地址",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "storageSize": {
+        "name": "storageSize",
+        "label": "磁盘总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入磁盘总容量(GB)"
+      },
+      "memoryCapacity": {
+        "name": "memoryCapacity",
+        "label": "内存总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存总容量(GB)"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4927677e-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "StorageNode",
+    "label": "存储节点",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      },
+      "storageSize": {
+        "name": "storageSize",
+        "label": "磁盘总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入磁盘总容量(GB)"
+      },
+      "serialNumber": {
+        "name": "serialNumber",
+        "label": "序列号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入序列号"
+      }
+    },
+    "parent": "SysResource",
+    "isAbstract": true,
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4927b85a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Business",
+    "label": "业务系统",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "description": {
+        "name": "description",
+        "label": "描述",
+        "uiType": "textarea",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "validations": [
+          {
+            "data": {
+              "max": 500
+            },
+            "type": "length"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4927fd24-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Application",
+    "label": "业务应用",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "业务名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "业务名称",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 10
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "port": {
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "placeholder": "请输入端口"
+      },
+      "label": {
+        "name": "label",
+        "label": "显示名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "显示名称",
+        "placeholder": "请输入显示名称"
+      },
+      "domain": {
+        "name": "domain",
+        "label": "所属域",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择",
+        "refDataType": "SysDomain",
+        "relationType": "Reference"
+      },
+      "frequency": {
+        "name": "frequency",
+        "label": "使用频度",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "使用频度",
+        "placeholder": "请选择使用频度",
+        "refDictCode": "app_frequence_level",
+        "relationType": "dictionary"
+      },
+      "accessMode": {
+        "name": "accessMode",
+        "label": "访问方式",
+        "uiType": "select",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "访问方式",
+        "placeholder": "请输入访问方式"
+      },
+      "accessPath": {
+        "name": "accessPath",
+        "label": "访问路径",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "访问路径",
+        "placeholder": "请输入访问路径"
+      },
+      "domainOrIp": {
+        "name": "domainOrIp",
+        "label": "域名/IP",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "域名/IP",
+        "placeholder": "请输入域名/IP"
+      },
+      "importance": {
+        "name": "importance",
+        "label": "业务重要度",
+        "uiType": "select",
+        "dataType": "relationship",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "业务重要度",
+        "placeholder": "请选择业务重要度",
+        "refDictCode": "app_importancy_level",
+        "relationType": "dictionary"
+      },
+      "preferRespTime": {
+        "name": "preferRespTime",
+        "label": "满意的响应时间(ms)",
+        "uiType": "number",
+        "default": "2000",
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "满意的响应时间(ms)",
+        "validations": [
+          {
+            "max": 8,
+            "min": 1,
+            "type": "range"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "accessMode",
+          "domainOrIp",
+          "port",
+          "accessPath",
+          "importance",
+          "frequency",
+          "preferRespTime",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "url"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "业务应用",
+    "_id": "492ae82c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "IIS",
+    "label": "IIS",
+    "fields": {
+      "maxConnCount": {
+        "ds": {
+          "riil": "MaxConnCount"
+        },
+        "name": "maxConnCount",
+        "label": "最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大连接数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxConnCount"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "496373c2-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Service",
+    "label": "服务",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "名称",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "type": {
+        "name": "type",
+        "label": "类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入类型",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "address": {
+        "name": "address",
+        "label": "服务地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入服务地址",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "address",
+          "type",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "address"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "492dac4c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "DBCluster",
+    "label": "数据库集群",
+    "fields": {
+      "port": {
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "placeholder": "请输入端口"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "Cluster",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4930afa0-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WebCluster",
+    "label": "Web集群",
+    "fields": {
+      "port": {
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "placeholder": "请输入端口"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "port",
+          "ip",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "Cluster",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "493393b4-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "VirtualCluster",
+    "label": "虚拟化集群",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "Cluster",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4936a824-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "MessageCluster",
+    "label": "消息中间件集群",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "Cluster",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "493970ea-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "MySQL",
+    "label": "MySQL",
+    "fields": {
+      "bits": {
+        "name": "bits",
+        "label": "位数",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "32",
+            "value": "32"
+          },
+          {
+            "key": "64",
+            "value": "64"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入位数"
+      },
+      "charset": {
+        "ds": {
+          "riil": "Character"
+        },
+        "name": "charset",
+        "label": "默认字符集",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入默认字符集"
+      },
+      "dataDirectory": {
+        "ds": {
+          "riil": "DataDirectory"
+        },
+        "name": "dataDirectory",
+        "label": "数据目录",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入数据目录"
+      },
+      "keyBufferSize": {
+        "ds": {
+          "riil": "KeyBufferSize"
+        },
+        "name": "keyBufferSize",
+        "label": "主键缓存大小(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入主键缓存大小(MB)"
+      },
+      "storageEngine": {
+        "ds": {
+          "riil": "StorageEngine"
+        },
+        "name": "storageEngine",
+        "label": "数据库存储引擎",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入数据库存储引擎"
+      },
+      "maxConnections": {
+        "ds": {
+          "riil": "MaxConnCount"
+        },
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      },
+      "queryBufferSize": {
+        "ds": {
+          "riil": "QueryBufferSize"
+        },
+        "name": "queryBufferSize",
+        "label": "查询缓存大小(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入查询缓存大小(MB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "bits",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxConnections",
+          "dataDirectory",
+          "keyBufferSize",
+          "queryBufferSize",
+          "charset",
+          "storageEngine"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "493c2614-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Oracle",
+    "label": "Oracle",
+    "fields": {
+      "bits": {
+        "name": "bits",
+        "label": "位数",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "32",
+            "value": "32"
+          },
+          {
+            "key": "64",
+            "value": "64"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入位数"
+      },
+      "charset": {
+        "ds": {
+          "riil": "Character"
+        },
+        "name": "charset",
+        "label": "默认字符集",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入默认字符集"
+      },
+      "logPath": {
+        "name": "logPath",
+        "label": "日志目录",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入日志目录"
+      },
+      "dbFileNum": {
+        "name": "dbFileNum",
+        "label": "允许数据文件数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许数据文件数"
+      },
+      "archieveDest": {
+        "ds": {
+          "riil": "ArchivelogDest"
+        },
+        "name": "archieveDest",
+        "label": "归档路径",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入归档路径"
+      },
+      "archieveMode": {
+        "ds": {
+          "riil": "Archive"
+        },
+        "name": "archieveMode",
+        "label": "归档模式",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入归档模式"
+      },
+      "instanceName": {
+        "ds": {
+          "riil": "InstanceName"
+        },
+        "name": "instanceName",
+        "label": "实例名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入实例名称"
+      },
+      "maxConnections": {
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "bits",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "charset",
+          "archieveDest",
+          "instanceName",
+          "logPath",
+          "dbFileNum",
+          "maxConnections",
+          "archieveMode"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "493ef38a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SQLServer",
+    "label": "SQLServer",
+    "fields": {
+      "bits": {
+        "name": "bits",
+        "label": "位数",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "32",
+            "value": "32"
+          },
+          {
+            "key": "64",
+            "value": "64"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入位数"
+      },
+      "charset": {
+        "ds": {
+          "riil": "Character"
+        },
+        "name": "charset",
+        "label": "默认字符集",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入默认字符集"
+      },
+      "AuthType": {
+        "name": "AuthType",
+        "label": "身份认证类型",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "win",
+            "value": "Windows身份认证"
+          },
+          {
+            "key": "mix",
+            "value": "混合模式"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入身份认证类型"
+      },
+      "osMemory": {
+        "ds": {
+          "riil": "PhysicalMemory"
+        },
+        "name": "osMemory",
+        "label": "操作系统内存总量(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入操作系统内存总量(MB)"
+      },
+      "instanceName": {
+        "ds": {
+          "riil": "InstanceName"
+        },
+        "name": "instanceName",
+        "label": "实例名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入实例名称"
+      },
+      "patchVersion": {
+        "ds": {
+          "riil": "PatchVersion"
+        },
+        "name": "patchVersion",
+        "label": "补丁版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入补丁版本"
+      },
+      "maxConnections": {
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      },
+      "maxServerMemory": {
+        "name": "maxServerMemory",
+        "label": "最大服务器内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大服务器内存(MB)"
+      },
+      "maxWorkerThreads": {
+        "name": "maxWorkerThreads",
+        "label": "最大工作线程数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大工作线程数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "patchVersion",
+          "installPath",
+          "bits",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxServerMemory",
+          "charset",
+          "osMemory",
+          "instanceName",
+          "AuthType",
+          "maxWorkerThreads",
+          "maxConnections"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4941dafa-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "PostgreSQL",
+    "label": "PostgreSQL",
+    "fields": {
+      "workMem": {
+        "ds": {
+          "riil": "WorkMemKB(注意转换)"
+        },
+        "name": "workMem",
+        "label": "临时内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入临时内存(MB)"
+      },
+      "instanceName": {
+        "ds": {
+          "riil": "DatabaseName?"
+        },
+        "name": "instanceName",
+        "label": "实例名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入实例名称"
+      },
+      "sharedBuffers": {
+        "ds": {
+          "riil": "SharedBuffers"
+        },
+        "name": "sharedBuffers",
+        "label": "共享缓冲内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入共享缓冲内存(MB)"
+      },
+      "ArchiveCommand": {
+        "ds": {
+          "riil": "ArchiveCommand"
+        },
+        "name": "ArchiveCommand",
+        "label": "归档命令",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入归档命令"
+      },
+      "maxConnections": {
+        "ds": {
+          "riil": "maxConnCount"
+        },
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      },
+      "effectiveCacheSize": {
+        "name": "effectiveCacheSize",
+        "label": "最大缓存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大缓存(MB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "workMem",
+          "instanceName",
+          "sharedBuffers",
+          "ArchiveCommand",
+          "maxConnections",
+          "effectiveCacheSize"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4944931c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Sybase",
+    "label": "Sybase",
+    "fields": {
+      "instanceName": {
+        "ds": {
+          "riil": "InstanceName"
+        },
+        "name": "instanceName",
+        "label": "实例名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入实例名称"
+      },
+      "maxConnections": {
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "instanceName",
+          "maxConnections"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49479594-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Informix",
+    "label": "Informix",
+    "fields": {
+      "maxLock": {
+        "name": "maxLock",
+        "label": "最大锁数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大锁数"
+      },
+      "shmTotal": {
+        "name": "shmTotal",
+        "label": "最大公用内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大公用内存(MB)"
+      },
+      "instanceName": {
+        "ds": {
+          "riil": "InstanceName"
+        },
+        "name": "instanceName",
+        "label": "实例名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入实例名称"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxLock",
+          "instanceName",
+          "shmTotal"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "494a5504-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "DB2",
+    "label": "DB2",
+    "fields": {
+      "dbMem": {
+        "name": "dbMem",
+        "label": "数据库共享内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入数据库共享内存(MB)"
+      },
+      "ServiceName": {
+        "ds": {
+          "riil": "ServiceName"
+        },
+        "name": "ServiceName",
+        "label": "服务名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入服务名称"
+      },
+      "appHeapSize": {
+        "name": "appHeapSize",
+        "label": "应用程序堆大小(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入应用程序堆大小(MB)"
+      },
+      "DatabaseName": {
+        "ds": {
+          "riil": "DatabaseName"
+        },
+        "name": "DatabaseName",
+        "label": "数据库名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入数据库名称"
+      },
+      "maxNumberOfAgent": {
+        "ds": {
+          "riil": "MaxNumberOfAgent"
+        },
+        "name": "maxNumberOfAgent",
+        "label": "代理进程最大数目",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入代理进程最大数目"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxNumberOfAgent",
+          "appHeapSize",
+          "ServiceName",
+          "DatabaseName",
+          "dbMem"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "494d4304-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "MongoDB",
+    "label": "MongoDB",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "495013ae-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Redis",
+    "label": "Redis",
+    "fields": {
+      "timeout": {
+        "name": "timeout",
+        "label": "连接超时时间(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入连接超时时间(毫秒)"
+      },
+      "databases": {
+        "name": "databases",
+        "label": "数据库数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入数据库数"
+      },
+      "maxMemory": {
+        "name": "maxMemory",
+        "label": "最大内存(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大内存(MB)"
+      },
+      "maxClients": {
+        "name": "maxClients",
+        "label": "最大客户端连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大客户端连接数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxClients",
+          "databases",
+          "maxMemory",
+          "timeout"
+        ]
+      }
+    ],
+    "parent": "Database",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4952ec6e-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Tomcat",
+    "label": "Tomcat",
+    "fields": {
+      "jdkVersion": {
+        "name": "jdkVersion",
+        "label": "JDK版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入JDK版本"
+      },
+      "maxThreads": {
+        "name": "maxThreads",
+        "label": "最大并发线程数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大并发线程数"
+      },
+      "connTimeout": {
+        "name": "connTimeout",
+        "label": "连接超时时间(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入连接超时时间(毫秒)"
+      },
+      "maxSpareThreads": {
+        "name": "maxSpareThreads",
+        "label": "最大空闲线程数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大空闲线程数"
+      },
+      "minSpareThreads": {
+        "name": "minSpareThreads",
+        "label": "初始化线程数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入初始化线程数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "minSpareThreads",
+          "maxSpareThreads",
+          "jdkVersion",
+          "maxThreads",
+          "connTimeout"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49557b78-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WebSphere",
+    "label": "WebSphere",
+    "fields": {
+      "cellName": {
+        "ds": {
+          "riil": "CellName"
+        },
+        "name": "cellName",
+        "label": "Cell名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入Cell名称"
+      },
+      "nodeName": {
+        "ds": {
+          "riil": "NodeName"
+        },
+        "name": "nodeName",
+        "label": "节点名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入节点名称"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "nodeName",
+          "cellName"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4958b41e-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WebLogic",
+    "label": "WebLogic",
+    "fields": {
+      "jaccEnabled": {
+        "name": "jaccEnabled",
+        "label": "启用JACC",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "enable",
+            "value": "启用"
+          },
+          {
+            "key": "disable",
+            "value": "不启用"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入启用JACC"
+      },
+      "loginTimeout": {
+        "name": "loginTimeout",
+        "label": "登录超时(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入登录超时(毫秒)"
+      },
+      "sslLoginTimeout": {
+        "name": "sslLoginTimeout",
+        "label": "SSL登录超时(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入SSL登录超时(毫秒)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "sslLoginTimeout",
+          "jaccEnabled",
+          "loginTimeout"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "495b4512-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Apache",
+    "label": "Apache",
+    "fields": {
+      "connTimeout": {
+        "name": "connTimeout",
+        "label": "连接超时时间(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入连接超时时间(毫秒)"
+      },
+      "maxConnections": {
+        "name": "maxConnections",
+        "label": "允许最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入允许最大连接数"
+      },
+      "keepAliveTimeout": {
+        "name": "keepAliveTimeout",
+        "label": "连接保活时间(秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入连接保活时间(秒)"
+      },
+      "maxKeepAliveRequests": {
+        "name": "maxKeepAliveRequests",
+        "label": "最大keepAlive请求数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大keepAlive请求数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "maxKeepAliveRequests",
+          "keepAliveTimeout",
+          "maxConnections",
+          "connTimeout"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "495de632-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Nginx",
+    "label": "Nginx",
+    "fields": {
+      "keepTimeout": {
+        "name": "keepTimeout",
+        "label": "活动链接超时时间(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入活动链接超时时间(毫秒)"
+      },
+      "wkrProcesses": {
+        "name": "wkrProcesses",
+        "label": "工作进程数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入工作进程数"
+      },
+      "wkrConnections": {
+        "name": "wkrConnections",
+        "label": "进程最大连接数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入进程最大连接数"
+      },
+      "proxyConnTimeout": {
+        "name": "proxyConnTimeout",
+        "label": "Proxy连接超时时间(毫秒)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入Proxy连接超时时间(毫秒)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "proxyConnTimeout",
+          "keepTimeout",
+          "wkrConnections",
+          "wkrProcesses"
+        ]
+      }
+    ],
+    "parent": "WebServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49609f4e-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WebSphereMQ",
+    "label": "WebSphereMQ",
+    "fields": {
+      "UUID": {
+        "name": "UUID",
+        "label": "UUID",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入UUID"
+      },
+      "channel": {
+        "name": "channel",
+        "label": "通道",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入通道"
+      },
+      "charsetId": {
+        "ds": {
+          "riil": "CharIdentifier"
+        },
+        "name": "charsetId",
+        "label": "编码字符集标识符",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入编码字符集标识符"
+      },
+      "MQServerType": {
+        "name": "MQServerType",
+        "label": "服务器类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入服务器类型"
+      },
+      "secAuthAlias": {
+        "name": "secAuthAlias",
+        "label": "消息传递认证别名",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入消息传递认证别名"
+      },
+      "useBindingsMode": {
+        "name": "useBindingsMode",
+        "label": "是否使用绑定传输方式",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否使用绑定传输方式"
+      },
+      "transportChainNameSelect": {
+        "name": "transportChainNameSelect",
+        "label": "传输链名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入传输链名称"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "channel",
+          "MQServerType",
+          "useBindingsMode",
+          "UUID",
+          "transportChainNameSelect",
+          "charsetId",
+          "secAuthAlias"
+        ]
+      }
+    ],
+    "parent": "MessageServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4966183e-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "RabbitMQ",
+    "label": "RabbitMQ",
+    "fields": {
+      "dbDir": {
+        "name": "dbDir",
+        "label": "数据库文件路径",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入数据库文件路径"
+      },
+      "logFile": {
+        "name": "logFile",
+        "label": "日志路径",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入日志路径"
+      },
+      "ratesMode": {
+        "name": "ratesMode",
+        "label": "rates mode",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入rates mode"
+      },
+      "configFile": {
+        "name": "configFile",
+        "label": "配置文件路径",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入配置文件路径"
+      },
+      "webMgrPort": {
+        "name": "webMgrPort",
+        "label": "web管理端口",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入web管理端口"
+      },
+      "SASLLogFile": {
+        "name": "SASLLogFile",
+        "label": "SASL日志路径",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入SASL日志路径"
+      },
+      "diskFreeLimit": {
+        "name": "diskFreeLimit",
+        "label": "最小需求硬盘空间",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入最小需求硬盘空间"
+      },
+      "erlangVersion": {
+        "name": "erlangVersion",
+        "label": "erLang版本",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入erLang版本"
+      },
+      "enabledPlugins": {
+        "name": "enabledPlugins",
+        "label": "允许的插件",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入允许的插件"
+      },
+      "managementVersion": {
+        "name": "managementVersion",
+        "label": "控制台版本",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入控制台版本"
+      },
+      "fileDiscriptorTotal": {
+        "name": "fileDiscriptorTotal",
+        "label": "文件描述符上限",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入文件描述符上限"
+      },
+      "erlangProcessAvliable": {
+        "name": "erlangProcessAvliable",
+        "label": "erlang进程数限制",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入erlang进程数限制"
+      },
+      "socketDiscriptorTotal": {
+        "name": "socketDiscriptorTotal",
+        "label": "socket限制",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入socket限制"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "dbDir",
+          "webMgrPort",
+          "ratesMode",
+          "enabledPlugins",
+          "fileDiscriptorTotal",
+          "socketDiscriptorTotal",
+          "configFile",
+          "logFile",
+          "diskFreeLimit",
+          "erlangVersion",
+          "erlangProcessAvliable",
+          "managementVersion",
+          "SASLLogFile"
+        ]
+      }
+    ],
+    "parent": "MessageServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4968d984-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "ActiveMQ",
+    "label": "ActiveMQ",
+    "fields": {
+      "slave": {
+        "name": "slave",
+        "label": "是否为从节点",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否为从节点"
+      },
+      "jmxPort": {
+        "name": "jmxPort",
+        "label": "JMX管理端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入JMX管理端口"
+      },
+      "memLimit": {
+        "name": "memLimit",
+        "label": "内存限制",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存限制"
+      },
+      "useCache": {
+        "name": "useCache",
+        "label": "是否启用缓存",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否启用缓存"
+      },
+      "brokerName": {
+        "name": "brokerName",
+        "label": "Broker名称",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入Broker名称"
+      },
+      "storeLimit": {
+        "name": "storeLimit",
+        "label": "存储限制",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入存储限制"
+      },
+      "maxPageSize": {
+        "name": "maxPageSize",
+        "label": "内存消息数上限",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存消息数上限"
+      },
+      "brokerVersion": {
+        "name": "brokerVersion",
+        "label": "Broker版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入Broker版本"
+      },
+      "dataDirectory": {
+        "name": "dataDirectory",
+        "label": "数据存放路径",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入数据存放路径"
+      },
+      "maxAuditDepth": {
+        "name": "maxAuditDepth",
+        "label": "最大审计深度",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大审计深度"
+      },
+      "persistanceType": {
+        "name": "persistanceType",
+        "label": "消息持久化",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "None",
+            "value": "None"
+          },
+          {
+            "key": "AMQ",
+            "value": "AMQ"
+          },
+          {
+            "key": "KahaDB",
+            "value": "KahaDB"
+          },
+          {
+            "key": "JDBC",
+            "value": "JDBC"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入消息持久化"
+      },
+      "alwaysRetroactive": {
+        "name": "alwaysRetroactive",
+        "label": "是否保持追溯",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否保持追溯"
+      },
+      "statisticsEnabled": {
+        "name": "statisticsEnabled",
+        "label": "是否开启统计",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否开启统计"
+      },
+      "maxProducersToAudit": {
+        "name": "maxProducersToAudit",
+        "label": "待审计生产者上限",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入待审计生产者上限"
+      },
+      "prioritizedMessages": {
+        "name": "prioritizedMessages",
+        "label": "是否开启消息优化",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否开启消息优化"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "version",
+          "installPath",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "jmxPort",
+          "persistanceType",
+          "statisticsEnabled",
+          "alwaysRetroactive",
+          "dataDirectory",
+          "prioritizedMessages",
+          "maxPageSize",
+          "brokerVersion",
+          "slave",
+          "memLimit",
+          "maxAuditDepth",
+          "maxProducersToAudit",
+          "useCache",
+          "storeLimit",
+          "brokerName"
+        ]
+      }
+    ],
+    "parent": "MessageServer",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "496b88e6-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Container",
+    "label": "容器",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "image": {
+        "name": "image",
+        "label": "镜像",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入镜像"
+      },
+      "ports": {
+        "name": "ports",
+        "label": "端口映射",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入端口映射"
+      },
+      "command": {
+        "name": "command",
+        "label": "运行命令",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入运行命令"
+      },
+      "containerID": {
+        "name": "containerID",
+        "label": "ID",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入容器ID",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "containerSize": {
+        "name": "containerSize",
+        "label": "容器大小(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入容器大小(MB)"
+      },
+      "containerType": {
+        "name": "containerType",
+        "label": "容器类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入容器类型"
+      },
+      "createDateTime": {
+        "name": "createDateTime",
+        "label": "创建时间",
+        "uiType": "date",
+        "dataType": "date",
+        "placeholder": "请输入创建时间"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "containerID",
+          "containerType",
+          "image",
+          "ports",
+          "command",
+          "containerSize",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "containerID"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "496e2f06-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "VirtualDC",
+    "label": "虚拟数据中心",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "description": {
+        "name": "description",
+        "label": "描述",
+        "uiType": "textarea",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "validations": [
+          {
+            "data": {
+              "max": 500
+            },
+            "type": "length"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "description",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4970e156-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Hypervisor",
+    "label": "虚拟化管理器",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "phyCpuNum": {
+        "name": "phyCpuNum",
+        "label": "物理CPU数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入物理CPU数"
+      },
+      "cpuCapacity": {
+        "name": "cpuCapacity",
+        "label": "CPU总容量(GHz)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入CPU总容量(GHz)"
+      },
+      "cpuReserved": {
+        "name": "cpuReserved",
+        "label": "CPU预留量(GHz)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入CPU预留量(GHz)"
+      },
+      "virtualType": {
+        "name": "virtualType",
+        "label": "虚拟机类型",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "VMware",
+            "value": "VMware"
+          },
+          {
+            "key": "Hyper_V",
+            "value": "Hyper-V"
+          },
+          {
+            "key": "Xen",
+            "value": "Xen"
+          },
+          {
+            "key": "KVM",
+            "value": "KVM"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入虚拟机类型"
+      },
+      "maxRunningVMs": {
+        "name": "maxRunningVMs",
+        "label": "最大运行虚拟机数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大运行虚拟机数"
+      },
+      "memoryCapacity": {
+        "name": "memoryCapacity",
+        "label": "内存总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存总容量(GB)"
+      },
+      "memoryReserved": {
+        "name": "memoryReserved",
+        "label": "内存预留量(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存预留量(MB)"
+      },
+      "maxSupportedVMs": {
+        "name": "maxSupportedVMs",
+        "label": "最大支持虚拟机数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大支持虚拟机数"
+      },
+      "storageCapacity": {
+        "name": "storageCapacity",
+        "label": "存储总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入存储总容量(GB)"
+      },
+      "maxSupportedcpus": {
+        "name": "maxSupportedcpus",
+        "label": "最大支持CPU数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入最大支持CPU数"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "virtualType",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "cpuReserved",
+          "memoryCapacity",
+          "maxRunningVMs",
+          "maxSupportedVMs",
+          "cpuCapacity",
+          "storageCapacity",
+          "maxSupportedcpus",
+          "memoryReserved",
+          "phyCpuNum"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4973cdd0-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "VirtualTemplate",
+    "label": "虚拟机模板",
+    "fields": {
+      "os": {
+        "name": "os",
+        "label": "操作系统",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入操作系统"
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "identifier": {
+        "name": "identifier",
+        "label": "模板标识",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入模板标识"
+      },
+      "virtualType": {
+        "name": "virtualType",
+        "label": "虚拟机类型",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "VMware",
+            "value": "VMware"
+          },
+          {
+            "key": "Hyper_V",
+            "value": "Hyper-V"
+          },
+          {
+            "key": "Xen",
+            "value": "Xen"
+          },
+          {
+            "key": "KVM",
+            "value": "KVM"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入虚拟机类型"
+      },
+      "createDateTime": {
+        "name": "createDateTime",
+        "label": "创建时间",
+        "uiType": "text",
+        "dataType": "string",
+        "placeholder": "请输入创建时间"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "identifier",
+          "virtualType",
+          "os",
+          "createDateTime",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "identifier"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49773c04-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "VM",
+    "label": "虚拟机",
+    "fields": {
+      "os": {
+        "name": "os",
+        "label": "操作系统",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入操作系统"
+      },
+      "uuid": {
+        "name": "uuid",
+        "label": "UUID",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入UUID"
+      },
+      "virtualType": {
+        "name": "virtualType",
+        "label": "虚拟机类型",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "VMware",
+            "value": "VMware"
+          },
+          {
+            "key": "Hyper_V",
+            "value": "Hyper-V"
+          },
+          {
+            "key": "Xen",
+            "value": "Xen"
+          },
+          {
+            "key": "KVM",
+            "value": "KVM"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入虚拟机类型"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "os",
+          "virtualType",
+          "uuid",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "cpuNumber",
+          "cpuCores",
+          "memoryCapacity",
+          "storageSize",
+          "gateway"
+        ]
+      }
+    ],
+    "parent": "ComputeNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "497a0b3c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Switch",
+    "label": "交换机",
+    "fields": {
+      "isPOE": {
+        "name": "isPOE",
+        "label": "是否POE",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否POE"
+      },
+      "powerType": {
+        "name": "powerType",
+        "label": "电源类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入电源类型"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "serialNumber",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "portNum",
+          "sysVersion",
+          "sysDesc",
+          "SystemOID",
+          "isPOE",
+          "powerType"
+        ]
+      }
+    ],
+    "parent": "NetworkNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "497d3708-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Router",
+    "label": "路由器",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "serialNumber",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "portNum",
+          "sysVersion",
+          "sysDesc",
+          "SystemOID"
+        ]
+      }
+    ],
+    "parent": "NetworkNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "498005c8-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Firewall",
+    "label": "防火墙",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "serialNumber",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "portNum",
+          "sysVersion",
+          "sysDesc",
+          "SystemOID"
+        ]
+      }
+    ],
+    "parent": "NetworkNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4982aabc-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "FiberSwitch",
+    "label": "光纤交换机",
+    "fields": {
+      "isPOE": {
+        "name": "isPOE",
+        "label": "是否POE",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否POE"
+      },
+      "powerType": {
+        "name": "powerType",
+        "label": "电源类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入电源类型"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "serialNumber",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "portNum",
+          "sysVersion",
+          "sysDesc",
+          "SystemOID",
+          "isPOE",
+          "powerType"
+        ]
+      }
+    ],
+    "parent": "NetworkNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49855974-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "LoadBlancer",
+    "label": "负载均衡",
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "serialNumber",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "portNum",
+          "sysVersion",
+          "sysDesc",
+          "SystemOID"
+        ]
+      }
+    ],
+    "parent": "NetworkNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49882460-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Host",
+    "label": "主机",
+    "fields": {
+      "os": {
+        "name": "os",
+        "label": "操作系统",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入操作系统"
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "os",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "cpuNumber",
+          "cpuCores",
+          "memoryCapacity",
+          "storageSize",
+          "gateway"
+        ]
+      }
+    ],
+    "parent": "ComputeNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "498af898-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Server",
+    "label": "服务器",
+    "fields": {
+      "os": {
+        "name": "os",
+        "label": "操作系统",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入操作系统"
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "vendor",
+          "brand",
+          "model",
+          "os",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "cpuNumber",
+          "cpuCores",
+          "memoryCapacity",
+          "storageSize",
+          "gateway"
+        ]
+      }
+    ],
+    "parent": "ComputeNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "498da57a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "NAS",
+    "label": "NAS",
+    "fields": {
+      "memoryCapacity": {
+        "name": "memoryCapacity",
+        "label": "内存总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存总容量(GB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "serialNumber",
+          "vendor",
+          "brand",
+          "model",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "storageSize",
+          "memoryCapacity"
+        ]
+      }
+    ],
+    "parent": "StorageNode",
+    "options": {
+      "primaryKeys": [
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4990412c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "StoragePool",
+    "label": "存储池",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "encrypt": {
+        "name": "encrypt",
+        "label": "是否加密",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否加密"
+      },
+      "capacity": {
+        "name": "capacity",
+        "label": "容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入容量(GB)"
+      },
+      "lunCount": {
+        "name": "lunCount",
+        "label": "LUN数量",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入LUN数量"
+      },
+      "poolType": {
+        "name": "poolType",
+        "label": "池类型",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入池类型"
+      },
+      "systemID": {
+        "name": "systemID",
+        "label": "系统ID",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入系统ID",
+        "validations": [
+          {
+            "data": {
+              "max": 100
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "extentSize": {
+        "name": "extentSize",
+        "label": "扩展大小(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入扩展大小(GB)"
+      },
+      "mdiskCount": {
+        "name": "mdiskCount",
+        "label": "物理磁盘数",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入物理磁盘数"
+      },
+      "freeCapacity": {
+        "name": "freeCapacity",
+        "label": "空闲容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入空闲容量(GB)"
+      },
+      "realCapacity": {
+        "name": "realCapacity",
+        "label": "实际容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入实际容量(GB)"
+      },
+      "usedCapacity": {
+        "name": "usedCapacity",
+        "label": "已使用量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入已使用量(GB)"
+      },
+      "virtualCapacity": {
+        "name": "virtualCapacity",
+        "label": "虚拟容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入虚拟容量(GB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "systemID",
+          "poolType",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "realCapacity",
+          "extentSize",
+          "mdiskCount",
+          "usedCapacity",
+          "encrypt",
+          "lunCount",
+          "freeCapacity",
+          "capacity",
+          "virtualCapacity"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "systemID"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "4992ff2a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "DiskArray",
+    "label": "磁盘阵列",
+    "fields": {
+      "cacheSize": {
+        "name": "cacheSize",
+        "label": "高速缓存大小(MB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入高速缓存大小(MB)"
+      },
+      "raidLevel": {
+        "name": "raidLevel",
+        "label": "RAID级别",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "RAID_0",
+            "value": "RAID-0"
+          },
+          {
+            "key": "RAID_1",
+            "value": "RAID-1"
+          },
+          {
+            "key": "RAID_1E",
+            "value": "RAID-1E"
+          },
+          {
+            "key": "RAID_5",
+            "value": "RAID-5"
+          },
+          {
+            "key": "RAID_6",
+            "value": "RAID-6"
+          },
+          {
+            "key": "RAID_7",
+            "value": "RAID-7"
+          },
+          {
+            "key": "RAID_10",
+            "value": "RAID-10"
+          },
+          {
+            "key": "RAID_50",
+            "value": "RAID-50"
+          },
+          {
+            "key": "RAID_60",
+            "value": "RAID-60"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入RAID级别"
+      },
+      "transferRate": {
+        "name": "transferRate",
+        "label": "数据传输率(Mbps)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入数据传输率(Mbps)"
+      },
+      "usedCapacity": {
+        "name": "usedCapacity",
+        "label": "已使用量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入已使用量(GB)"
+      },
+      "storageCapacity": {
+        "name": "storageCapacity",
+        "label": "存储总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入存储总容量(GB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "serialNumber",
+          "vendor",
+          "brand",
+          "model",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "storageSize",
+          "transferRate",
+          "cacheSize",
+          "usedCapacity",
+          "raidLevel",
+          "storageCapacity"
+        ]
+      }
+    ],
+    "parent": "StorageNode",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49961034-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WlanAC",
+    "label": "AC",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "isMain": {
+        "name": "isMain",
+        "label": "是否为主AC",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "yes",
+            "value": "是"
+          },
+          {
+            "key": "no",
+            "value": "否"
+          }
+        ],
+        "dataType": "string",
+        "placeholder": "请输入是否为主AC"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      },
+      "location": {
+        "name": "location",
+        "label": "位置信息",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入位置信息"
+      },
+      "hwVersion": {
+        "name": "hwVersion",
+        "label": "硬件版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入硬件版本"
+      },
+      "swVersion": {
+        "name": "swVersion",
+        "label": "软件版本",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入软件版本"
+      },
+      "minMacAddr": {
+        "name": "minMacAddr",
+        "label": "最小有效MAC地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请输入最小有效MAC地址",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "serialNumber": {
+        "name": "serialNumber",
+        "label": "序列号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入序列号"
+      },
+      "memoryCapacity": {
+        "name": "memoryCapacity",
+        "label": "内存总容量(GB)",
+        "uiType": "number",
+        "dataType": "integer",
+        "placeholder": "请输入内存总容量(GB)"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "serialNumber",
+          "vendor",
+          "brand",
+          "model",
+          "domain"
+        ]
+      },
+      {
+        "name": "配置信息",
+        "attrNames": [
+          "memoryCapacity",
+          "swVersion",
+          "isMain",
+          "location",
+          "hwVersion"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49992094-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "WlanAP",
+    "label": "AP",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "brand": {
+        "name": "brand",
+        "label": "品牌",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入品牌"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      },
+      "minMacAddr": {
+        "name": "minMacAddr",
+        "label": "最小有效MAC地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请输入最小有效MAC地址",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          }
+        ]
+      },
+      "serialNumber": {
+        "name": "serialNumber",
+        "label": "序列号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入序列号"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "minMacAddr",
+          "serialNumber",
+          "vendor",
+          "brand",
+          "model",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "499cf43a-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Camera",
+    "label": "摄像机",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "port": {
+        "name": "port",
+        "label": "端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": true,
+        "placeholder": "请输入端口"
+      },
+      "model": {
+        "name": "model",
+        "label": "型号",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入型号"
+      },
+      "vendor": {
+        "name": "vendor",
+        "label": "厂商",
+        "uiType": "text",
+        "dataType": "string",
+        "cardinality": "One",
+        "placeholder": "请输入厂商"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip",
+          "port",
+          "vendor",
+          "model",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name",
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "499fd5a6-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "BMC",
+    "label": "BMC数据源",
+    "fields": {
+      "apiUrl": {
+        "name": "apiUrl",
+        "label": "API的URL",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "API的URL"
+      },
+      "jdbcUrl": {
+        "name": "jdbcUrl",
+        "label": "Jdbc的URL",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "Jdbc的URL"
+      },
+      "apiPassword": {
+        "name": "apiPassword",
+        "label": "API的登录密码",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "API的登录密码"
+      },
+      "apiUsername": {
+        "name": "apiUsername",
+        "label": "API的登录账号",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "API的登录账号"
+      },
+      "jdbcPassword": {
+        "name": "jdbcPassword",
+        "label": "jdbc的登录密码",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "jdbc的登录密码"
+      },
+      "jdbcUsername": {
+        "name": "jdbcUsername",
+        "label": "jdbc的登录账号",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "jdbc的登录账号"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "domain",
+          "ip",
+          "apiUrl",
+          "apiUsername",
+          "apiPassword",
+          "jdbcUrl",
+          "jdbcUsername",
+          "jdbcPassword",
+          "enabled",
+          "domain"
+        ]
+      }
+    ],
+    "parent": "SysDatasource",
+    "options": {
+      "primaryKeys": [
+        "ip"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "BMC数据源",
+    "_id": "49a2a90c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Agent",
+    "label": "仿真点",
+    "fields": {
+      "ip": {
+        "name": "ip",
+        "label": "IP地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "placeholder": "请输入IP地址",
+        "validations": [
+          {
+            "type": "ipV4"
+          }
+        ]
+      },
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "preset": {
+        "name": "preset",
+        "label": "是否预置",
+        "dataType": "boolean",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请选择是否预置"
+      },
+      "agentId": {
+        "name": "agentId",
+        "label": "仿真点Id",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "仿真点Id",
+        "placeholder": "请输入仿真点Id"
+      },
+      "isRegisted": {
+        "name": "isRegisted",
+        "label": "是否已经注册",
+        "uiType": "select",
+        "dataType": "boolean",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "是否已经注册",
+        "placeholder": "请输入是否已经注册"
+      },
+      "agentVersion": {
+        "name": "agentVersion",
+        "label": "版本",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "版本",
+        "placeholder": "请输入版本"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "ip"
+        ]
+      }
+    ],
+    "parent": "SysDatasource",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "仿真点",
+    "_id": "49a58758-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "IpGroup",
+    "label": "IP分组",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "名称",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "content": {
+        "name": "content",
+        "label": "IP地址",
+        "uiType": "textarea",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "IP",
+        "placeholder": "请直接输入IP地址 可输入多条",
+        "validations": [
+          {
+            "type": "specialUniqueIpGroups"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "content"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "IP分组",
+    "_id": "49a843e4-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "Location",
+    "label": "位置",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "名称",
+        "placeholder": "请输入名称",
+        "validations": [
+          {
+            "data": {
+              "max": 20
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "parent": {
+        "name": "parent",
+        "label": "上级位置",
+        "uiType": "treeSelect",
+        "dataType": "relationship",
+        "mandatory": false,
+        "cardinality": "One",
+        "placeholder": "请选择",
+        "refDataType": "Location",
+        "relationType": "Reference"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "parent"
+        ]
+      }
+    ],
+    "parent": "SysResource",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "description": "位置",
+    "_id": "49aafb84-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "NoticeMailTemplate",
+    "label": "邮件通知模板",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "模板名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入模板名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "title": {
+        "name": "title",
+        "label": "邮件标题",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入邮件标题",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "content": {
+        "name": "content",
+        "label": "邮件内容",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入邮件内容",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "title",
+          "content"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49adadde-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "NoticeTextTemplate",
+    "label": "短信通知模板",
+    "fields": {
+      "name": {
+        "name": "name",
+        "label": "模板名称",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入模板名称",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      },
+      "content": {
+        "name": "content",
+        "label": "短信内容",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "placeholder": "请输入邮件内容",
+        "validations": [
+          {
+            "data": {
+              "max": 200
+            },
+            "type": "length"
+          },
+          {
+            "type": "noSpecialChar"
+          },
+          {
+            "type": "unique"
+          }
+        ]
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "name",
+          "content"
+        ]
+      }
+    ],
+    "parent": "Base",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49b0550c-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "EMailServerConfig",
+    "label": "邮件服务器",
+    "fields": {
+      "host": {
+        "name": "host",
+        "label": "服务器地址",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "服务器地址",
+        "placeholder": "请输入服务器地址"
+      },
+      "port": {
+        "name": "port",
+        "label": "服务器端口",
+        "uiType": "number",
+        "dataType": "integer",
+        "mandatory": false,
+        "placeholder": "请输入服务器端口"
+      },
+      "user": {
+        "name": "user",
+        "label": "发送邮箱用户名",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "发送邮箱用户名",
+        "placeholder": "请输入发送邮箱用户名"
+      },
+      "enabled": {
+        "name": "enabled",
+        "default": true,
+        "dataType": "boolean",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "是否启用"
+      },
+      "timeout": {
+        "name": "timeout",
+        "label": "超时时间(ms)",
+        "uiType": "number",
+        "default": 4,
+        "dataType": "integer",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "超时时间(ms)",
+        "placeholder": "请输入超时时间"
+      },
+      "password": {
+        "name": "password",
+        "label": "发送邮箱密码",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "发送邮箱密码",
+        "placeholder": "请输入发送邮箱密码"
+      },
+      "protocol": {
+        "name": "protocol",
+        "label": "传输协议",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "32",
+            "value": "32"
+          },
+          {
+            "key": "64",
+            "value": "64"
+          }
+        ],
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One",
+        "description": "传输协议",
+        "placeholder": "请确认邮件服务器开启了此传输协议"
+      },
+      "sendEmail": {
+        "name": "sendEmail",
+        "label": "发送邮箱",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "发送邮箱",
+        "placeholder": "请输入发送邮箱"
+      },
+      "testEmail": {
+        "name": "testEmail",
+        "label": "测试邮箱",
+        "uiType": "text",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One",
+        "description": "测试邮箱",
+        "placeholder": "请输入测试邮箱"
+      },
+      "authenticated": {
+        "name": "authenticated",
+        "label": "服务器认证",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "启用",
+            "value": 1
+          },
+          {
+            "key": "禁用",
+            "value": 0
+          }
+        ],
+        "dataType": "integer",
+        "placeholder": "请选择服务器认证"
+      },
+      "sslCertificatted": {
+        "name": "sslCertificatted",
+        "label": "SSL服务器认证",
+        "uiType": "select",
+        "options": [
+          {
+            "key": "启用",
+            "value": true
+          },
+          {
+            "key": "禁用",
+            "value": false
+          }
+        ],
+        "dataType": "boolean",
+        "placeholder": "请选择SSL服务器认证"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "protocol",
+          "domainOrIp",
+          "port",
+          "authenticated",
+          "user",
+          "password",
+          "sendEmail",
+          "testEmail",
+          "timeout",
+          "sslCertificatted"
+        ]
+      }
+    ],
+    "parent": "CiType",
+    "options": {
+      "primaryKeys": [
+        "name"
+      ]
+    },
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49b33434-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "TextServerConfig",
+    "label": "短信发送方式",
+    "fields": {
+      "web": {
+        "name": "web",
+        "label": "web配置",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      },
+      "modem": {
+        "name": "modem",
+        "label": "modem配置",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      },
+      "usingType": {
+        "name": "usingType",
+        "label": "选择的发送方式",
+        "dataType": "string",
+        "mandatory": false,
+        "cardinality": "One"
+      }
+    },
+    "parent": "CiType",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "_id": "49b60894-04e7-11e9-87af-0242ac170002"
+  },
+  {
+    "name": "SysRedirectUrl",
+    "label": "系统重定向URL",
+    "fields": {
+      "url": {
+        "name": "url",
+        "label": "网址",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      },
+      "business": {
+        "name": "business",
+        "label": "业务枚举值",
+        "dataType": "string",
+        "mandatory": true,
+        "cardinality": "One"
+      }
+    },
+    "groups": [
+      {
+        "name": "基本信息",
+        "attrNames": [
+          "url",
+          "business"
+        ]
+      }
+    ],
+    "parent": "CiType",
+    "repository": {
+      "_id": "10000000-0000-0000-0000-000000000000",
+      "name": "default"
+    },
+    "primaryKeys": [
+      "url"
+    ],
+    "_id": "49b97074-04e7-11e9-87af-0242ac170002"
+  }
+]

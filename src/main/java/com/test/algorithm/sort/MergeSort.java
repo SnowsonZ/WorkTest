@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
  * 关键字：分治法
  * <p>
  * 两种方式：自上而下递归；自下而上迭代
+ * <p>
+ * <a href="https://bucket-1257126549.cos.ap-guangzhou.myqcloud.com/20181120110141.gif">图解</a>
  *
  * @author Snowson
  * @since 2019 /2/21 23:27

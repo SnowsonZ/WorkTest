@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * 关键字：分治法
  * <p>
  * <a href="https://diycode.b0.upaiyun.com/photo/2018/b12fc88b3e00ae442d0d07f36eae73ee.gif" >图解</>
+ *
  * @author Snowson
  * @since 2019/2/22 23:45
  */

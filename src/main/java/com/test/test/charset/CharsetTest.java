@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  * System.out.println(System.getProperty("file.encoding"));  //文件编码
  */
 @Slf4j
-@Component
+//@Component
 public class CharsetTest implements ApplicationRunner {
 
     @Override

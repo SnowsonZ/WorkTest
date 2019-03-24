@@ -8,6 +8,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 import net.sf.jxls.transformer.Configuration;
 import net.sf.jxls.transformer.XLSTransformer;
 
+import org.apache.poi.extractor.POITextExtractor;
 import org.apache.poi.hssf.usermodel.DVConstraint;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -73,7 +74,9 @@ public class POIExcelTest {
 //        cell.setCellStyle(cellStyle);
 //        instance.writeToFile(workbook, "style.xlsx");
 
-        new POIExcelTest().readTemplate("number_constraint.xls");
+//        new POIExcelTest().readTemplate("number_constraint.xls");
+
+        new POIExcelTest().readXTemplate("style.xlsx");
     }
 
     public void createCustomConstraint() {
@@ -236,6 +239,56 @@ public class POIExcelTest {
         }else {
             log.info("Other, result: {}", cell.getStringCellValue());
         }
+        HSSFCell cell_1_2 = row.getCell(1);
+        if(cell_1_2 == null) {
+            cell_1_2 = row.createCell(1);
+        }
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setWrapText(true);
+        cell_1_2.setCellStyle(style);
+        cell_1_2.setCellValue(cell.getStringCellValue());
+
+        HSSFCell cell_1_3 = row.getCell(2);
+        if(cell_1_3 == null) {
+            cell_1_3 = row.createCell(2);
+        }
+        cell_1_3.setCellValue(cell.getStringCellValue());
+        writeToFile(workbook, "换行符.xls");
+    }
+
+    public void readXTemplate(String path) throws IOException {
+        InputStream is = Resources.getResource(path).openStream();
+        XSSFWorkbook workbook = new XSSFWorkbook(is);
+
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        XSSFRow row = sheet.getRow(0);
+        if(row == null) {
+            row = sheet.createRow(0);
+        }
+        XSSFCell cell = row.getCell(0);
+        if(cell == null) {
+            cell = row.createCell(0, CellType.NUMERIC);
+        }
+        if(cell.getCellType() == CellType.NUMERIC) {
+            log.info("Numeric, result: {}", cell.getNumericCellValue());
+        }else {
+            log.info("Other, result: {}", cell.getStringCellValue());
+        }
+        XSSFCell cell_1_2 = row.getCell(1);
+        if(cell_1_2 == null) {
+            cell_1_2 = row.createCell(1);
+        }
+        XSSFCellStyle style = workbook.createCellStyle();
+        style.setWrapText(true);
+        cell_1_2.setCellStyle(style);
+        cell_1_2.setCellValue(cell.getStringCellValue());
+
+        XSSFCell cell_1_3 = row.getCell(2);
+        if(cell_1_3 == null) {
+            cell_1_3 = row.createCell(2);
+        }
+        cell_1_3.setCellValue(cell.getStringCellValue());
+        writeToFile(workbook, "换行符.xlsx");
     }
 
     public Workbook createWorkBook(String sheetName) {

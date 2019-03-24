@@ -1,63 +1,26 @@
 {
-  "focus": 0,
-  "immediate": 0,
-  "list": [
-    {
-      "appAttr": [
-        "一般",
-        "低频"
-      ],
-      "appName": "谈_9700",
-      "eventDesc": "全部区域无法访问",
-      "id": "cfa84cde-1e21-11e9-bf67-02420a0a0a09",
-      "onlineNum": 0,
-      "status": 2
-    },
-    {
-      "appAttr": [
-        "一般",
-        "低频"
-      ],
-      "appName": "JIRA3_IP",
-      "eventDesc": "",
-      "id": "53a72d62-1e26-11e9-b6e7-02420a0a0a09",
-      "onlineNum": 0,
-      "status": 0
-    },
-    {
-      "appAttr": [
-        "一般",
-        "低频"
-      ],
-      "appName": "slm_testyw",
-      "eventDesc": "",
-      "id": "3aa31864-1e1a-11e9-a908-02420a0a0a09",
-      "onlineNum": 0,
-      "status": 0
-    },
-    {
-      "appAttr": [
-        "一般",
-        "高频"
-      ],
-      "appName": "谈_25501",
-      "eventDesc": "",
-      "id": "4d5bc506-1e19-11e9-97eb-02420a0a0a09",
-      "onlineNum": 0,
-      "status": 0
-    },
-    {
-      "appAttr": [
-        "一般",
-        "低频"
-      ],
-      "appName": "test1_23",
-      "eventDesc": "",
-      "id": "07cc1132-1ee9-11e9-9ead-02420a0a0a09",
-      "onlineNum": 0,
-      "status": -1
+  "next": {
+    "content": "a",
+    "next": {
+      "content": "b",
+      "next": {
+        "content": "c",
+        "next": {
+          "content": "d",
+          "next": {
+            "content": "d",
+            "next": {
+              "content": "c",
+              "next": {
+                "content": "b",
+                "next": {
+                  "content": "a"
+                }
+              }
+            }
+          }
+        }
+      }
     }
-  ],
-  "plan": 1,
-  "total": 5
+  }
 }

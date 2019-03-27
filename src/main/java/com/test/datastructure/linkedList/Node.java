@@ -1,5 +1,7 @@
 package com.test.datastructure.linkedList;
 
+import com.alibaba.fastjson.JSON;
+
 import java.io.Serializable;
 
 import lombok.Data;
@@ -7,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type Node.
+ * <p>
+ * TODO 1. 链表中环的检测    2.两个有序链表合并     3.删除链表倒数第 n 个结点    4.求链表的中间结点  5.相交链表交点  6.入环点
  *
  * @author Snowson
  * @since 2019 /3/22 11:52
@@ -49,7 +53,7 @@ public class Node implements Serializable {
      * 链表反转（带头结点）
      *
      * @param node the node
-     * @return node
+     * @return node node
      */
     public static Node reverse(Node node) {
         if (node == null || node.next == null || node.next.next == null) {
@@ -80,9 +84,11 @@ public class Node implements Serializable {
 
     /**
      * 判断字符串是否为回文（带头结点）
+     * <br>
+     * <b>Note</b> 边界检测： 节点为空, 节点长度为1, 2, 3
      *
      * @param node the node
-     * @return boolean
+     * @return boolean boolean
      */
     public static boolean isBackToText(Node node) {
         if (node == null || node.next == null || node.next.next == null) {
@@ -107,25 +113,39 @@ public class Node implements Serializable {
             quick = quick.next.next;
             flag = slow;
         }
-        // 先移动慢指针，再将反转的链表的头指针归位，否则慢指针将断开正向的链表
+        // 先移动慢指针，再将反转的链表的首元素归位，否则正向链表会断开
         slow = slow.next;
         flag.next = temp;
 
+        //若为奇数串,将temp = 中间节点, 偶数串,temp = 正向链表的首节点
         if (quick.next == null) {
+            temp = flag;
             flag = flag.next;
+            temp.next = slow;
+        } else {
+            temp = slow;
         }
+
         boolean isBackText = true;
-        while (slow != null && flag != null) {
+        // prev用于保存逆向链表，防止断开
+        Node prev = flag.next;
+        while (slow != null && prev != null) {
             if (!slow.getContent().equals(flag.getContent())) {
                 isBackText = false;
             }
+            //复原链表
+            flag.next = temp;
+            temp = flag;
+            flag = prev;
             slow = slow.next;
-            flag = flag.next;
+            prev = prev.next;
         }
-        if (slow != null || flag != null) {
+        // 循环中没有进行最后一次判断
+        if (slow != null && !slow.getContent().equals(flag.getContent())) {
             isBackText = false;
         }
-
+        flag.next = temp;
+        log.info("src linked list: {}", JSON.toJSONString(node));
         return isBackText;
     }
 }

@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Test {
     public static void main(String[] args) {
-        Node result = Node.createNodeList(new String[]{"a", "b", "c", "q", "a"});
+        Node result = Node.createNodeList(new String[]{"a", "b", "c", "d", "d", "e", "f","z", "f", "e", "d", "c", "b", "a"});
 //        log.info("nodeList: {}", JSON.toJSONString(result));
 
         boolean flag = Node.isBackToText(result);

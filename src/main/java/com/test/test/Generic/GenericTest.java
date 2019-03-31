@@ -1,8 +1,5 @@
 package com.test.test.Generic;
 
-import com.google.common.collect.ImmutableList;
-import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
-
 import org.apache.poi.ss.formula.functions.T;
 
 import java.io.Serializable;
@@ -16,7 +13,6 @@ import java.util.List;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import scala.math.BigInt;
 
 /**
  * @author Snowson

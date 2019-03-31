@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * The type Node.
  * <p>
- * TODO 1. 链表中环的检测    2.两个有序链表合并     3.删除链表倒数第 n 个结点    4.求链表的中间结点  5.相交链表交点  6.入环点
+ * TODO 2.两个有序链表合并     3.删除链表倒数第 n 个结点    4.求链表的中间结点  5.相交链表交点  6.入环点  7. 哨兵   8.LRU实现
  *
  * @author Snowson
  * @since 2019 /3/22 11:52
@@ -37,14 +37,32 @@ public class Node implements Serializable {
         }
         //创建头结点
         Node head = new Node();
-        Node flag = new Node();
-        flag.next = head;
+        Node flag = head;
         for (String item : array) {
             Node node = new Node();
             node.setContent(item);
-            flag.next.next = node;
             flag.next = node;
+            flag = node;
         }
+
+        return head;
+    }
+
+    public static Node createCircleNodeList(String[] array) {
+        if (array.length <= 0) {
+            log.info("original data is null");
+            return null;
+        }
+        //创建头结点
+        Node head = new Node();
+        Node flag = head;
+        for (int i = 0; i < array.length; i++) {
+            Node node = new Node();
+            node.setContent(array[i]);
+            flag.next = node;
+            flag = node;
+        }
+        flag.next = head;
 
         return head;
     }
@@ -85,7 +103,7 @@ public class Node implements Serializable {
     /**
      * 判断字符串是否为回文（带头结点）
      * <br>
-     * <b>Note</b> 边界检测： 节点为空, 节点长度为1, 2, 3
+     * <b>Note</b> 边界检测： 节点为空, 链表长度为1, 2, 3
      *
      * @param node the node
      * @return boolean boolean
@@ -147,5 +165,38 @@ public class Node implements Serializable {
         flag.next = temp;
         log.info("src linked list: {}", JSON.toJSONString(node));
         return isBackText;
+    }
+
+    /**
+     * Is circle boolean.
+     * 判断链表是否含有环
+     *
+     * <br>
+     * <b>Node</b> V2 - V1 = nC。 V1,V2为快慢指针速度,C为节点个数（周长）只要有环, 两指针总能相遇, 并且快指针比慢指针多走V2-V1圈
+     *
+     * @param node the node
+     * @return boolean
+     */
+    public static boolean isCircle(Node node) {
+        if (node == null) {
+            return false;
+        }
+        if (node.next == node) {
+            return true;
+        }
+        Node slow = node.next;
+        Node quick = node.next;
+        boolean isCircle = true;
+        do {
+            if (quick.next == null || quick.next.next == null) {
+                isCircle = false;
+                break;
+            } else {
+                slow = slow.next;
+                quick = quick.next.next;
+            }
+        }while (slow != quick);
+
+        return isCircle;
     }
 }

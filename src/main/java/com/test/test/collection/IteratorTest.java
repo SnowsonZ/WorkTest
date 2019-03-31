@@ -2,6 +2,8 @@ package com.test.test.collection;
 
 import com.google.common.collect.ImmutableList;
 
+import java.util.ArrayList;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -18,5 +20,16 @@ public class IteratorTest {
             }
             System.out.println(item);
         });
+
+        // foreach 边遍历边删除，不允许同时使用iterator.next和集合自身的元素操作
+        ArrayList<String> contents = new ArrayList<>();
+        contents.add("a");
+        contents.add("b");
+        contents.add("c");
+        contents.add("d");
+        for (String item : contents) {
+            contents.remove(item);
+        }
+        log.info("complete");
     }
 }

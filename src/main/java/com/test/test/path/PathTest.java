@@ -13,12 +13,18 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Snowson
  * @since 2019 /1/15 17:59 <p> TODO URLResource, ServletContextResource, InputStreamResource
  */
-//@Component
+@Component
 @Slf4j
 public class PathTest implements ApplicationRunner {
 
@@ -47,7 +53,8 @@ public class PathTest implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 //        PathTest.of().classPathResource();
 //        PathTest.of().fileSystemResource(tempPath);
-        PathTest.of().byteArrayResource();
+//        PathTest.of().byteArrayResource();
+        PathTest.of().guavaResource();
     }
 
     /**
@@ -59,7 +66,7 @@ public class PathTest implements ApplicationRunner {
         String classLoaderPath = getClass().getClassLoader().getResource("application.yml").getPath();
         log.info("classPathResource info,  classLoaderPath: {}", classLoaderPath);
 
-        ClassPathResource resource = new ClassPathResource("txt.txt");
+        ClassPathResource resource = new ClassPathResource(classLoaderPath);
         InputStream is = resource.getInputStream();
         BufferedInputStream bis = new BufferedInputStream(is);
         byte[] b = new byte[is.available()];
@@ -114,8 +121,23 @@ public class PathTest implements ApplicationRunner {
     /**
      * Guava resource. == ClassPathResource
      */
-    public void guavaResource() {
-        Resources.getResource("example").getFile();
+    public void guavaResource() throws IOException {
+        String pathFile = Resources.getResource("res/test.json").getPath();
+        File file = new File(pathFile);
+        FileInputStream fs = new FileInputStream(file);
+        BufferedInputStream bis = new BufferedInputStream(fs);
+        byte[] b = new byte[fs.available()];
+        bis.read(b);
+        String content = new String(b, Charsets.UTF_8);
+        List<Member> members = JSON.parseArray(content, Member.class);
+        log.info("content: {}", content);
+    }
+
+    @Data
+    public static class Member implements Serializable {
+        private static final long serialVersionUID = 6530096525193809465L;
+        private String id;
+        private String name;
     }
 
 }

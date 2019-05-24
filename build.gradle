@@ -49,5 +49,6 @@ dependencies {
     compile group: 'org.apache.flink', name: 'flink-streaming-java_2.12', version: '1.7.1'
     // https://mvnrepository.com/artifact/org.apache.flink/flink-clients
     compile group: 'org.apache.flink', name: 'flink-clients_2.12', version: '1.7.1'
-    
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.2.6.RELEASE'
+
 }

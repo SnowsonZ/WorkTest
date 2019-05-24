@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2019/1/22 11:45
  */
 @Slf4j
-@Component
+//@Component
 public class IOTest implements ApplicationRunner {
 
     @Value("${temp.path}")

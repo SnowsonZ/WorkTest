@@ -1,5 +1,7 @@
 package com.test.datastructure.dp;
 
+import java.util.ArrayList;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,7 +25,9 @@ public class DynamicProgramingTest {
 //        int[] goods = {100, 160, 321, 132, 333, 102, 321};
 //        shop(goods, goods.length, 200);
 
-        log.info("最短路径：{}", minDist(matrix, n));
+//        log.info("最短路径：{}", minDist(matrix, n));
+
+        coin(new int[]{100, 50, 20, 10, 5, 1}, 6, 101);
 
     }
 
@@ -199,6 +203,30 @@ public class DynamicProgramingTest {
         }
 
         return result[n - 1][n - 1];
+    }
+
+    public static void coin(int[] coins, int n, int w) {
+
+        int sum = 0;
+        int count = 0;
+        ArrayList<Integer> plan = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            while (sum + coins[i] <= w) {
+                sum += coins[i];
+                plan.add(coins[i]);
+                count++;
+            }
+            if (sum == w) {
+                break;
+            }
+        }
+
+        if (sum == w) {
+            log.info("凑够所需金额的硬币个数为：{}, 方案是：{}", count, plan);
+        } else {
+            log.info("没有找到合适的方案");
+        }
+
     }
 
 }

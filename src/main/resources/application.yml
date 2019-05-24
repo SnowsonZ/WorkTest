@@ -5,6 +5,21 @@ spring:
 ---
 spring:
   profiles: local
+  kafka:
+    producer:
+      bootstrap-servers: 172.17.162.180:9092
+      buffer-memory: 40960
+      batch-size: 4096
+      retries: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: 172.17.162.180:9092
+      enable-auto-commit: false
+      group-id: dc_consumer_group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 logging:
   path: /developer/test_env/log/test
   file: test

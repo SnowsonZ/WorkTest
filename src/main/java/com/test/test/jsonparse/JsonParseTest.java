@@ -29,6 +29,8 @@ public class JsonParseTest {
         HashMap describe = JSON.parseObject(JSON.toJSONString(product1), HashMap.class);
 //        Map describe = BeanUtils.describe(product1);
         log.info("describe: {}", describe);
+
+        log.info("result: {}", JSON.toJSONString(null));
     }
 
 

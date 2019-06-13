@@ -3,9 +3,15 @@ package com.test.test;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
+import javax.xml.transform.Source;
+
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -79,15 +85,51 @@ public class Test {
 //        map.put("1", 14D);
 //        log.info("data: {}", map.get("1"));
 
-        HashMap<String, String> map = new HashMap<>();
-        for (Map.Entry<String, String> item: map.entrySet()) {
+//        HashMap<String, String> map = new HashMap<>();
+//        for (Map.Entry<String, String> item: map.entrySet()) {
+//
+//        }
+//        ArrayList<String> arrays = new ArrayList<>();
+//        arrays.add("123");
+//        arrays.add("456");
+//        arrays.forEach(item -> arrays.add("456"));
+//        log.info("result: {}", JSON.toJSONString(arrays));
 
+        // 退出for循环
+//        String[] test = {"12", "34", "56"};
+//        for (String item : test) {
+//            if (item.equals("34")) {
+//                System.out.println(item);
+//                return;
+//            }
+//            System.out.println(item);
+//        }
+        List<Compare> container = new ArrayList<>();
+        Compare compare = new Compare();
+        compare.setNum(1);
+        container.add(compare);
+
+        Compare compare1 = new Compare();
+        compare1.setNum(4);
+        container.add(compare1);
+
+        Compare compare2 = new Compare();
+        compare2.setNum(2);
+        container.add(compare2);
+
+        Compare compare3 = new Compare();
+        compare3.setNum(3);
+        container.add(compare3);
+
+        PriorityQueue<Compare> compares = new PriorityQueue<>();
+        compares.offer(compare);
+        compares.offer(compare1);
+        compares.offer(compare2);
+        compares.offer(compare3);
+        while (compares.size() > 0) {
+            Compare item = compares.poll();
+            log.info("num: {}", item.getNum());
         }
-        ArrayList<String> arrays = new ArrayList<>();
-        arrays.add("123");
-        arrays.add("456");
-        arrays.forEach(item -> arrays.add("456"));
-        log.info("result: {}", JSON.toJSONString(arrays));
     }
 
     public static String targetField(String source, char split) {
@@ -104,5 +146,20 @@ public class Test {
             end++;
         }
         return source.substring(start + 2, end).trim();
+    }
+
+    @Data
+    static class Compare implements Comparable<Compare>{
+        private int num;
+
+        @Override
+        public int compareTo(Compare o) {
+            if (o.getNum() > this.getNum()) {
+                return -1;
+            }else if (o.getNum() == this.getNum()) {
+                return 0;
+            }
+            return 1;
+        }
     }
 }

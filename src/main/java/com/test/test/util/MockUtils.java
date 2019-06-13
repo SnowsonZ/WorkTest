@@ -1,14 +1,8 @@
 package com.test.test.util;
 
-import com.alibaba.fastjson.JSON;
-import com.test.test.Timer.bean.ExpData;
-import com.test.test.Timer.bean.ExpEvent;
-
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,27 +54,27 @@ public class MockUtils {
         return metrics;
     }
 
-    public List<ExpEvent> alarmExp(String startTime, String endTime) {
-        List<ExpEvent> expEvents = new ArrayList<>();
-        for (int i = 0; i < appIds.length; i++) {
-            ExpEvent expEvent = new ExpEvent();
-            expEvent.setAppId(appIds[i]);
-            expEvent.setStartTime(startTime);
-            expEvent.setEndTime(endTime);
-            List<ExpData> areas = new ArrayList<>();
-            for (String areaId: areaIds) {
-                ExpData expData = new ExpData();
-                expData.setAreaId(areaId);
-                expData.setMetrics(buildMetrics());
-                areas.add(expData);
-            }
-            expEvent.setAreas(areas);
-            expEvents.add(expEvent);
-        }
-        return expEvents;
-    }
+//    public List<ExpEvent> alarmExp(String startTime, String endTime) {
+//        List<ExpEvent> expEvents = new ArrayList<>();
+//        for (int i = 0; i < appIds.length; i++) {
+//            ExpEvent expEvent = new ExpEvent();
+//            expEvent.setAppId(appIds[i]);
+//            expEvent.setStartTime(startTime);
+//            expEvent.setEndTime(endTime);
+//            List<ExpData> areas = new ArrayList<>();
+//            for (String areaId : areaIds) {
+//                ExpData expData = new ExpData();
+//                expData.setAreaId(areaId);
+//                expData.setMetrics(buildMetrics());
+//                areas.add(expData);
+//            }
+//            expEvent.setAreas(areas);
+//            expEvents.add(expEvent);
+//        }
+//        return expEvents;
+//    }
 
     public static void main(String[] args) {
-        log.info("{}", JSON.toJSONString(new MockUtils().alarmExp("2019-01-01 12:00:00", "2019-01-01 12:00:59")));
+//        log.info("{}", JSON.toJSONString(new MockUtils().alarmExp("2019-01-01 12:00:00", "2019-01-01 12:00:59")));
     }
 }

@@ -1,8 +1,9 @@
 package com.test.test.Timer;
 
 import com.alibaba.fastjson.JSON;
-import com.test.test.Timer.bean.ExpEvent;
 import com.test.test.util.MockUtils;
+//import com.test.test.Timer.bean.ExpEvent;
+//import com.test.test.util.MockUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -57,10 +58,10 @@ public class TimerTest implements ApplicationRunner {
                 .minusMinutes(3)
                 .truncatedTo(ChronoUnit.MINUTES);
         LocalDateTime endTime = selectedTime.plusSeconds(59);
-        List<ExpEvent> result = mockUtil.alarmExp(FORMATTER.format(selectedTime), FORMATTER.format(endTime));
-        result.forEach(item -> kafkaTemplate.send(EXP_EVENT_ALARM, JSON.toJSONString(item))
-                .addCallback((msg) -> log.info("send success"),
-                        (error) -> log.warn("error msg: {}", error.getMessage())));
-        log.info("time consume: {} ms, size: {}", System.currentTimeMillis() - startTime, result.size());
+//        List<ExpEvent> result = mockUtil.alarmExp(FORMATTER.format(selectedTime), FORMATTER.format(endTime));
+//        result.forEach(item -> kafkaTemplate.send(EXP_EVENT_ALARM, JSON.toJSONString(item))
+//                .addCallback((msg) -> log.info("send success"),
+//                        (error) -> log.warn("error msg: {}", error.getMessage())));
+//        log.info("time consume: {} ms, size: {}", System.currentTimeMillis() - startTime, result.size());
     }
 }

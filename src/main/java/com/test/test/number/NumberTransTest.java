@@ -13,5 +13,11 @@ public class NumberTransTest {
         String content = "1234.567F";
         Double aDouble = Double.valueOf(content);
         log.info("result: {}", aDouble);
+
+        Double v = Double.parseDouble("+Infinity");
+        log.info("v: {}", v);
+
+        double[] d = {0, Double.NEGATIVE_INFINITY};
+        log.info("d: {}", d);
     }
 }

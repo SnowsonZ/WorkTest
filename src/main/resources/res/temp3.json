@@ -1,0 +1,343 @@
+{
+  "globals" :
+  {
+    "alwaysShowTabs" : true,
+    "defaultProfile" : "{09dc5eef-6840-4050-ae69-21e55e6a2e62}",
+    "initialCols" : 120,
+    "initialRows" : 30,
+    "keybindings" :
+    [
+      {
+        "command" : "closeTab",
+        "keys" :
+        [
+          "ctrl+w"
+        ]
+      },
+      {
+        "command" : "newTab",
+        "keys" :
+        [
+          "ctrl+t"
+        ]
+      },
+      {
+        "command" : "newTabProfile0",
+        "keys" :
+        [
+          "ctrl+shift+1"
+        ]
+      },
+      {
+        "command" : "newTabProfile1",
+        "keys" :
+        [
+          "ctrl+shift+2"
+        ]
+      },
+      {
+        "command" : "newTabProfile2",
+        "keys" :
+        [
+          "ctrl+shift+3"
+        ]
+      },
+      {
+        "command" : "newTabProfile3",
+        "keys" :
+        [
+          "ctrl+shift+4"
+        ]
+      },
+      {
+        "command" : "newTabProfile4",
+        "keys" :
+        [
+          "ctrl+shift+5"
+        ]
+      },
+      {
+        "command" : "newTabProfile5",
+        "keys" :
+        [
+          "ctrl+shift+6"
+        ]
+      },
+      {
+        "command" : "newTabProfile6",
+        "keys" :
+        [
+          "ctrl+shift+7"
+        ]
+      },
+      {
+        "command" : "newTabProfile7",
+        "keys" :
+        [
+          "ctrl+shift+8"
+        ]
+      },
+      {
+        "command" : "newTabProfile8",
+        "keys" :
+        [
+          "ctrl+shift+9"
+        ]
+      },
+      {
+        "command" : "nextTab",
+        "keys" :
+        [
+          "ctrl+tab"
+        ]
+      },
+      {
+        "command" : "openSettings",
+        "keys" :
+        [
+          "ctrl+,"
+        ]
+      },
+      {
+        "command" : "prevTab",
+        "keys" :
+        [
+          "ctrl+shift+tab"
+        ]
+      },
+      {
+        "command" : "scrollDown",
+        "keys" :
+        [
+          "ctrl+shift+down"
+        ]
+      },
+      {
+        "command" : "scrollDownPage",
+        "keys" :
+        [
+          "ctrl+shift+pgdn"
+        ]
+      },
+      {
+        "command" : "scrollUp",
+        "keys" :
+        [
+          "ctrl+shift+up"
+        ]
+      },
+      {
+        "command" : "scrollUpPage",
+        "keys" :
+        [
+          "ctrl+shift+pgup"
+        ]
+      },
+      {
+        "command" : "switchToTab0",
+        "keys" :
+        [
+          "alt+1"
+        ]
+      },
+      {
+        "command" : "switchToTab1",
+        "keys" :
+        [
+          "alt+2"
+        ]
+      },
+      {
+        "command" : "switchToTab2",
+        "keys" :
+        [
+          "alt+3"
+        ]
+      },
+      {
+        "command" : "switchToTab3",
+        "keys" :
+        [
+          "alt+4"
+        ]
+      },
+      {
+        "command" : "switchToTab4",
+        "keys" :
+        [
+          "alt+5"
+        ]
+      },
+      {
+        "command" : "switchToTab5",
+        "keys" :
+        [
+          "alt+6"
+        ]
+      },
+      {
+        "command" : "switchToTab6",
+        "keys" :
+        [
+          "alt+7"
+        ]
+      },
+      {
+        "command" : "switchToTab7",
+        "keys" :
+        [
+          "alt+8"
+        ]
+      },
+      {
+        "command" : "switchToTab8",
+        "keys" :
+        [
+          "alt+9"
+        ]
+      }
+    ],
+    "requestedTheme" : "system",
+    "showTabsInTitlebar" : true,
+    "showTerminalTitleInTitlebar" : true
+  },
+  "profiles" :
+  [
+    {
+      "acrylicOpacity" : 0.69999998807907104,
+      "closeOnExit" : true,
+      "colorScheme" : "ITerm2",
+      "commandline" : "wsl.exe",
+      "cursorColor" : "#FFFFFF",
+      "cursorShape" : "bar",
+      "fontFace" : "Consolas",
+      "fontSize" : 12,
+      "guid" : "{09dc5eef-6840-4050-ae69-21e55e6a2e62}",
+      "historySize" : 9001,
+      "name" : "WSL",
+      "padding" : "0, 0, 0, 0",
+      "snapOnInput" : true,
+      "useAcrylic" : true
+    },
+    {
+      "acrylicOpacity" : 0.75,
+      "closeOnExit" : true,
+      "colorScheme" : "Solarized Dark",
+      "commandline" : "cmd.exe",
+      "cursorColor" : "#FFFFFF",
+      "cursorShape" : "bar",
+      "fontFace" : "Consolas",
+      "fontSize" : 12,
+      "guid" : "{597a5b29-12d2-4355-8b98-23f19ff7363c}",
+      "historySize" : 9001,
+      "name" : "cmd",
+      "padding" : "0, 0, 0, 0",
+      "snapOnInput" : true,
+      "useAcrylic" : true
+    },
+    {
+      "acrylicOpacity" : 0.5,
+      "background" : "#012456",
+      "closeOnExit" : true,
+      "colorScheme" : "Solarized Dark",
+      "commandline" : "powershell.exe",
+      "cursorColor" : "#FFFFFF",
+      "cursorShape" : "bar",
+      "fontFace" : "Courier New",
+      "fontSize" : 12,
+      "guid" : "{93dff124-db67-40e0-b406-6f6f6911f885}",
+      "historySize" : 9001,
+      "name" : "PowerShell",
+      "padding" : "0, 0, 0, 0",
+      "snapOnInput" : true,
+      "useAcrylic" : true
+    }
+  ],
+  "schemes" :
+  [
+    {
+      "background" : "#0C0C0C",
+      "black" : "#0C0C0C",
+      "blue" : "#0037DA",
+      "brightBlack" : "#767676",
+      "brightBlue" : "#3B78FF",
+      "brightCyan" : "#61D6D6",
+      "brightGreen" : "#16C60C",
+      "brightPurple" : "#B4009E",
+      "brightRed" : "#E74856",
+      "brightWhite" : "#F2F2F2",
+      "brightYellow" : "#F9F1A5",
+      "cyan" : "#3A96DD",
+      "foreground" : "#F2F2F2",
+      "green" : "#13A10E",
+      "name" : "Campbell",
+      "purple" : "#881798",
+      "red" : "#C50F1F",
+      "white" : "#CCCCCC",
+      "yellow" : "#C19C00"
+    },
+    {
+      "background" : "#000000",
+      "black" : "#0C0C0C",
+      "blue" : "#0037DA",
+      "brightBlack" : "#767676",
+      "brightBlue" : "#3B78FF",
+      "brightCyan" : "#61D6D6",
+      "brightGreen" : "#16C60C",
+      "brightPurple" : "#B4009E",
+      "brightRed" : "#E74856",
+      "brightWhite" : "#F2F2F2",
+      "brightYellow" : "#F9F1A5",
+      "cyan" : "#3A96DD",
+      "foreground" : "#FDF6E3",
+      "green" : "#13A10E",
+      "name" : "Solarized Dark",
+      "purple" : "#881798",
+      "red" : "#C50F1F",
+      "white" : "#CCCCCC",
+      "yellow" : "#C19C00"
+    },
+    {
+      "background" : "#FDF6E3",
+      "black" : "#073642",
+      "blue" : "#268BD2",
+      "brightBlack" : "#002B36",
+      "brightBlue" : "#839496",
+      "brightCyan" : "#93A1A1",
+      "brightGreen" : "#586E75",
+      "brightPurple" : "#6C71C4",
+      "brightRed" : "#CB4B16",
+      "brightWhite" : "#FDF6E3",
+      "brightYellow" : "#657B83",
+      "cyan" : "#2AA198",
+      "foreground" : "#073642",
+      "green" : "#859900",
+      "name" : "Solarized Light",
+      "purple" : "#D33682",
+      "red" : "#D30102",
+      "white" : "#EEE8D5",
+      "yellow" : "#B58900"
+    },
+    {
+      "background" : "#1d1f21",
+      "black" : "#282a2e",
+      "blue" : "#5f819d",
+      "brightBlack" : "#373b41",
+      "brightBlue" : "#81a2be",
+      "brightCyan" : "#8abeb7",
+      "brightGreen" : "#586E75",
+      "brightMagenta" : "#b294bb",
+      "brightRed" : "#cc6666",
+      "brightWhite" : "#c5c8c6",
+      "brightYellow" : "#f0c674",
+      "cyan" : "#5e8d87",
+      "foreground" : "#c5c8c6",
+      "green" : "#859900",
+      "name" : "ITerm2",
+      "magenta" : "#85678f",
+      "red" : "#a54242",
+      "white" : "#707880",
+      "yellow" : "#de935f"
+    }
+  ]
+}

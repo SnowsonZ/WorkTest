@@ -15,28 +15,29 @@ import lombok.extern.slf4j.Slf4j;
 public class NpvFlowTest {
 
     private static final String REGEX = "\u001E;";
-    private static final String REGEX_REPLACE = ".;";
+    private static final String REGEX_REPLACE = "^^;";
     public static void main(String[] args) {
-        String pre = "<2>Apr 15 14:23:13 HOST.;F309007000004932B72069DE.;ipv4.;4.; http_transaction.;192.168.2.16.;00:16:cf:41:9c:20.;192.168.2.16.;67.228.110.120.;1580.;80.;1.;www.wireshark.org.;GET.;http://www.wireshark.org/.;200.;text/html.;gzip.;2019-04-15 14:23:14.26.;2019-04-15 14:23:14.26.;0.;0.;1.;0.;1.;469.;3.;3916.; 172.16.4.81;Firefox3.0b5.;Windows";
-        String next = "May 24 12:06:22 RIIL.;F309002000004932B7204E7E.;ipv4.;4.; http_transaction.;192.168.252.250.;00:0b:ab:3a:29:fc.;192.168.252.250.;192.168.252.80.;51137.;80.;liebao.;mis.kukahome.com.;GET.;http://mis.kukahome.com/mis.;301.;text/html; charset=UTF-8..;.;2019-05-24 12:06:23.474.;2019-05-24 12:06:23.477.;3.;0.;6.;0.;1.;251.;1.;508.;172.16.4.81.;Chrome62.0.3202.89.;Windows";
-        compareContent(pre, next);
+        String pre = "<6>Jun 18 15:28:50 RIIL 流量分析探针^^;F309002000004932B7204E7E^^;ipv4^^;4^^; traffic_session^^;1256549261^^;10.5.24.2^^;10.5.24.2^^;202.119.23.46^^;514^^;10514^^;^^;迅雷^^;P2P软件^^;4201748648^^;0^^;1362900^^;0^^;^^;^^;123456789^^;123456789^^;0^^;1560841137232^^;1560842865230^^;1560842930600^^;2^^;17^^;0^^;^^;DEFAULT";
+        String next = "<6>Nov  9 14:21:38 RIIL\u001E;F309005000004932B720921E\u001E;ipv4\u001E;4\u001E; traffic_session\u001E;1943194\u001E;172.17.160.52\u001E;172.17.160.52\u001E;172.16.2.26\u001E;56568\u001E;53\u001E;\u001E;liebao\u001E;其他类\u001E;3400\u001E;0\u001E;5\u001E;0\u001E;\u001E;\u001E;123456789\u001E;123456789\u001E;0\u001E;1541744480973\u001E;1541744480973\u001E;1541744498610\u001E;1\u001E;17\u001E;0\u001E;\u001E;DEFAULT";
+        print(pre, REGEX_REPLACE);
+        print(next, REGEX);
     }
 
-    private static void compareContent(String pre, String next) {
-        List<String> preList = Splitter.on(REGEX_REPLACE).splitToList(pre);
+    private static void compareContent(String pre, String next, String regex) {
+        List<String> preList = Splitter.on(regex).splitToList(pre);
         for (int i = 0; i < preList.size(); i++) {
             System.out.println(i + ": " + preList.get(i));
         }
         System.out.println();
         System.out.println();
-        List<String> nextList = Splitter.on(REGEX_REPLACE).splitToList(next);
+        List<String> nextList = Splitter.on(regex).splitToList(next);
         for (int i = 0; i < nextList.size(); i++) {
             System.out.println(i + ": " + nextList.get(i));
         }
     }
 
-    public static void print(String npvFlow) {
-        List<String> flowList = Splitter.on(REGEX_REPLACE).splitToList(npvFlow);
+    public static void print(String npvFlow, String regex) {
+        List<String> flowList = Splitter.on(regex).splitToList(npvFlow);
         for (int i = 0; i < flowList.size(); i++) {
             System.out.println(i + ": " + flowList.get(i));
         }

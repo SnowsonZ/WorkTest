@@ -1,44 +1,74 @@
 {
-  "next": {
-    "content": "a",
-    "next": {
-      "content": "b",
-      "next": {
-        "content": "c",
-        "next": {
-          "content": "d",
-          "next": {
-            "content": "d",
-            "next": {
-              "content": "e",
-              "next": {
-                "content": "f",
-                "next": {
-                  "content": "z",
-                  "next": {
-                    "content": "f",
-                    "next": {
-                      "content": "e",
-                      "next": {
-                        "content": "d",
-                        "next": {
-                          "content": "c",
-                          "next": {
-                            "content": "b",
-                            "next": {
-                              "content": "a"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+  "data": {
+    "ALL": {
+      "ALL": {
+        "total_flow.down_bit_speed": 6989205.333333333,
+        "tcp_delay.rtt_down": 738.4607322654416,
+        "tcp_delay.rtt_up": 523.8014269599054,
+        "total_flow.up_bit_speed": 6597249.6,
+        "tcp_retransmission.up_ratio": 0.12963364404942554,
+        "tcp_retransmission.down_ratio": 0.08665558410155659
+      },
+      "04f6de7e-9176-11e9-aeb2-02420a0a0a05": {
+        "total_flow.down_bit_speed": 17628.533333333333,
+        "tcp_delay.rtt_down": 46.15384615384615,
+        "tcp_delay.rtt_up": 45.5,
+        "total_flow.up_bit_speed": 5185.733333333334,
+        "tcp_retransmission.up_ratio": 0.05319148936170213,
+        "tcp_retransmission.down_ratio": 0.06896551724137931
+      },
+      "4cd6fcf6-9176-11e9-aeb2-02420a0a0a05": {
+        "total_flow.down_bit_speed": 3278224.0,
+        "tcp_delay.rtt_down": 822.7282319391613,
+        "tcp_delay.rtt_up": 355.50851926965447,
+        "total_flow.up_bit_speed": 496186.93333333335,
+        "tcp_retransmission.up_ratio": 0.08002735978112176,
+        "tcp_retransmission.down_ratio": 0.03669077438701711
+      },
+      "ec877870-925c-11e9-8e3d-02420a0a0a05": {
+        "total_flow.down_bit_speed": 8954.4,
+        "tcp_delay.rtt_down": 19.071428571428573,
+        "tcp_delay.rtt_up": 18.857142857142858,
+        "total_flow.up_bit_speed": 2239.3333333333335,
+        "tcp_retransmission.up_ratio": 0.2692307692307692,
+        "tcp_retransmission.down_ratio": 0.029411764705882353
+      },
+      "84affc9c-9192-11e9-9cf4-02420a0a0a05": {
+        "total_flow.down_bit_speed": 261432.0,
+        "tcp_delay.rtt_down": 2857.56,
+        "tcp_delay.rtt_up": 3456.4367999998926,
+        "total_flow.up_bit_speed": 3404699.466666667,
+        "tcp_retransmission.up_ratio": 0.4324734446130501,
+        "tcp_retransmission.down_ratio": 0.1335478680611424
+      },
+      "bd057432-9192-11e9-9cf4-02420a0a0a05": {
+        "total_flow.down_bit_speed": 285.3333333333333,
+        "total_flow.up_bit_speed": 1323383.2,
+        "tcp_retransmission.down_ratio": 117.0
+      },
+      "22dd652e-9195-11e9-b2e0-02420a0a0a05": {
+        "total_flow.down_bit_speed": 56.0,
+        "total_flow.up_bit_speed": 200.0
+      },
+      "UNKNOWN": {
+        "total_flow.down_bit_speed": 395278.6666666667,
+        "tcp_delay.rtt_down": 281.8492715231433,
+        "tcp_delay.rtt_up": 370.80224390238885,
+        "total_flow.up_bit_speed": 182385.2,
+        "tcp_retransmission.up_ratio": 0.1702819956616052,
+        "tcp_retransmission.down_ratio": 0.36590996537129666
+      },
+      "ed937aa2-9194-11e9-9cf4-02420a0a0a05": {
+        "total_flow.down_bit_speed": 3027346.4,
+        "tcp_delay.rtt_down": 497.77265505984593,
+        "tcp_delay.rtt_up": 266.10258169934224,
+        "total_flow.up_bit_speed": 1182969.7333333334,
+        "tcp_retransmission.up_ratio": 0.09855521155830753,
+        "tcp_retransmission.down_ratio": 0.06149142177679633
       }
     }
-  }
+  },
+  "merge": "AVG",
+  "span": "ONE_MINUTE",
+  "time": 1561084560
 }

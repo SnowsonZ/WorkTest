@@ -2,13 +2,10 @@ package com.test.test.excel;
 
 import com.google.common.io.ByteSource;
 import com.google.common.io.Resources;
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import net.sf.jxls.transformer.Configuration;
 import net.sf.jxls.transformer.XLSTransformer;
 
-import org.apache.poi.extractor.POITextExtractor;
 import org.apache.poi.hssf.usermodel.DVConstraint;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -17,38 +14,26 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Color;
-import org.apache.poi.ss.usermodel.ComparisonOperator;
+import org.apache.poi.ss.usermodel.DataValidation;
 import org.apache.poi.ss.usermodel.DataValidationConstraint;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openxmlformats.schemas.drawingml.x2006.main.STColorSchemeIndex;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class POIExcelTest {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 //        new POIExcelTest().createListBox(new String[]{"123", "456", "abc", "def"});
 //        String templatePath = "res/batch-template.xlsx";
 //        new POIExcelTest().buildDataWithTemple(templatePath);
@@ -76,7 +61,20 @@ public class POIExcelTest {
 
 //        new POIExcelTest().readTemplate("number_constraint.xls");
 
-        new POIExcelTest().readXTemplate("style.xlsx");
+//        new POIExcelTest().readXTemplate("style.xlsx");
+        POIExcelTest excel = new POIExcelTest();
+        excel.readFile("res/data.xlsx");
+//        excel.createCustomConstraint();
+    }
+
+    public void readFile(String filePath) throws Exception{
+        try (InputStream is = Resources.getResource(filePath).openStream()){
+            XSSFWorkbook workbook = new XSSFWorkbook(is);
+            XSSFSheet one = workbook.getSheetAt(0);
+            XSSFCell box_1_1 = one.getRow(0).getCell(0);
+            String content = box_1_1.getStringCellValue();
+            log.info("content: {}", content.replace("^[0-9]$", ","));
+        }
     }
 
     public void createCustomConstraint() {
@@ -85,8 +83,22 @@ public class POIExcelTest {
 
         HSSFSheet sheet = wb.createSheet("new sheet");
         CellRangeAddressList regions = new CellRangeAddressList(0, 10, 0, 9);
-        DVConstraint constraint = DVConstraint.createCustomFormulaConstraint("[^A-Za-z0-9]");
-        sheet.addValidationData(new HSSFDataValidation(regions, constraint));
+        DVConstraint constraint = DVConstraint.createNumericConstraint(DataValidationConstraint.ValidationType.TEXT_LENGTH,
+                DataValidationConstraint.OperatorType.LESS_OR_EQUAL, "=10", "=10");
+        HSSFDataValidation dataValidation = new HSSFDataValidation(regions, constraint);
+        dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+        dataValidation.setShowPromptBox(true);
+        dataValidation.createPromptBox("格式错误", "请勿输入非法字符");
+        sheet.addValidationData(dataValidation);
+
+        CellRangeAddressList regions1 = new CellRangeAddressList(11, 20, 0, 9);
+        DVConstraint constraint1 = DVConstraint.createCustomFormulaConstraint("FIND(\"one\", A1) < 0");
+        HSSFDataValidation dataValidation1 = new HSSFDataValidation(regions1, constraint1);
+        dataValidation.setErrorStyle(DataValidation.ErrorStyle.STOP);
+        dataValidation.setShowErrorBox(true);
+        dataValidation.createErrorBox("格式错误", "请勿输入非法字符");
+//        dataValidation.("格式错误", "请勿输入非法字符");
+        sheet.addValidationData(dataValidation1);
         writeToFile(wb, "custom_constraint.xls");
     }
     public void createNumberConstraint() {

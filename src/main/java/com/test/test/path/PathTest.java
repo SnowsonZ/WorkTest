@@ -15,13 +15,11 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import lombok.Data;
@@ -129,7 +127,6 @@ public class PathTest implements ApplicationRunner {
         byte[] b = new byte[fs.available()];
         bis.read(b);
         String content = new String(b, Charsets.UTF_8);
-        List<Member> members = JSON.parseArray(content, Member.class);
         log.info("content: {}", content);
     }
 

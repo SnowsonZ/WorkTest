@@ -1,18 +1,21 @@
 package com.test.test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Random;
 
-import javax.xml.transform.Source;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 
 /**
  * @author Snowson
@@ -20,90 +23,48 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Test {
+
     public static void main(String[] args) {
-//        ArrayList<String> contents = new ArrayList<>();
-//        contents.add("a");
-//        contents.add("b");
-//        contents.add("c");
-//        contents.add("d");
-//        for (String item : contents) {
-//            contents.remove(item);
-//        }
-//        log.info("complete");
-        /**
-         * 浮点数计算精度问题
-         */
-//        float a = 1000.000000001f;
-//        float b = 100.000002f;
-//        System.out.println(a + b);
+    }
 
-        /**
-         * 取整效率
-          */
-//        long startTime = System.currentTimeMillis();
-//        double a, b;
-//        for (int i = 0; i < 10000; i++) {
-//            a = Math.random();
-//            b = Math.random();
-//            Integer result = Double.valueOf(Math.floor(a + b)).intValue();
-////            log.info("a: {}, b: {}, result: {}", a, b, result);
-//        }
-//        log.info("time consume: {} ms", System.currentTimeMillis() - startTime);
+    /**
+     * 迭代删除
+     */
+    private void updateIterator() {
+        List<String> contents = new ArrayList<>();
+        contents.add("a");
+        contents.add("b");
+        contents.add("c");
+        contents.add("d");
+        for (String item : contents) {
+            contents.remove(item);
+        }
+        log.info("complete");
+    }
 
-//        int result = (int) Math.floor(1.23455);
-//        log.info("result: {}", result);
+    private void toIntPms() {
+        long startTime = System.currentTimeMillis();
+        double a, b;
+        for (int i = 0; i < 10000; i++) {
+            a = Math.random();
+            b = Math.random();
+            Integer result = Double.valueOf(Math.floor(a + b)).intValue();
+            log.info("a: {}, b: {}, result: {}", a, b, result);
+        }
+        log.info("time consume: {} ms", System.currentTimeMillis() - startTime);
 
-//        List<String> content = Arrays.asList("3", "2", "1");
-//        Collections.sort(content);
-//        System.out.println(content);
-        /**
-         * 解析时间计算
-         */
-//        char split = '\u001E';
-//        String dns = "Apr 23 20:00:39 RIIL æµéåææ¢é\u001E;F309002000004932B7204E7E\u001E;ipv4\u001E;4\u001E; dns_transaction\u001E;172.17.161.57\u001E;00:1a:a9:7d:ed:00\u001E;172.17.161.57\u001E;172.17.169.2\u001E;49889\u001E;53\u001E;www.zhangyang.liebao\u001E;172.17.169.2\u001E;86400\u001E;5\u001E;1556020822295\u001E;8001";
-//        String http = "<2>Nov  9 14:21:38 RIIL\u001E;F309005000004932B720921E\u001E;ipv4\u001E;4\u001E; http_transaction\u001E;172.17.163.184\u001E;00:1a:a9:7d:ed:76\u001E;172.17.163.184\u001E;172.17.161.31\u001E;54747\u001E;12306\u001E;liebao\u001E;172.17.161.31:12306\u001E;POST\u001E;http://172.17.161.31:12306/v1/event/get_summary/12\u001E;400\u001E;\u001E;\u001E;2018-11-09 14:21:39.181\u001E;2018-11-09 14:21:39.182\u001E;1\u001E;0\u001E;8\u001E;0\u001E;1\u001E;548\u001E;1\u001E;28\u001E;Chrome69.0.3497.92\u001E;Windows";
-//        String tcp = "<6>Nov  9 14:21:38 RIIL\u001E;F309005000004932B720921E\u001E;ipv4\u001E;5\u001E;0\u001E;0\u001E;172.17.163.236\u001E;00:1a:a9:7d:ed:76\u001E;00:1a:a9:3f:9f:14\u001E;172.17.163.236\u001E;47.58.191.184\u001E;56002\u001E;445\u001E;6\u001E;3391\u001E;592\u001E;0\u001E;1\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;1\u001E;0\u001E;0\u001E;8.20\u001E;1.94\u001E;2.00\u001E;588.00\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;37\u001E;0\u001E;139\u001E;0\u001E;0\u001E;1\u001E;0\u001E;1541744478895\u001E;1541744478895\u001E;1541744498480\u001E;0\u001E;1\u001E;0\u001E;0\u001E;tcp_session";
-//        String traffic = "<6>Nov  9 14:21:38 RIIL\u001E;F309005000004932B720921E\u001E;ipv4\u001E;4\u001E; traffic_session\u001E;1943194\u001E;172.17.160.52\u001E;172.17.160.52\u001E;172.16.2.26\u001E;56568\u001E;53\u001E;\u001E;liebao\u001E;其他类\u001E;3400\u001E;0\u001E;5\u001E;0\u001E;\u001E;\u001E;123456789\u001E;123456789\u001E;0\u001E;1541744480973\u001E;1541744480973\u001E;1541744498610\u001E;1\u001E;17\u001E;0\u001E;\u001E;DEFAULT";
-//        String tcp_src = "<6>Nov  9 14:21:38 RIIL\u001E;F309005000004932B720921E\u001E;ipv4\u001E;5\u001E; tcp_session\u001E;0\u001E;0\u001E;172.17.163.236\u001E;00:1a:a9:7d:ed:76\u001E;00:1a:a9:3f:9f:14\u001E;172.17.163.236\u001E;47.58.191.184\u001E;56002\u001E;445\u001E;6\u001E;3391\u001E;592\u001E;0\u001E;1\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;1\u001E;0\u001E;0\u001E;8.20\u001E;1.94\u001E;2.00\u001E;588.00\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;0\u001E;37\u001E;0\u001E;139\u001E;0\u001E;0\u001E;1\u001E;0\u001E;1541744478895\u001E;1541744478895\u001E;1541744498480\u001E;0\u001E;1\u001E;0\u001E;0";
-//        //        String s = targetField(traffic, split);
-//        int loop = 10000000;
-//        long startTime = System.currentTimeMillis();
-//        for (int i = 0; i < loop; i++) {
-//            targetField(tcp, split);
-////            tcp.substring(60, 72);
-//        }
-//        log.info("time consume with costume func: {}", System.currentTimeMillis() - startTime);
-//        startTime = System.currentTimeMillis();
-//        for (int i = 0; i < loop; i++) {
-//            tcp.contains("tcp_session");
-//        }
-//        log.info("time consume with contains func: {}", System.currentTimeMillis() - startTime);
+        int result = (int) Math.floor(1.23455);
+        log.info("result: {}", result);
 
-        // 允许键重复map
-//        ArrayListMultimap<String, Double> map = ArrayListMultimap.create();
-//        map.put("1", 12D);
-//        map.put("1", 14D);
-//        log.info("data: {}", map.get("1"));
+        List<String> content = Arrays.asList("3", "2", "1");
+        Collections.sort(content);
+        log.info("{}", JSON.toJSONString(content));
+    }
 
-//        HashMap<String, String> map = new HashMap<>();
-//        for (Map.Entry<String, String> item: map.entrySet()) {
-//
-//        }
-//        ArrayList<String> arrays = new ArrayList<>();
-//        arrays.add("123");
-//        arrays.add("456");
-//        arrays.forEach(item -> arrays.add("456"));
-//        log.info("result: {}", JSON.toJSONString(arrays));
-
-        // 退出for循环
-//        String[] test = {"12", "34", "56"};
-//        for (String item : test) {
-//            if (item.equals("34")) {
-//                System.out.println(item);
-//                return;
-//            }
-//            System.out.println(item);
-//        }
+    /**
+     * 优先级队列
+     */
+    private void priorityQueue() throws NoSuchAlgorithmException {
         List<Compare> container = new ArrayList<>();
         Compare compare = new Compare();
         compare.setNum(1);
@@ -120,16 +81,39 @@ public class Test {
         Compare compare3 = new Compare();
         compare3.setNum(3);
         container.add(compare3);
+        Collections.sort(container);
+        log.info("{}", container);
 
         PriorityQueue<Compare> compares = new PriorityQueue<>();
         compares.offer(compare);
         compares.offer(compare1);
         compares.offer(compare2);
         compares.offer(compare3);
-        while (compares.size() > 0) {
+        while (!compares.isEmpty()) {
             Compare item = compares.poll();
             log.info("num: {}", item.getNum());
         }
+
+        val data = new ArrayList<String>();
+        data.add("one");
+        data.add("two");
+        log.info("{}", JSON.toJSONString(data));
+        data.clear();
+        Random random = SecureRandom.getInstanceStrong();
+        double v = random.nextDouble() * 400;
+        log.info("{}", v);
+        v = random.nextDouble() * 400;
+        log.info("{}", v);
+        v = random.nextDouble() * 400;
+        log.info("{}", v);
+
+    }
+
+    private void serialization() {
+        List<One> data = Arrays.asList(new One("1", 1.2d), new One("2", 1.2d));
+        String str = JSON.toJSONString(data);
+        List<Tow> result = JSON.parseArray(str, Tow.class);
+        log.info("{}", result.toString());
     }
 
     public static String targetField(String source, char split) {
@@ -149,17 +133,32 @@ public class Test {
     }
 
     @Data
-    static class Compare implements Comparable<Compare>{
+    static class Compare implements Comparable<Compare> {
         private int num;
 
         @Override
         public int compareTo(Compare o) {
-            if (o.getNum() > this.getNum()) {
-                return -1;
-            }else if (o.getNum() == this.getNum()) {
+            if (num > o.getNum()) {
+                return 1;
+            } else if (num == o.getNum()) {
                 return 0;
             }
             return 1;
         }
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class One {
+        private String t;
+        private double v;
+    }
+
+    @Data
+    static class Tow {
+        @JSONField(name = "t")
+        private String time;
+        @JSONField(name = "v")
+        private double value;
     }
 }

@@ -1,5 +1,7 @@
 package com.test.test.file;
 
+import com.google.common.base.Strings;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -7,11 +9,12 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -72,6 +75,30 @@ public class FileTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileTest.of().createFile(tempPath, "20190115.xls");
+//        FileTest.of().createFile(tempPath, "20190115.xls");
+        FileTest.of().readFile("txt.txt");
+    }
+
+    private void readFile(String path) throws IOException {
+        if (Strings.isNullOrEmpty(path)) {
+            return;
+        }
+//        String pathFile = getClass().getClassLoader().getResource(path).getPath();
+//        String pathFile = Resources.getResource(path).getPath();
+        ClassPathResource pathFile = new ClassPathResource(path);
+//        File file = new File(pathFile);
+        File file = pathFile.getFile();
+        try(FileReader fr = new FileReader(file)) {
+            char[] b = new char[1024];
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = fr.read(b)) != -1) {
+                String s = new String(b, 0, len);
+                sb.append(s);
+            }
+            log.info("result: {}", sb.toString());
+        } catch (IOException e) {
+            log.error("error msg: {}", e.getMessage());
+        }
     }
 }

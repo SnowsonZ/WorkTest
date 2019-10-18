@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -49,10 +49,10 @@ public class PathTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        PathTest.of().classPathResource();
+        PathTest.of().classPathResource();
 //        PathTest.of().fileSystemResource(tempPath);
 //        PathTest.of().byteArrayResource();
-        PathTest.of().guavaResource();
+//        PathTest.of().guavaResource();
     }
 
     /**
@@ -60,21 +60,24 @@ public class PathTest implements ApplicationRunner {
      *
      * @throws IOException the io exception
      */
-    public void classPathResource() throws IOException {
-        String classLoaderPath = getClass().getClassLoader().getResource("application.yml").getPath();
-        log.info("classPathResource info,  classLoaderPath: {}", classLoaderPath);
-
-        ClassPathResource resource = new ClassPathResource(classLoaderPath);
-        InputStream is = resource.getInputStream();
-        BufferedInputStream bis = new BufferedInputStream(is);
-        byte[] b = new byte[is.available()];
-        bis.read(b);
-        String content = new String(b, Charsets.UTF_8);
-        log.info("classPathResource info, content: {}", content);
-        String path = resource.getPath();
-        log.info("classPathResource, path: {}", path);
-        String filename = resource.getFilename();
-        log.info("classPathResource info, filename: {}", filename);
+    public void classPathResource() {
+        // JDK classpath
+        String filePath = getClass().getClassLoader().getResource("application.yml").getPath();
+        File file = new File(filePath);
+        // spring classpath
+        //ClassPathResource resource = new ClassPathResource("application.yml");
+        //File file = resource.getFile();
+        char[] b = new char[1024];
+        try(FileReader fr = new FileReader(file)) {
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = fr.read(b)) != -1) {
+                sb.append(new String(b, 0, len));
+            }
+            log.info("result: {}", sb.toString());
+        } catch (IOException e) {
+            log.error("error msg: {}", e.getMessage());
+        }
     }
 
     /**

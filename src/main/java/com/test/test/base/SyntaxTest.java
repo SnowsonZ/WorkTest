@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SyntaxTest {
     public static void main(String[] args) {
-        double result = 0.;
+        double result = .1;
         log.info("result: {}", result);
     }
 }

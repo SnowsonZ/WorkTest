@@ -13,11 +13,15 @@ public class JedisUtil {
     private Jedis jedis;
     private static volatile JedisUtil instance;
 
-    public static JedisUtil getInstance(String host, int port) {
+    public static JedisUtil getInstance(String host, int port, String password) {
         if (instance == null) {
             synchronized (JedisUtil.class) {
                 if (instance == null) {
-                    instance = new JedisUtil(host, port);
+                    if (Strings.isNullOrEmpty(password)) {
+                        instance = new JedisUtil(host, port);
+                    }else {
+                        instance = new JedisUtil(host, port, password);
+                    }
                 }
             }
         }
@@ -26,6 +30,11 @@ public class JedisUtil {
 
     private JedisUtil(String host, int port) {
         jedis = new Jedis(host, port);
+    }
+
+    private JedisUtil(String host, int port, String password) {
+        jedis = new Jedis(host, port);
+        jedis.auth(password);
     }
 
     public <T> T get(String key, Class<T> clazz) {

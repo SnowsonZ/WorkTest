@@ -1,30 +1,30 @@
--------------------------------------------流水---------------------------------------------------
+->-----------------------------------------流水---------------------------------------------------
 -- traffic 流水
-SELECT * 
+SELECT *
 FROM npv_traffic_session
 WHERE `time` BETWEEN toDateTime('2018-11-06 14:00:00') AND toDateTime('2018-11-06 14:35:00')
 AND has(app_ids, 'efce10fa-df44-11e8-a347-0242ac130004')
 AND src_loc = 'e224d278-df43-11e8-a347-0242ac130004'
 ORDER BY time DESC
 
--- http 流水 
-SELECT * 
+-- http 流水
+SELECT *
 FROM npv_http
 WHERE date = toDate(now())
 AND `time` BETWEEN toDateTime('2018-11-08 10:31:00') AND toDateTime('2018-11-08 10:32:00')
 AND has(app_ids, '30e889e2-e19a-11e8-9062-0242ac130004')
 ORDER BY `time` DESC
 
--- tcp 流水 
-SELECT * 
+-- tcp 流水
+SELECT *
 FROM npv_tcp_session
 WHERE date = toDate(now())
 AND `time` BETWEEN toDateTime('2018-11-08 10:00:00') AND toDateTime('2018-11-08 10:34:00')
 AND dst_ip = '172.16.2.227'
 ORDER BY `time` DESC
 
--- dns 流水 
-SELECT * 
+-- dns 流水
+SELECT *
 FROM npv_dns
 WHERE date = toDate(now())
 AND `time` BETWEEN toDateTime('2018-11-08 10:00:00') AND toDateTime('2018-11-08 10:34:00')
@@ -33,28 +33,28 @@ ORDER BY `time` DESC
 ----------------------------------------------指标---------------------------------------------------
 ----------------------时延
 -- http_delay
-SELECT * 
+SELECT *
 FROM model_http_delay_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-08 10:31:00') AND toDateTime('2018-11-08 10:35:00')
 AND appId = '30e889e2-e19a-11e8-9062-0242ac130004'
 ORDER BY `timestamp` DESC
 
 -- tcp_delay
-SELECT * 
+SELECT *
 FROM model_tcp_delay_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-06 12:10:00') AND toDateTime('2018-11-06 12:20:00')
 AND appId = 'efce10fa-df44-11e8-a347-0242ac130004'
 ORDER BY `timestamp` DESC
 
 -- 1m dns时延
-SELECT * 
+SELECT *
 FROM model_dns_delay_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-06 12:10:00') AND toDateTime('2018-11-06 12:20:00')
 AND appId = 'efce10fa-df44-11e8-a347-0242ac130004'
 ORDER BY `timestamp` DESC
 
 --体验值
-SELECT * 
+SELECT *
 FROM model_http_apdex_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-08 10:31:00') AND toDateTime('2018-11-08 10:35:00')
 AND appId = '30e889e2-e19a-11e8-9062-0242ac130004'
@@ -62,21 +62,21 @@ AND appId = '30e889e2-e19a-11e8-9062-0242ac130004'
 ORDER BY `timestamp` DESC
 
 -- 浏览器
-SELECT * 
+SELECT *
 FROM model_http_browser_name_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-08 11:40:00') AND toDateTime('2018-11-08 11:45:00')
 AND appId = 'c156a0b8-e19a-11e8-81d5-0242ac130004'
 ORDER BY `timestamp` DESC
 
 -- 操作系统
-SELECT * 
+SELECT *
 FROM model_http_os_name_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-06 11:50:00') AND toDateTime('2018-11-06 12:05:00')
 AND appId = '35ec831a-fc68-11e8-b5f9-02420a0a0a0c'
 ORDER BY `timestamp` DESC
 
 -- 在线用户数
-SELECT * 
+SELECT *
 FROM model_http_online_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-08 11:40:00') AND toDateTime('2018-11-08 11:45:00')
 AND appId = 'c156a0b8-e19a-11e8-81d5-0242ac130004'
@@ -91,7 +91,7 @@ AND areaId = 'e224d278-df43-11e8-a347-0242ac130004'
 ORDER BY `timestamp` DESC
 
 -- 并发请求数
-SELECT * 
+SELECT *
 FROM model_con_requests_1m
 WHERE `timestamp` BETWEEN toDateTime('2018-11-06 11:50:00') AND toDateTime('2018-11-06 12:05:00')
 AND appId = 'efce10fa-df44-11e8-a347-0242ac130004'

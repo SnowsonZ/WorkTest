@@ -14,9 +14,10 @@ public class RedisTest {
 
     private static final String HOST = "172.17.162.177";
     private static final int PORT = 6379;
+    private static final String PASSWORD = "riiladmin";
 
     public static void main(String[] args) {
-        JedisUtil instance = JedisUtil.getInstance(HOST, PORT);
+        JedisUtil instance = JedisUtil.getInstance(HOST, PORT, PASSWORD);
         instance.get("key", Object.class);
     }
 }

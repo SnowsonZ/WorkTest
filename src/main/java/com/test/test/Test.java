@@ -3,11 +3,14 @@ package com.test.test;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
@@ -24,7 +27,14 @@ import lombok.val;
 @Slf4j
 public class Test {
 
+    private static final Double NUM_FLAG=100.6d;
     public static void main(String[] args) {
+        BigDecimal decimal = new BigDecimal("100.6664");
+        // scale为小数保留位数,RoundingMode为多余小数舍去规则
+        BigDecimal result = decimal.setScale(3, RoundingMode.UP);
+        log.info("{}", result);
+        BigDecimal flag = new BigDecimal(String.valueOf(NUM_FLAG));
+        log.info("{}", flag);
     }
 
     /**
@@ -36,8 +46,9 @@ public class Test {
         contents.add("b");
         contents.add("c");
         contents.add("d");
-        for (String item : contents) {
-            contents.remove(item);
+        Iterator<String> iterator = contents.iterator();
+        while (iterator.hasNext()) {
+            contents.remove(iterator.next());
         }
         log.info("complete");
     }

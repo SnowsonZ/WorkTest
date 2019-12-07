@@ -1,4 +1,4 @@
-package com.test.datastructure.linkedList;
+package com.test.datastructure.linkedlist;
 
 import java.io.Serializable;
 import java.util.ArrayList;

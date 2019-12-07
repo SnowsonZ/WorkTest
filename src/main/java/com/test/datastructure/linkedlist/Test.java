@@ -1,6 +1,4 @@
-package com.test.datastructure.linkedList;
-
-import com.alibaba.fastjson.JSON;
+package com.test.datastructure.linkedlist;
 
 import lombok.extern.slf4j.Slf4j;
 

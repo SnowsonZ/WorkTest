@@ -1,4 +1,4 @@
-package com.test.datastructure.linkedList;
+package com.test.datastructure.linkedlist;
 
 import com.alibaba.fastjson.JSON;
 
@@ -56,9 +56,9 @@ public class Node implements Serializable {
         //创建头结点
         Node head = new Node();
         Node flag = head;
-        for (int i = 0; i < array.length; i++) {
+        for (String anArray : array) {
             Node node = new Node();
-            node.setContent(array[i]);
+            node.setContent(anArray);
             flag.next = node;
             flag = node;
         }
@@ -77,7 +77,9 @@ public class Node implements Serializable {
         if (node == null || node.next == null || node.next.next == null) {
             return node;
         }
-        Node flag, visit, temp = node.next;
+        Node flag;
+        Node visit;
+        Node temp = node.next;
         flag = temp.next;
         visit = flag.next;
 
@@ -114,7 +116,10 @@ public class Node implements Serializable {
         }
 
         // 初始化反转头结点, 慢指针,快指针为第一步移动的结果
-        Node temp = node.next, slow = temp.next, quick = slow.next, flag = slow;
+        Node temp = node.next;
+        Node slow = temp.next;
+        Node quick = slow.next;
+        Node flag = slow;
 
         // 反转后,原来的第一个元素将作为尾节点，故next为null
         temp.next = null;

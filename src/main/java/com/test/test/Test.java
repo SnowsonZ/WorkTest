@@ -1,17 +1,25 @@
 package com.test.test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.google.common.collect.ImmutableMap;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.test.test.layering.UserVO;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -29,6 +37,18 @@ public class Test {
 
     private static final Double NUM_FLAG=100.6d;
     public static void main(String[] args) {
+    }
+
+    private void regexMatch() {
+        String content = "Let's go to a movie.";
+        String[] ret = content.split("\\W+");
+        log.info("{}", Arrays.toString(ret));
+    }
+
+    /**
+     * decimal小数位数自定义
+     */
+    private void decimalScale() {
         BigDecimal decimal = new BigDecimal("100.6664");
         // scale为小数保留位数,RoundingMode为多余小数舍去规则
         BigDecimal result = decimal.setScale(3, RoundingMode.UP);
@@ -36,7 +56,6 @@ public class Test {
         BigDecimal flag = new BigDecimal(String.valueOf(NUM_FLAG));
         log.info("{}", flag);
     }
-
     /**
      * 迭代删除
      */
@@ -59,7 +78,7 @@ public class Test {
         for (int i = 0; i < 10000; i++) {
             a = Math.random();
             b = Math.random();
-            Integer result = Double.valueOf(Math.floor(a + b)).intValue();
+            int result = (int) Math.floor(a + b);
             log.info("a: {}, b: {}, result: {}", a, b, result);
         }
         log.info("time consume: {} ms", System.currentTimeMillis() - startTime);
@@ -76,35 +95,6 @@ public class Test {
      * 优先级队列
      */
     private void priorityQueue() throws NoSuchAlgorithmException {
-        List<Compare> container = new ArrayList<>();
-        Compare compare = new Compare();
-        compare.setNum(1);
-        container.add(compare);
-
-        Compare compare1 = new Compare();
-        compare1.setNum(4);
-        container.add(compare1);
-
-        Compare compare2 = new Compare();
-        compare2.setNum(2);
-        container.add(compare2);
-
-        Compare compare3 = new Compare();
-        compare3.setNum(3);
-        container.add(compare3);
-        Collections.sort(container);
-        log.info("{}", container);
-
-        PriorityQueue<Compare> compares = new PriorityQueue<>();
-        compares.offer(compare);
-        compares.offer(compare1);
-        compares.offer(compare2);
-        compares.offer(compare3);
-        while (!compares.isEmpty()) {
-            Compare item = compares.poll();
-            log.info("num: {}", item.getNum());
-        }
-
         val data = new ArrayList<String>();
         data.add("one");
         data.add("two");
@@ -118,13 +108,6 @@ public class Test {
         v = random.nextDouble() * 400;
         log.info("{}", v);
 
-    }
-
-    private void serialization() {
-        List<One> data = Arrays.asList(new One("1", 1.2d), new One("2", 1.2d));
-        String str = JSON.toJSONString(data);
-        List<Tow> result = JSON.parseArray(str, Tow.class);
-        log.info("{}", result.toString());
     }
 
     public static String targetField(String source, char split) {
@@ -156,20 +139,5 @@ public class Test {
             }
             return 1;
         }
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class One {
-        private String t;
-        private double v;
-    }
-
-    @Data
-    static class Tow {
-        @JSONField(name = "t")
-        private String time;
-        @JSONField(name = "v")
-        private double value;
     }
 }

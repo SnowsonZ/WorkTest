@@ -2,8 +2,10 @@ package com.test.test.path;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Charsets;
+import com.google.common.base.Splitter;
 import com.google.common.io.Resources;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,7 +21,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lombok.Data;
@@ -38,6 +45,9 @@ public class PathTest implements ApplicationRunner {
     @Value("${temp.path}")
     private String tempPath;
 
+    @Autowired
+//    private RedisTemplate<String, Map<String, Integer>> redisTemplate;
+
     /**
      * Of path test.
      *
@@ -49,10 +59,10 @@ public class PathTest implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        PathTest.of().classPathResource();
+//        PathTest.of().classPathResource();
 //        PathTest.of().fileSystemResource(tempPath);
 //        PathTest.of().byteArrayResource();
-//        PathTest.of().guavaResource();
+        PathTest.of().guavaResource();
     }
 
     /**
@@ -62,7 +72,7 @@ public class PathTest implements ApplicationRunner {
      */
     public void classPathResource() {
         // JDK classpath
-        String filePath = getClass().getClassLoader().getResource("application.yml").getPath();
+        String filePath = getClass().getClassLoader().getResource("app-alert.groovy").getPath();
         File file = new File(filePath);
         // spring classpath
         //ClassPathResource resource = new ClassPathResource("application.yml");
@@ -123,14 +133,22 @@ public class PathTest implements ApplicationRunner {
      * Guava resource. == ClassPathResource
      */
     public void guavaResource() throws IOException {
-        String pathFile = Resources.getResource("res/test.json").getPath();
+        String pathFile = Resources.getResource("app-alert.groovy").getPath();
         File file = new File(pathFile);
         FileInputStream fs = new FileInputStream(file);
         BufferedInputStream bis = new BufferedInputStream(fs);
         byte[] b = new byte[fs.available()];
         bis.read(b);
         String content = new String(b, Charsets.UTF_8);
-        log.info("content: {}", content);
+        log.info("{}", JSON.toJSONString(content));
+        List<String> result = Splitter.on("$@$;").splitToList(content);
+        log.info("{}", JSON.toJSONString(result));
+        result.forEach(str -> {
+            List<String> s = Splitter.on('#').splitToList(str);
+
+            log.info("{}", Arrays.asList(s.get(1).replaceAll("\\W+", ""), s.get(0)));
+        });
+//        log.info("content: {}", content);
     }
 
     @Data

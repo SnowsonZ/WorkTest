@@ -6,6 +6,5 @@ package com.test.test.enumm;
  */
 public class EnumTest {
     public static void main(String[] args) {
-        System.out.println(ProbeType.getType("probe_web").toString());
     }
 }

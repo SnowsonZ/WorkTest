@@ -37,6 +37,7 @@ public class Test {
 
     private static final Double NUM_FLAG=100.6d;
     public static void main(String[] args) {
+        log.info("{}", 1 << 3);
     }
 
     private void regexMatch() {

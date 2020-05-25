@@ -27,6 +27,8 @@ temp:
   path: /developer/test_env/tmpfile/test
 server:
   port: 8989
+res:
+  path: C:\developer\test_env\config.properties
 
 
 ---

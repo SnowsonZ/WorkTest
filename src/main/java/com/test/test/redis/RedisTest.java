@@ -12,12 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RedisTest {
 
-    private static final String HOST = "172.17.162.177";
+    private static final String HOST = "172.17.162.180";
     private static final int PORT = 6379;
     private static final String PASSWORD = "riiladmin";
 
     public static void main(String[] args) {
         JedisUtil instance = JedisUtil.getInstance(HOST, PORT, PASSWORD);
-        instance.get("key", Object.class);
+        log.info(instance.get("mem:userapp-18066544-94ee-11ea-895a-02420a0a0005", String.class));
     }
 }

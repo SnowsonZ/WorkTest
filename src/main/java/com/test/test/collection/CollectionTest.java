@@ -3,6 +3,7 @@ package com.test.test.collection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,47 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CollectionTest {
     public static void main(String[] args) {
+        List<Integer> data = Arrays.asList(3, 2, 2, 2, 2, 3, 2, 3, 2, 2, 3, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2);
+//        for (int i = 0; i < 100; i++) {
+//            data.add(10);
+//        }
+        log.info("size: {}", data.size());
+        data.sort((o1, o2) -> {
+            if (o1 >= o2) {
+                return 1;
+            }else {
+                return -1;
+            }
+        });
+        log.info("{}", data);
+//        sort(2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3);
+//
+//        sort(3, 2, 3, 2, 1, 31);
+
+//        sort(3, 2, 2, 2, 2, 3, 2, 3, 2, 2, 3, 2, 3, 3, 2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+//                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+//                1, 1, 1, 1, 1);
+//        sort(1, 1, 1, 1, 1, 2, 1, 1, 1);
+//
+//        sort(1,3);
+    }
+
+    static void sort(Integer... ints) {
+        List<Integer> list = Arrays.asList(ints);
+        Collections.sort(list, new Comparator<Integer>() {
+
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (o1 < o2) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        System.out.println(list);
+
     }
 
     /**

@@ -1,29 +1,18 @@
 package com.test.test;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.google.common.collect.ImmutableMap;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.test.test.layering.UserVO;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Random;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -35,7 +24,8 @@ import lombok.val;
 @Slf4j
 public class Test {
 
-    private static final Double NUM_FLAG=100.6d;
+    private static final Double NUM_FLAG = 100.6d;
+
     public static void main(String[] args) {
         log.info("{}", 1 << 3);
     }

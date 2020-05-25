@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2019/1/15 15:59
  */
 @Slf4j
-@Component
+//@Component
 public class FileTest implements ApplicationRunner {
 
     @Value("${temp.path}")

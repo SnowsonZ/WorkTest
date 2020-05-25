@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.io.Resources;
+import com.test.test.config.ConfigurationContext;
+import com.test.test.config.ResourceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +45,10 @@ public class PathTest implements ApplicationRunner {
     private String tempPath;
 
     @Autowired
-//    private RedisTemplate<String, Map<String, Integer>> redisTemplate;
+    private ResourceContext context;
+
+    @Autowired
+    private ConfigurationContext config;
 
     /**
      * Of path test.
@@ -62,6 +64,7 @@ public class PathTest implements ApplicationRunner {
 //        PathTest.of().classPathResource();
 //        PathTest.of().fileSystemResource(tempPath);
 //        PathTest.of().byteArrayResource();
+        log.info("{}, {}", context.getOneMore(), config.getOnMore());
         PathTest.of().guavaResource();
     }
 
@@ -133,7 +136,7 @@ public class PathTest implements ApplicationRunner {
      * Guava resource. == ClassPathResource
      */
     public void guavaResource() throws IOException {
-        String pathFile = Resources.getResource("app-alert.groovy").getPath();
+        String pathFile = Resources.getResource("dsl.groovy").getPath();
         File file = new File(pathFile);
         FileInputStream fs = new FileInputStream(file);
         BufferedInputStream bis = new BufferedInputStream(fs);

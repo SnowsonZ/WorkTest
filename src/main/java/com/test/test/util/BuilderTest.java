@@ -27,5 +27,5 @@ class Product {
     private String name;
     private long rest;
     private float price;
-    private int type = 2;
+    private int type;
 }

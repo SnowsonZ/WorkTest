@@ -1,4 +1,4 @@
-package com.test.test.io.nio;
+package com.test.test.io.nio.socket;
 
 /**
  * @author Snowson

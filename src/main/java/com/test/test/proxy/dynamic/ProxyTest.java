@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProxyTest {
     public static void main(String[] args) {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         ProxyTest instance = new ProxyTest();
         GoodsQueryService jdkProxy = instance.jdkProxy();
         log.info("{}, {}", jdkProxy.queryOne(100), jdkProxy.updateOne(101));
@@ -59,7 +60,7 @@ public class ProxyTest {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             log.info("invoke query method");
-            return method.invoke(this.getTarget(), args);
+            return method.invoke(target, args);
         }
     }
 

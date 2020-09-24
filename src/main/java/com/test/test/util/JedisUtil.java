@@ -52,4 +52,8 @@ public class JedisUtil {
         }
         return JSON.parseObject(ret, clazz);
     }
+
+    public Jedis getInstance() {
+        return jedis;
+    }
 }

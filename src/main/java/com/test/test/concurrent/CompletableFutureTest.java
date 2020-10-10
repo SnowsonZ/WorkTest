@@ -1,54 +1,56 @@
 package com.test.test.concurrent;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
+ * 异步执行工具
+ *
  * @author Snowson
  * @since 2019/6/12 10:19
  */
 @Slf4j
 public class CompletableFutureTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFutureTest instance = new CompletableFutureTest();
         instance.combine();
-        instance.or();
-        instance.then();
+//        instance.or();
+//        instance.then();
+//        instance.parallelDo();
     }
 
     /**
      * AND汇聚关系
      */
     private void combine() {
-        var f1 = CompletableFuture.runAsync(() -> {
-            log.info("T1: 洗水壶...");
-            sleep(1, SECONDS);
-            log.info("T1: 烧开水");
-            sleep(1, SECONDS);
-        });
+        var f1 = CompletableFuture.runAsync(() -> log.info("T1 洗水壶..."))
+                .thenRunAsync(() -> log.info("T1: 烧开水..."));
 
-        var f2 = CompletableFuture.supplyAsync(() -> {
-            log.info("T2: 洗茶壶...");
-            sleep(1, SECONDS);
-            log.info("T2: 洗茶杯...");
-            sleep(1, SECONDS);
-            log.info("T2: 拿茶叶...");
-            sleep(1, SECONDS);
-            return "龙井";
-        });
-        CompletableFuture<String> f3 = f1.thenCombine(f2, (__, tf) -> {
-            log.info("T2: 拿到茶叶: {}", tf);
-            sleep(1000, MILLISECONDS);
-            log.info("T2: 煮茶...");
-            sleep(1, SECONDS);
-            return "上茶: " + tf;
-        });
+        var f2 = CompletableFuture.runAsync(() -> log.info("T2 洗茶壶..."))
+                .thenRunAsync(() -> log.info("T2 洗茶杯..."))
+                .thenRunAsync(() -> log.info("T2 拿茶叶..."))
+                .thenApplyAsync(__ -> "龙井");
+
+        CompletableFuture<Void> f3 = f1.thenCombine(f2, (__, tf) ->
+                CompletableFuture.runAsync(() -> log.info("T3 拿到茶叶: {}", tf))
+                        .thenRunAsync(() -> log.info("T3 煮茶..."))
+                        .thenRunAsync(() -> log.info("T3 上茶: {}", tf))
+                        .join());
+        f3.join();
+    }
+
+    public void parallelDo() {
+        final CompletableFuture<Void> c1 = CompletableFuture.runAsync(() -> log.info("step 1"));
+        CompletableFuture<Void> c2 = CompletableFuture.runAsync(() -> log.info("step 2"));
+        CompletableFuture<Void> c3 = CompletableFuture.runAsync(() -> log.info("step 3"));
+
+        CompletableFuture.allOf(c1, c2, c3).join();
     }
 
     /**

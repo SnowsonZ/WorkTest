@@ -20,9 +20,9 @@ public class CompletableFutureTest {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFutureTest instance = new CompletableFutureTest();
         instance.combine();
-//        instance.or();
-//        instance.then();
-//        instance.parallelDo();
+        instance.or();
+        instance.then();
+        instance.parallelDo();
     }
 
     /**

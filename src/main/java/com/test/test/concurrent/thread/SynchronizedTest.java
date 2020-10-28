@@ -13,13 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SynchronizedTest {
     public static void main(String[] args) throws InterruptedException {
-//        ExecutorService service = Executors.newCachedThreadPool();
-//        service.submit(new Task1());
-//        service.submit(new Task1());
-//        service.shutdown();
-        final SynchronizedTest instance = new SynchronizedTest();
-        log.info("{}", instance.calc());
-//        instance.testSynchronized();
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.submit(new Task1());
+        service.submit(new Task1());
+        service.shutdown();
     }
 
     private int count;

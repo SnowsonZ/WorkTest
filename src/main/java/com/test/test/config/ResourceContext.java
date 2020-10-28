@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
+ *
  * @author Snowson
  * @date 2020/5/25 18:10
  */
-// @ConfigurationProperties 重点在bind
 @Component
 @ConfigurationProperties
-@PropertySource("file:config.properties")
+@PropertySource("classpath:config.properties")
 @Data
 public class ResourceContext {
 

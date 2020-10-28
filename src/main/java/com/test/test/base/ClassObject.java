@@ -33,7 +33,7 @@ public class ClassObject {
         log.info("methods: {}", clazz.getDeclaredMethod("getName1", String.class));
 
         Class<?> classObject = Class.forName("com.test.test.base.ClassObject");
-        Constructor<?> constructor = classObject.getConstructor(null);
+        Constructor<?> constructor = classObject.getConstructors()[0];
         Method getName1 = classObject.getMethod("getName1", String.class);
         getName1.setAccessible(true);
         ClassObject instance = (ClassObject) constructor.newInstance();

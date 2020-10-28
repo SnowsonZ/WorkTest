@@ -21,7 +21,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 logging:
-  path: /developer/test_env/log/test
+  path: ./
   file: test
 temp:
   path: /developer/test_env/tmpfile/test

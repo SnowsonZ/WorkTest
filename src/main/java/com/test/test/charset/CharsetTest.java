@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -24,11 +26,21 @@ import lombok.extern.slf4j.Slf4j;
  * System.out.println(System.getProperty("file.encoding"));  //文件编码
  */
 @Slf4j
-//@Component
+@Component
 public class CharsetTest implements ApplicationRunner {
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
+        final CharsetTest test = new CharsetTest();
+        test.charBuffer();
+    }
+
+    public static void main(String[] args) {
+        final CharsetTest test = new CharsetTest();
+        test.charBuffer();
+    }
+
+    public void charsetTest() throws Exception {
         String path = Resources.getResource("charset.properties").getPath();
         Properties props = new Properties();
         props.load(inputStream(path));
@@ -45,7 +57,20 @@ public class CharsetTest implements ApplicationRunner {
         return isr;
     }
 
-    public Reader fileReader (String path) throws FileNotFoundException {
+    public Reader fileReader(String path) throws FileNotFoundException {
         return new FileReader(path);
+    }
+
+    public void charBuffer() {
+        System.out.println(Charset.defaultCharset());
+        log.info("default: {}", Charset.defaultCharset());
+        String content = "hello, 飞飞";
+        final ByteBuffer byteBuffer = StandardCharsets.UTF_8.encode(content);
+        final byte[] bytes = byteBuffer.array();
+
+        final ByteBuffer bb = ByteBuffer.wrap(bytes);
+        final CharBuffer cb = StandardCharsets.UTF_8.decode(bb);
+        log.info("{}", cb);
+        log.info("{}", cb.toString());
     }
 }

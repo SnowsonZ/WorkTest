@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Snowson
  * @since 2019 /1/15 17:59 <p> TODO URLResource, ServletContextResource, InputStreamResource
  */
-@Component
+//@Component
 @Slf4j
 public class PathTest implements ApplicationRunner {
 

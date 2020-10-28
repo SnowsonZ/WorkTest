@@ -1,0 +1,36 @@
+2020-10-26 18:01:37,214 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter 42 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field context in com.test.test.path.PathTest required a bean of type 'com.test.test.config.ResourceContext' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.test.test.config.ResourceContext' in your configuration.
+
+2020-10-26 18:07:24,463 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter 42 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field context in com.test.test.path.PathTest required a bean of type 'com.test.test.config.ResourceContext' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.test.test.config.ResourceContext' in your configuration.
+

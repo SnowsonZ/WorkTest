@@ -1,9 +1,7 @@
 package com.test.datastructure.stack;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Snowson
@@ -11,9 +9,8 @@ import java.util.Stack;
  */
 public class StackTest {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        boolean valid = new StackTest().isValid("");
+        boolean valid = new StackTest().isValid("{{{[(())]}}}");
         System.out.println(valid);
-//        System.out.println("".charAt(0));
     }
 
     public Map<Character, Character> mapping;

@@ -1,4 +1,4 @@
-package com.learn.algorithm.sort;
+package com.learn.algorithm.leetcode;
 
 import java.util.HashSet;
 

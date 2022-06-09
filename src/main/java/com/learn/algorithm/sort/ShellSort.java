@@ -35,7 +35,8 @@ public class ShellSort {
             for (i = number; i < array.length; i++) {
                 temp = array[i];
                 j = i - number;
-                while (j >= 0 && array[j] > temp) { //需要注意的是，这里array[j] < temp将会使数组从大到小排序。
+                //需要注意的是，这里array[j] < temp将会使数组从大到小排序。
+                while (j >= 0 && array[j] > temp) {
                     array[j + number] = array[j];
                     j = j - number;
                 }

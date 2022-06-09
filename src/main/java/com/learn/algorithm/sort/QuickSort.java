@@ -47,8 +47,6 @@ public class QuickSort {
                 h--;
             }
         }
-//        log.info("array", arr);
-//        System.out.print("l=" + (l + 1) + "h=" + (h + 1) + "povit=" + povit + "\n");
         if (l > low) quickSort(arr, low, l - 1);
         if (h < high) quickSort(arr, l + 1, high);
     }

@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class HeapSort {
-    private int[] arr;
+    private final int[] arr;
 
     public HeapSort(int[] arr) {
         this.arr = arr;
@@ -67,15 +67,22 @@ public class HeapSort {
      * @param len   未排序的堆（数组）的长度
      */
     private void maxHeapify(int index, int len) {
-        int li = (index << 1) + 1; // 左子节点索引
-        int ri = li + 1;           // 右子节点索引
-        int cMax = li;             // 子节点值最大索引，默认左子节点。
-        if (li > len) return;      // 左子节点索引超出计算范围，直接返回。
-        if (ri <= len && arr[ri] > arr[li]) // 先判断左右子节点，哪个较大。
+        // 左子节点索引
+        int li = (index << 1) + 1;
+        // 右子节点索引
+        int ri = li + 1;
+        // 子节点值最大索引，默认左子节点。
+        int cMax = li;
+        // 左子节点索引超出计算范围，直接返回。
+        if (li > len) return;
+        // 先判断左右子节点，哪个较大。
+        if (ri <= len && arr[ri] > arr[li])
             cMax = ri;
         if (arr[cMax] > arr[index]) {
-            swap(cMax, index);      // 如果父节点被子节点调换，
-            maxHeapify(cMax, len);  // 则需要继续判断换下后的父节点是否符合堆的特性。
+            // 如果父节点被子节点调换，
+            swap(cMax, index);
+            // 则需要继续判断换下后的父节点是否符合堆的特性。
+            maxHeapify(cMax, len);
         }
     }
 

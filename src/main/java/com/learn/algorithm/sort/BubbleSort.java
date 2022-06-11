@@ -2,6 +2,8 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.apache.commons.lang3.ArrayUtils.swap;
+
 /**
  * 冒泡排序
  * <p>
@@ -16,20 +18,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class BubbleSort {
-    public static void main(String[] args) {
-        int[] array = {12, 23, 34, 56, 56, 56, 78};
-        bubbleSort(array);
-        log.info("result: {}", array);
-    }
-
     public static void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             //-1为了防止溢出
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                    swap(arr, j, j + 1);
                 }
             }
         }

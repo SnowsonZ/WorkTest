@@ -2,12 +2,16 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.apache.commons.lang3.ArrayUtils.swap;
+
 /**
  * 快速排序
  * <p>
- * 时间复杂度： O(n2)
+ * 时间复杂度： O(nlogn)
  * <p>
  * 关键字：分治法
+ * 原理：1. 数组首元素作为界限值x，通过循环，将x置于目标位置，将原数组一分为二。该目标位置满足:位置左边的数组不大于x，位置右侧的数组不小于x.
+ *      2. 递归
  * <p>
  * <a href="https://diycode.b0.upaiyun.com/photo/2018/b12fc88b3e00ae442d0d07f36eae73ee.gif" >图解</>
  *
@@ -16,38 +20,33 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class QuickSort {
-    public static void main(String[] args) {
-        int[] array = {2, 1, 0, 0, 5, 6, 9, 5, 8};
-        quickSort(array, 0, array.length - 1);
-        log.info("result: {}", array);
-    }
 
-    public static void quickSort(int arr[], int low, int high) {
+    public static int[] quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+        return array;
+    }
+    private static void quickSort(int[] array, int low, int high) {
         int l = low;
         int h = high;
-        int povit = arr[low];
+        int key = array[low];
 
         while (l < h) {
-            while (l < h && arr[h] >= povit)
+            while (l < h && array[h] >= key)
                 h--;
             if (l < h) {
-                int temp = arr[h];
-                arr[h] = arr[l];
-                arr[l] = temp;
+                swap(array, h, l);
                 l++;
             }
 
-            while (l < h && arr[l] <= povit)
+            while (l < h && array[l] <= key)
                 l++;
 
             if (l < h) {
-                int temp = arr[h];
-                arr[h] = arr[l];
-                arr[l] = temp;
+                swap(array, h, l);
                 h--;
             }
         }
-        if (l > low) quickSort(arr, low, l - 1);
-        if (h < high) quickSort(arr, l + 1, high);
+        if (l > low) quickSort(array, low, l - 1);
+        if (h < high) quickSort(array, l + 1, high);
     }
 }

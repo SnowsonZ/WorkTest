@@ -2,6 +2,8 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.apache.commons.lang3.ArrayUtils.swap;
+
 /**
  * 选择排序
  * <p>
@@ -16,17 +18,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class SelectSort {
-    public static void main(String[] args) {
-        int[] array = {2, 1, 0, 0, 5, 6, 9, 5, 8};
-        selectSort(array);
-        log.info("result: {}", array);
-    }
-
-    public static void selectSort(int[] a) {
-        int minIndex = 0;
-        int temp = 0;
+    public static int[] selectSort(int[] a) {
+        int minIndex;
         if ((a == null) || (a.length == 0))
-            return;
+            return a;
         for (int i = 0; i < a.length; i++) {
             //无序区的最小数据数组下标
             minIndex = i;
@@ -37,9 +32,8 @@ public class SelectSort {
                 }
             }
             //将最小元素放到本次循环的前端
-            temp = a[i];
-            a[i] = a[minIndex];
-            a[minIndex] = temp;
+            swap(a, i, minIndex);
         }
+        return a;
     }
 }

@@ -2,6 +2,8 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.apache.commons.lang3.ArrayUtils.swap;
+
 /**
  * 插入排序
  * <p>
@@ -88,11 +90,5 @@ public class InsertionSort {
             array[i] = array[i - 1];
         }
         array[end] = target;
-    }
-
-    private static void swap(int[] array, int i, int j) {
-        int v = array[i];
-        array[i] = array[j];
-        array[j] = v;
     }
 }

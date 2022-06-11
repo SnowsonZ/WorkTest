@@ -15,7 +15,7 @@ public class DataGenerator {
      * @param range  the range
      * @return the int [ ]
      */
-    public static int[] generateArray(int length, int range) {
+    public static int[] intArray(int length, int range) {
         final Random random = new Random(System.currentTimeMillis());
         final List<Integer> result = new ArrayList<>();
         for (int i = 0; i < length; i++) {

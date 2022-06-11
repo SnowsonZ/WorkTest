@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
-import static com.learn.util.DataGenerator.generateArray;
+import static com.learn.util.DataGenerator.intArray;
 import static com.learn.algorithm.sort.InsertionSort.*;
 
 /**
@@ -20,20 +20,20 @@ public class SortTester {
 
     public static class InsertSortTest {
         public static void resultAssert() {
-            final int[] array = generateArray(100, 50);
+            final int[] array = intArray(100, 50);
             final int[] array1 = Arrays.copyOf(array, array.length);
             log.info("result: {}", Arrays.equals(binaryInsetSort(array), insertionSort2(array1)));
         }
 
         public static void print() {
-            final int[] array = generateArray(100, 50);
+            final int[] array = intArray(100, 50);
             log.info("origin: {}", array);
             binaryInsetSort(array);
             log.info("result: {}", array);
         }
 
         public static void testPerformance() {
-            final int[] array = generateArray(200000, 1000);
+            final int[] array = intArray(200000, 1000);
             final int[] a1 = Arrays.copyOf(array, array.length);
             final int[] a2 = Arrays.copyOf(array, array.length);
             final int[] a3 = Arrays.copyOf(array, array.length);

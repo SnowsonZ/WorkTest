@@ -2,7 +2,7 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static org.apache.commons.lang3.ArrayUtils.swap;
+import static com.learn.utils.OperationUtil.swap;
 
 /**
  * 快速排序
@@ -26,10 +26,14 @@ public class QuickSort {
         return array;
     }
     private static void quickSort(int[] array, int low, int high) {
-        int l = low;
-        int h = high;
-        int key = array[low];
+        if (low >= high) return;
+        final int key = partition(array, low, high);
+        quickSort(array, low, key - 1);
+        quickSort(array, key + 1, high);
+    }
 
+    private static int partition(int[] array, int l, int h) {
+        int key = array[l];
         while (l < h) {
             while (l < h && array[h] >= key)
                 h--;
@@ -40,13 +44,11 @@ public class QuickSort {
 
             while (l < h && array[l] <= key)
                 l++;
-
             if (l < h) {
                 swap(array, h, l);
                 h--;
             }
         }
-        if (l > low) quickSort(array, low, l - 1);
-        if (h < high) quickSort(array, l + 1, high);
+        return l;
     }
 }

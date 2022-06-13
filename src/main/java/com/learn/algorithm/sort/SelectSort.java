@@ -2,7 +2,7 @@ package com.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static org.apache.commons.lang3.ArrayUtils.swap;
+import static com.learn.utils.OperationUtil.swap;
 
 /**
  * 选择排序

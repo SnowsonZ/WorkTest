@@ -20,82 +20,52 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class MergeSort {
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        int[] array = {4, 10, 2, 19, 3, 9, 1, 0, 5};
-        int length = array.length;
-        int[] result = new int[length];
-        mergeRecursive(array, result, 0, length - 1);
-        log.info("result: {}", result);
-
-        merge(array);
-        log.info("result: {}", array);
-    }
 
 
     /**
-     * Merge recursive.
-     *
-     * @param array  the array
-     * @param result the result
-     * @param start  the start
-     * @param end    the end
-     */
-    public static void mergeRecursive(int[] array, int[] result, int start,
-                                      int end) {
-        if (start >= end) {
-            return;
-        }
-        int length = end - start, mid = start + (length >> 1);
-        int start1 = start;
-        int start2 = mid + 1;
-        mergeRecursive(array, result, start1, mid);
-        mergeRecursive(array, result, start2, end);
-        int k = start;
-        while (start1 <= mid && start2 <= end) {
-            result[k++] = array[start1] <= array[start2] ? array[start1++] : array[start2++];
-        }
-        while (start1 <= mid) {
-            result[k++] = array[start1++];
-        }
-        while (start2 <= end) {
-            result[k++] = array[start2++];
-        }
-        for (k = start; k <= end; k++) {
-            array[k] = result[k];
-        }
-    }
-
-    /**
-     * Merge.
+     * 自顶向下
      *
      * @param array the array
+     * @return the int [ ]
      */
-    public static void merge(int[] array) {
-        int[] orderedArr = new int[array.length];
-        for (int i = 2; i < array.length * 2; i *= 2) {
-            for (int j = 0; j < (array.length + i - 1) / i; j++) {
-                int left = i * j;
-                int mid = left + i / 2 >= array.length ? (array.length - 1) : (left + i / 2);
-                int right = i * (j + 1) - 1 >= array.length ? (array.length - 1) : (i * (j + 1) - 1);
-                int start = left, l = left, m = mid;
-                while (l < mid && m <= right) {
-                    if (array[l] < array[m]) {
-                        orderedArr[start++] = array[l++];
-                    } else {
-                        orderedArr[start++] = array[m++];
-                    }
-                }
-                while (l < mid)
-                    orderedArr[start++] = array[l++];
-                while (m <= right)
-                    orderedArr[start++] = array[m++];
-                System.arraycopy(orderedArr, left, array, left, right - left + 1);
+    public static int[] mergeSortRec(int[] array) {
+        sort(array, 0, array.length - 1);
+        return array;
+    }
+    private static void sort(int[] array, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = lo + ((hi - lo) >> 1);
+        sort(array, lo, mid);
+        sort(array, mid + 1, hi);
+        merge(array, lo, mid, hi);
+    }
+
+    /**
+     * 自底向上
+     *
+     * @param array the array
+     * @return the int [ ]
+     */
+    public static int[] mergeSort(int[] array) {
+        for (int i = 1; i < array.length; i = 2 * i) {
+            for (int lo = 0; lo < array.length - i; lo += 2 * i) {
+                merge(array, lo, lo + i - 1, Math.min(lo + i * 2 - 1, array.length - 1));
             }
+        }
+        return array;
+    }
+
+    private static void merge(int[] array, int lo, int mid, int hi) {
+        int i = lo, j = mid + 1;
+        int[] aux = new int[array.length];
+        if (hi + 1 - lo >= 0) System.arraycopy(array, lo, aux, lo, hi + 1 - lo);
+        for (int k = lo; k <= hi; k++) {
+            if (i > mid) array[k] = aux[j++];
+            else if (j > hi) array[k] = aux[i++];
+            else if (aux[i] < aux[j]) array[k] = aux[i++];
+            else array[k] = aux[j++];
         }
     }
 }

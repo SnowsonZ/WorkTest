@@ -20,16 +20,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ShellSort {
-    public static void main(String[] args) {
-        int[] array = {2, 1, 0, 0, 5, 6, 9, 5, 8};
-        shellSort(array);
-        log.info("result: {}", array);
-    }
-
-    public static void shellSort(int[] array) {
-        int number = array.length / 2;
-        int i;
-        int j;
+    public static int[] shellSort(int[] array) {
+        int number = array.length >> 1;
+        int i, j;
         int temp;
         while (number >= 1) {
             for (i = number; i < array.length; i++) {
@@ -44,5 +37,6 @@ public class ShellSort {
             }
             number = number / 2;
         }
+        return array;
     }
 }

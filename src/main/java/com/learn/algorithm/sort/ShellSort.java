@@ -9,7 +9,10 @@ import lombok.extern.slf4j.Slf4j;
  * <p>
  * 空间复杂度：
  * <p>
- * 关键词：递减增量排序算法, 插入排序的高效改进版;
+ * 关键词：分组排序法
+ * <p>
+ * 递减增量排序算法(多次分组，组内选择排序。分组步长一次递减，直到步长为1)
+ * 插入排序的高效改进版;
  * 提升每次移动的步数,(步长选择是关键) 插入及冒泡每次移动一步;
  * 小数据量时效率高，数据量大时效率低于快速排序
  * <p>
@@ -35,7 +38,7 @@ public class ShellSort {
                 }
                 array[j + number] = temp;
             }
-            number = number / 2;
+            number >>=  1;
         }
         return array;
     }

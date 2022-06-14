@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
  * <p>
  * 时间复杂度： O(nlogn), 稳定
  * <p>
- * 空间负责度：需要额外的存储空间
+ * 空间复杂度：O(n)
  * <p>
  * 关键字：分治法
  * <p>
@@ -20,8 +20,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class MergeSort {
-
-
     /**
      * 自顶向下
      *

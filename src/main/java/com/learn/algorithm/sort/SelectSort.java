@@ -11,6 +11,7 @@ import static com.learn.utils.OperationUtil.swap;
  * <p>
  * 空间复杂度：0
  * <p>
+ * 关键字: 与冒泡相比，降低交换次数
  * <a href="https://bucket-1257126549.cos.ap-guangzhou.myqcloud.com/20181120151222.gif">图解</a>
  *
  * @author Snowson

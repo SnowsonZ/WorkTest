@@ -35,15 +35,13 @@ public class QuickSort {
     private static int partition(int[] array, int l, int h) {
         int key = array[l];
         while (l < h) {
-            while (l < h && array[h] >= key)
-                h--;
+            while (l < h && array[h] >= key) h--;
             if (l < h) {
                 swap(array, h, l);
                 l++;
             }
 
-            while (l < h && array[l] <= key)
-                l++;
+            while (l < h && array[l] <= key) l++;
             if (l < h) {
                 swap(array, h, l);
                 h--;

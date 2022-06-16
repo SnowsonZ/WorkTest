@@ -19,7 +19,7 @@ import static com.learn.utils.OperationUtil.swap;
  */
 @Slf4j
 public class SelectSort {
-    public static int[] selectSort(int[] a) {
+    public static int[] sort(int[] a) {
         int minIndex;
         if ((a == null) || (a.length == 0))
             return a;

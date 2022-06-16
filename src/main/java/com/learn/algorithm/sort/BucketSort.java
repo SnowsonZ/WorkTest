@@ -17,7 +17,7 @@ public class BucketSort {
     public static int[] sort(int[] array) {
         int[][] bucket = matchBucket(array);
         for (int[] a : bucket) {
-            QuickSort.quickSort(a);
+            QuickSort.sort(a);
         }
         int[] result = new int[array.length];
         int k = 0;

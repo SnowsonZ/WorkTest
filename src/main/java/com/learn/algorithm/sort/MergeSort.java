@@ -3,7 +3,8 @@ package com.learn.algorithm.sort;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 归并排序
+ * 归并排序<br/>
+ *
  * <p>
  * 时间复杂度： O(nlogn), 稳定
  * <p>
@@ -26,18 +27,19 @@ public class MergeSort {
      * @param array the array
      * @return the int [ ]
      */
-    public static int[] mergeSortRec(int[] array) {
-        sort(array, 0, array.length - 1);
+    public static int[] sortRec(int[] array) {
+        int[] aux = new int[array.length];
+        sort(array, aux, 0, array.length - 1);
         return array;
     }
-    private static void sort(int[] array, int lo, int hi) {
+    private static void sort(int[] array, int[] aux, int lo, int hi) {
         if (lo >= hi) {
             return;
         }
         int mid = lo + ((hi - lo) >> 1);
-        sort(array, lo, mid);
-        sort(array, mid + 1, hi);
-        merge(array, lo, mid, hi);
+        sort(array, aux, lo, mid);
+        sort(array, aux, mid + 1, hi);
+        merge(array, aux, lo, mid, hi);
     }
 
     /**
@@ -46,18 +48,18 @@ public class MergeSort {
      * @param array the array
      * @return the int [ ]
      */
-    public static int[] mergeSort(int[] array) {
+    public static int[] sort(int[] array) {
+        int[] aux = new int[array.length];
         for (int i = 1; i < array.length; i = 2 * i) {
             for (int lo = 0; lo < array.length - i; lo += 2 * i) {
-                merge(array, lo, lo + i - 1, Math.min(lo + i * 2 - 1, array.length - 1));
+                merge(array, aux, lo, lo + i - 1, Math.min(lo + i * 2 - 1, array.length - 1));
             }
         }
         return array;
     }
 
-    private static void merge(int[] array, int lo, int mid, int hi) {
+    private static void merge(int[] array, int[] aux, int lo, int mid, int hi) {
         int i = lo, j = mid + 1;
-        int[] aux = new int[array.length];
         if (hi + 1 - lo >= 0) System.arraycopy(array, lo, aux, lo, hi + 1 - lo);
         for (int k = lo; k <= hi; k++) {
             if (i > mid) array[k] = aux[j++];

@@ -21,7 +21,7 @@ import static com.learn.utils.OperationUtil.swap;
 @Slf4j
 public class QuickSort {
 
-    public static int[] quickSort(int[] array) {
+    public static int[] sort(int[] array) {
         quickSort(array, 0, array.length - 1);
         return array;
     }

@@ -18,7 +18,7 @@ import static com.learn.utils.OperationUtil.swap;
  */
 @Slf4j
 public class BubbleSort {
-    public static void bubbleSort(int[] arr) {
+    public static void sort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             //-1为了防止溢出
             for (int j = 0; j < arr.length - i - 1; j++) {

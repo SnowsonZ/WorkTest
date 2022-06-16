@@ -23,7 +23,7 @@ public class InsertionSort {
      *
      * @param array the array
      */
-    public static int[] insertionSort(int[] array) {
+    public static int[] sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             for (int j = i; j > 0 && array[j] < array[j - 1]; j--) {
                 swap(array, j, j - 1);
@@ -37,7 +37,7 @@ public class InsertionSort {
      *
      * @param array the array
      */
-    public static int[] insertionSort2(int[] array) {
+    public static int[] sortWithLeastSwap(int[] array) {
         for (int i = 1; i < array.length; i++) {
             if (array[i] >= array[i - 1]) continue;
             int target = array[i];
@@ -56,7 +56,7 @@ public class InsertionSort {
      *
      * @param array the array
      */
-    public static int[] binaryInsetSort(int[] array) {
+    public static int[] binarySort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             if (array[i] >= array[i - 1]) continue;
             if (array[i] <= array[0]) {

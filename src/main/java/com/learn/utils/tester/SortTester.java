@@ -1,8 +1,6 @@
 package com.learn.utils.tester;
 
 import com.google.common.base.Stopwatch;
-import com.learn.algorithm.sort.BucketSort;
-import com.learn.algorithm.sort.CountSort;
 import com.learn.algorithm.sort.QuickSort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
@@ -21,8 +19,7 @@ import static com.learn.utils.DataGenerator.intArray;
 public class SortTester {
 
     public static void main(String[] args) {
-//        print(BucketSort::sort);
-        _assert(BucketSort::sort, QuickSort::quickSort);
+        print(QuickSort::sort);
     }
 
     public static void _assert(Function<int[], int[]> fun1, Function<int[], int[]> fun2) {
@@ -33,7 +30,7 @@ public class SortTester {
     }
 
     public static void print(Function<int[], int[]> func) {
-        final int[] array = intArray(50, 30);
+        final int[] array = intArray(10, 10);
         log.info("origin: {}", array);
         final int[] result = func.apply(array);
         log.info("result: {}", result);

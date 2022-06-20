@@ -2,6 +2,7 @@ package com.learn.utils.tester;
 
 import com.google.common.base.Stopwatch;
 import com.learn.algorithm.sort.QuickSort;
+import com.learn.algorithm.sort.RadixSort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
@@ -19,18 +20,18 @@ import static com.learn.utils.DataGenerator.intArray;
 public class SortTester {
 
     public static void main(String[] args) {
-        print(QuickSort::sort);
+        _assert(QuickSort::sort, RadixSort::sort);
     }
 
     public static void _assert(Function<int[], int[]> fun1, Function<int[], int[]> fun2) {
-        final int[] array = intArray(5000, 20);
+        final int[] array = intArray(100, 100000);
         final int[] array1 = Arrays.copyOf(array, array.length);
         Assert.isTrue(Arrays.equals(fun1.apply(array), fun2.apply(array1)), "assert failed.");
         log.info("assert success.");
     }
 
     public static void print(Function<int[], int[]> func) {
-        final int[] array = intArray(10, 10);
+        final int[] array = intArray(100, 100000);
         log.info("origin: {}", array);
         final int[] result = func.apply(array);
         log.info("result: {}", result);

@@ -10,10 +10,12 @@ import static com.learn.utils.OperationUtil.swap;
  * 时间复杂度： O(nlogn)
  * <p>
  * 关键字：分治法
- * 原理：1. 数组首元素作为界限值x，通过循环，将x置于目标位置，将原数组一分为二。该目标位置满足:位置左边的数组不大于x，位置右侧的数组不小于x.
- *      2. 递归
+ * 原理：1. 数组首元素作为界限值x，通过循环，将x置于目标位置，将原数组一分为二。该目标位置满足:位置左边的数组不大于x，位置右侧的数组不小于x.<br/>
+ *      2. 递归 <br/>
  * <p>
- * <a href="https://diycode.b0.upaiyun.com/photo/2018/b12fc88b3e00ae442d0d07f36eae73ee.gif" >图解</>
+ * 递推公式：sort(array,start, end) = sort(array, start, k - 1) + sort(array, k + 1, end) <br/>
+ * <p>
+ * <a href="https://diycode.b0.upaiyun.com/photo/2018/b12fc88b3e00ae442d0d07f36eae73ee.gif" >图解</a>
  *
  * @author Snowson
  * @since 2019/2/22 23:45

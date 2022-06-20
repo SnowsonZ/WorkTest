@@ -46,40 +46,4 @@ public class CountSort {
     private static int getMax(int[] array) {
         return Arrays.stream(array).max().getAsInt();
     }
-
-    /**
-     * Sort int [ ].
-     *
-     * @param array the array
-     * @return the int [ ]
-     */
-    public static int[] sort(int[] array, int d) {
-        int k = 0;
-        int n = 1;
-        //控制键值排序依据在哪一位
-        int m = 1;
-        //数组的第一维表示可能的余数0-9
-        int[][] temp = new int[10][array.length];
-        //数组order[i]用来表示该位是i的数的个数
-        int[] order = new int[10];
-        while (m <= d) {
-            for (int value : array) {
-                int lsd = ((value / n) % 10);
-                temp[lsd][order[lsd]] = value;
-                order[lsd]++;
-            }
-            for (int i = 0; i < 10; i++) {
-                if (order[i] != 0)
-                    for (int j = 0; j < order[i]; j++) {
-                        array[k] = temp[i][j];
-                        k++;
-                    }
-                order[i] = 0;
-            }
-            n *= 10;
-            k = 0;
-            m++;
-        }
-        return array;
-    }
 }

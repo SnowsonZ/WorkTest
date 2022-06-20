@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
  * <p>
  * 两种方式：自上而下递归；自下而上迭代
  * <p>
+ * <p>
+ *  递推公式：sort(array, start, end) = merge(sort(array, start, mid),sort(array, mid + 1, end))<br/>
  * <a href="https://bucket-1257126549.cos.ap-guangzhou.myqcloud.com/20181120110141.gif">图解</a>
  *
  * @author Snowson

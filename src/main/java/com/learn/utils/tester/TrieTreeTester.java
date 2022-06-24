@@ -1,6 +1,6 @@
 package com.learn.utils.tester;
 
-import com.learn.datastructure.TrieTree;
+import com.learn.datastructure.linkedlist.TrieTree;
 import com.learn.utils.DataGenerator;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +24,7 @@ public class TrieTreeTester {
         System.out.println(trieTree.exists(target));
         System.out.println(trieTree.countPrefix(target));
         System.out.println(trieTree.countTarget(target));
-        trieTree.delte(target);
+        trieTree.delete(target);
         System.out.println(trieTree.countTarget(target));
     }
 }

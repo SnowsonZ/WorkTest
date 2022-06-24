@@ -1,4 +1,4 @@
-package com.learn.datastructure;
+package com.learn.datastructure.linkedlist;
 
 import lombok.Data;
 
@@ -79,7 +79,7 @@ public class TrieTree {
      *
      * @param str the str
      */
-    public void delte(String str) {
+    public void delete(String str) {
         if (isNullOrEmpty(str)) return;
         if (!exists(str)) return;
         Node pointer = head;

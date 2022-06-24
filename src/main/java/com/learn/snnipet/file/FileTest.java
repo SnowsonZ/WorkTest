@@ -110,7 +110,7 @@ public class FileTest implements ApplicationRunner {
         String filePath = getClass().getClassLoader().getResource(path).getPath();
         // 回退流
         PushbackInputStream pis;
-        try (DataInputStream dis = new DataInputStream(pis = new PushbackInputStream(new FileInputStream(new File(filePath))))) {
+        try (DataInputStream dis = new DataInputStream(pis = new PushbackInputStream(new FileInputStream(filePath)))) {
             int next = pis.read();
             if (next == '-') {
                 log.info("{}", (char)next);

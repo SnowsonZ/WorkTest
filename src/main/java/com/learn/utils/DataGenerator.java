@@ -1,5 +1,7 @@
 package com.learn.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +9,7 @@ import java.util.Random;
 /**
  * @author Snowson
  **/
+@Slf4j
 public class DataGenerator {
     /**
      * Generate array int.
@@ -43,7 +46,42 @@ public class DataGenerator {
         return result;
     }
 
+    public static int[] intArray(int oddNumCount) {
+        if (oddNumCount <= 0) {
+            return null;
+        }
+        final ArrayList<Integer> oddList = new ArrayList<>();
+        for (int i = 0; i < oddNumCount; i++) {
+            final int oddCount =  2 * (int) (Math.random() * 2) + 1;
+            int oddNum = (int) (Math.random() * 10);
+            if (oddList.contains(oddNum)) {
+                oddNum++;
+            }
+            for (int j = 0; j < oddCount; j++) {
+                oddList.add(oddNum);
+            }
+        }
+        final ArrayList<Integer> list = new ArrayList<>(oddList);
+        final int evenNumCount = (int) (Math.random() * 10 + 2);
+        for (int i = 0; i < evenNumCount; i++) {
+            int count = 2 * (int) (Math.random() + 1);
+            int evenNum = (int) (Math.random() * 10);
+            if (oddList.contains(evenNum)) {
+                evenNum++;
+            }
+            for (int j = 0; j < count; j++) {
+                list.add(evenNum);
+            }
+        }
+        final int[] result = list.stream().mapToInt(Integer::intValue).toArray();
+        for (int i = 0; i < result.length; i++) {
+            OperationUtil.swap(result, i, (int) (Math.random() * result.length));
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        System.out.println(stringArray(5, 100));
+        log.info("{}", intArray(1));
+        log.info("{}", intArray(2));
     }
 }

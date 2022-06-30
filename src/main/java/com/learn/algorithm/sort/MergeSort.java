@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  * 两种方式：自上而下递归；自下而上迭代
  * <p>
  * <p>
- *  递推公式：sort(array, start, end) = merge(sort(array, start, mid),sort(array, mid + 1, end))<br/>
+ * 递推公式：sort(array, start, end) = merge(sort(array, start, mid),sort(array, mid + 1, end))<br/>
  * <a href="https://bucket-1257126549.cos.ap-guangzhou.myqcloud.com/20181120110141.gif">图解</a>
  *
  * @author Snowson
@@ -34,6 +34,7 @@ public class MergeSort {
         sort(array, aux, 0, array.length - 1);
         return array;
     }
+
     private static void sort(int[] array, int[] aux, int lo, int hi) {
         if (lo >= hi) {
             return;
@@ -66,8 +67,7 @@ public class MergeSort {
         for (int k = lo; k <= hi; k++) {
             if (i > mid) array[k] = aux[j++];
             else if (j > hi) array[k] = aux[i++];
-            else if (aux[i] < aux[j]) array[k] = aux[i++];
-            else array[k] = aux[j++];
+            else array[k] = aux[i] <= aux[j] ? aux[i++] : aux[j++];
         }
     }
 }

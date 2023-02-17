@@ -19,7 +19,7 @@ public class TimerAreaTest {
 //        System.out.println("hour: " + hour);
 //        System.out.println("date: " + date);
 
-        LocalDate localDate = LocalDate.ofEpochDay(1548232832L);
+        LocalDate localDate = LocalDate.ofEpochDay(100);
         log.info("time: {}", localDate);
     }
 }

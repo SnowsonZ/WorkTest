@@ -1,9 +1,7 @@
 package com.learn.snnipet.Timer;
 
 import com.learn.snnipet.util.MockUtils;
-//import com.test.test.Timer.bean.ExpEvent;
-//import com.test.test.util.MockUtils;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,8 +12,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoUnit;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @Author: Snowson
@@ -42,6 +40,7 @@ public class TimerTest implements ApplicationRunner {
     @Scheduled(cron = "15 * * * * ? ")
     public void timerTest() {
         log.info("executed...");
+        final var data = new ArrayList<HashMap<String, HashMap<String, String>>>();
     }
 
     @Override

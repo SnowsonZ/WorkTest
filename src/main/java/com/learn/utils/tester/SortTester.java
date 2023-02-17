@@ -2,6 +2,7 @@ package com.learn.utils.tester;
 
 import com.google.common.base.Stopwatch;
 import com.learn.algorithm.sort.MergeSort;
+import com.learn.utils.DataGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
@@ -19,7 +20,8 @@ import static com.learn.utils.DataGenerator.intArray;
 public class SortTester {
 
     public static void main(String[] args) {
-        print(MergeSort::sortRec);
+//        print(MergeSort::sortRec);
+        log.info("{}", DataGenerator.intArray(10, 10));
     }
 
     public static void _assert(Function<int[], int[]> fun1, Function<int[], int[]> fun2) {

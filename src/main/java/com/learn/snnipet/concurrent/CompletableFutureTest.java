@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 

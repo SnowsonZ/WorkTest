@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 希尔排序
  * <p>
- * 时间复杂度：O(nlog^2n);不稳定
+ * 时间复杂度：平均：O(nlog^2n);最优：O(n);平均：不去定。不稳定
  * <p>
  * 空间复杂度：
  * <p>
@@ -38,7 +38,7 @@ public class ShellSort {
                 }
                 array[j + span] = temp;
             }
-            log.info("1 turn: {}", array);
+//            log.info("1 turn: {}", array);
             span >>=  1;
         }
         return array;

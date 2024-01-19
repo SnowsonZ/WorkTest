@@ -7,7 +7,7 @@ import static com.learn.utils.OperationUtil.swap;
 /**
  * 快速排序
  * <p>
- * 时间复杂度： O(nlogn)
+ * 时间复杂度： 平均：O(nlogn)；最坏：O(N^2)
  * <p>
  * 关键字：分治法
  * 原理：1. 数组首元素作为界限值x，通过循环，将x置于目标位置，将原数组一分为二。该目标位置满足:位置左边的数组不大于x，位置右侧的数组不小于x.<br/>

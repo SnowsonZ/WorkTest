@@ -27,15 +27,19 @@ public class DataGenerator {
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static List<String> stringArray(int maxLength, int size) {
-        return stringArray(maxLength, size, 26);
-    }
-
-    public static List<String> stringArray(int maxLength, int size, int range) {
+    /**
+     * String array list.
+     *
+     * @param maxLength the max length 每个元素的最大长度
+     * @param size      the size 返回数组的长度
+     * @param range     the range 字符范围
+     * @return the list
+     */
+    public static List<String> stringList(int maxLength, int size, int range) {
         final Random random = new Random(System.currentTimeMillis());
         final List<String> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            final int length = random.nextInt(maxLength) + 2;
+            final int length = random.nextInt(maxLength) + 1;
             final char[] chars = new char[length];
             for (int j = 0; j < length; j++) {
                 final int radix = random.nextInt(range);
@@ -45,6 +49,40 @@ public class DataGenerator {
         }
         return result;
     }
+
+    public static List<String> stringList(int maxLength, int size) {
+        return stringList(maxLength, size, 26);
+    }
+
+    public static String[] stringArray(int maxLength, int size) {
+        return stringArray(maxLength, size, 26, false);
+    }
+
+    public static String[] stringFixedArray(int maxLength, int size) {
+        return stringArray(maxLength, size, 26, true);
+    }
+
+    public static String[] stringArray(int maxLength, int size, int range, boolean fixedLength) {
+        final Random random = new Random(System.currentTimeMillis());
+        final List<String> result = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int length = 0;
+            if (fixedLength) {
+                length = maxLength;
+            }else {
+                length = random.nextInt(maxLength) + 1;
+            }
+            final char[] chars = new char[length];
+            for (int j = 0; j < length; j++) {
+                final int radix = random.nextInt(range);
+                chars[j] = (char) ('a' + radix);
+            }
+            result.add(new String(chars));
+        }
+        return result.toArray(new String[]{});
+    }
+
+
 
     public static int[] intArray(int oddNumCount) {
         if (oddNumCount <= 0) {
@@ -81,7 +119,8 @@ public class DataGenerator {
     }
 
     public static void main(String[] args) {
-        log.info("{}", intArray(1));
-        log.info("{}", intArray(2));
+//        log.info("{}", intArray(1));
+//        log.info("{}", intArray(2));
+        log.info("{}", stringList(30, 20));
     }
 }

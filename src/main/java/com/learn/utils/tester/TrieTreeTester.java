@@ -13,7 +13,7 @@ import java.util.List;
 public class TrieTreeTester {
     public static void main(String[] args) {
         final TrieTree trieTree = new TrieTree();
-        final List<String> src = DataGenerator.stringArray(2, 50, 3);
+        final List<String> src = DataGenerator.stringList(2, 50, 3);
         System.out.println(src);
         for (String ele : src) {
             trieTree.add(ele);

@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 /**
  * The type Bucket sort.
- *
+ * 空间复杂度：平均：O(n + k);最坏：O(N^2);
+ * 空间复杂度：O(n * k)
  * @author Snowson
  */
 public class BucketSort {

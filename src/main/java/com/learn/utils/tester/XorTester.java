@@ -16,8 +16,8 @@ import static com.learn.utils.OperationUtil.swap;
 public class XorTester {
     public static void main(String[] args) {
         km(5, 3, 10);
-        log.info("{}", Xor.findOne(DataGenerator.intArray(1)));
-        log.info("{}", Xor.findTwo(DataGenerator.intArray(2)));
+//        log.info("{}", Xor.findOne(DataGenerator.intArray(1)));
+//        log.info("{}", Xor.findTwo(DataGenerator.intArray(2)));
     }
 
     public static void km(int maxType, int count, int range) {
@@ -44,8 +44,8 @@ public class XorTester {
         for (int i = 0; i < array.length; i++) {
             swap(array, i, (int) (Math.random() * array.length));
         }
-        log.info("{}", array);
         final int num = Xor.findK(array, k, m);
+        log.info("find out the number occurred k times in array, k: {}, num: {}", k, num);
         final Map<Integer, Integer> map = new HashMap<>(numType);
         for (int j : array) {
             map.merge(j, 1, Integer::sum);

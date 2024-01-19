@@ -12,6 +12,8 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 
@@ -30,6 +32,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 /**
  * @author Snowson
@@ -88,7 +92,7 @@ public class KafkaTest implements ApplicationRunner {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.17.161.7:9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
@@ -97,21 +101,21 @@ public class KafkaTest implements ApplicationRunner {
 
     public static Properties createProducerProps() {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.110.128:9092");
-        props.put("acks", "all");
-        props.put("delivery.timeout.ms", 30000);
-        props.put("batch.size", 1000);
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.110.128:9092");
+        props.put(ACKS_CONFIG, "all");
+        props.put(DELIVERY_TIMEOUT_MS_CONFIG, 30000);
+        props.put(BATCH_SIZE_CONFIG, 1000);
         /**
          * 数据发送等待时间
          */
-        props.put("linger.ms", 5000);
+        props.put(LINGER_MS_CONFIG, 5000);
         /**
          * 一条消息的大小设置
          */
-        props.put("buffer.memory", 102400);
-        props.put("request.timeout.ms", 5000);
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put(BUFFER_MEMORY_CONFIG, 102400);
+        props.put(REQUEST_TIMEOUT_MS_CONFIG, 5000);
+        props.put(KEY_SERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         return props;
     }
 

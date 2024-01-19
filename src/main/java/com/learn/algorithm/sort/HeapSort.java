@@ -12,7 +12,7 @@ import static com.learn.utils.OperationUtil.swap;
  * <p>
  * 时间复杂度：平均：Ο(nlogn);
  * <p>
- * 空间复杂度：
+ * 空间复杂度：O(1)
  * <p></p>
  * 关键字：堆数据结构; 大顶堆：升序排序；小顶堆：降序排序;
  * <a href="https://bucket-1257126549.cos.ap-guangzhou.myqcloud.com/20181125191942.gif">图解</a>

@@ -1,8 +1,7 @@
 package com.learn.utils.tester;
 
 import com.google.common.base.Stopwatch;
-import com.learn.algorithm.sort.MergeSort;
-import com.learn.utils.DataGenerator;
+import com.learn.algorithm.sort.RadixSort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
@@ -11,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.learn.utils.DataGenerator.intArray;
+import static com.learn.utils.DataGenerator.*;
 
 /**
  * @author Snowson
@@ -20,8 +19,7 @@ import static com.learn.utils.DataGenerator.intArray;
 public class SortTester {
 
     public static void main(String[] args) {
-//        print(MergeSort::sortRec);
-        log.info("{}", DataGenerator.intArray(10, 10));
+        print(RadixSort::sortString, stringArray(4, 20));
     }
 
     public static void _assert(Function<int[], int[]> fun1, Function<int[], int[]> fun2) {
@@ -31,15 +29,14 @@ public class SortTester {
         log.info("assert success.");
     }
 
-    public static void print(Function<int[], int[]> func) {
-        final int[] array = intArray(10, 20);
-        log.info("origin: {}", array);
-        final int[] result = func.apply(array);
-        log.info("result: {}", result);
+    public static <T> void print(Function<T[], T[]> func, T[] array) {
+        log.info("origin: {}", Arrays.asList(array));
+        final T[] result = func.apply(array);
+        log.info("result: {}", Arrays.asList(result));
     }
 
     public static void testPerformance(List<Function<int[], int[]>> functions) {
-        final int[] array = intArray(200000, 10);
+        final int[] array = intArray(200000, 100);
         final ArrayList<int[]> arrays = new ArrayList<>();
         for (int i = 0; i < functions.size(); i++) {
             arrays.add(Arrays.copyOf(array, array.length));
@@ -47,7 +44,7 @@ public class SortTester {
         final Stopwatch watcher = Stopwatch.createStarted();
         for (int i = 0; i < arrays.size(); i++) {
             functions.get(i).apply(arrays.get(i));
-            log.info("time: {}", watcher);
+            log.info("{}: time: {}", functions.get(i).getClass().getSimpleName(), watcher);
         }
     }
 }
